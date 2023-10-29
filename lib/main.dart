@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:the_app/walkthrough_page_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AlefTeacher());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AlefTeacher extends StatelessWidget {
+  const AlefTeacher({super.key});
 
   // This widget is the root of your application.
   @override
@@ -30,4 +30,6 @@ class MyApp extends StatelessWidget {
 
 
 //define styles class here to use it across the application
+class Styles{
 
+}

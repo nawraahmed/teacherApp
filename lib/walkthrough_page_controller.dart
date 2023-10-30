@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_app/login_page.dart';
+import 'main.dart';
 import 'walkthrough_one.dart';
 import 'walkthrough_two.dart';
 
@@ -54,7 +56,7 @@ class _WTpageControllerState extends State<WTpageController> {
                         height: 12,
                         decoration: BoxDecoration(
                           color: currentPage == 0
-                              ? const Color.fromRGBO(253, 132, 134, 1) // Active button color
+                              ? Styles.primaryPink // Active button color
                               : const Color.fromRGBO(253, 132, 134, 0.3), // Inactive button color
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -78,7 +80,7 @@ class _WTpageControllerState extends State<WTpageController> {
                         height: 12,
                         decoration: BoxDecoration(
                           color: currentPage == 1
-                              ? const Color.fromRGBO(253, 132, 134, 1) // Active button color
+                              ? Styles.primaryPink // Active button color
                               : const Color.fromRGBO(253, 132, 134, 0.3), // Inactive button color
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -100,7 +102,8 @@ class _WTpageControllerState extends State<WTpageController> {
               padding: const EdgeInsets.only(bottom: 100.0), // Add 100 bottom padding
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle the "Get Started" button tap
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

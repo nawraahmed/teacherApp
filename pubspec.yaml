@@ -67,6 +67,7 @@ flutter:
   - assets/alef_logo.png
   - assets/email.png
   - assets/password.png
+  - lib/Json_Files/login_client.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

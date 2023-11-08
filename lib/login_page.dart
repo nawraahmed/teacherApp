@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_app/Services/APILoginClient.dart';
 
+import 'Styling_Elemnts/CustomTextField.dart';
 import 'main.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  String email = '';
+  String password = '';
+  String token = '';
 
   @override
   Widget build(BuildContext context) {
@@ -46,29 +51,53 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 16.0),
 
 
-            Styles.customTextField('assets/email.png'),
-            const SizedBox(height: 20.0),
-            Styles.customTextField('assets/password.png'),
+            CustomTextField(
+              hintText: 'Enter your email',
+              onChanged: (value) {
+                setState(() {
+                  email = value;
+                  //_emailError = validateEmail(value);
+                  print("EMAIL: $email");
 
-            // TextField(
-            //   controller: _usernameController,
-            //   decoration: const InputDecoration(
-            //     hintText: 'Username',
-            //     border: OutlineInputBorder(),
-            //   ),
-            // ),
-            // const SizedBox(height: 8.0),
-            //
-            // TextField(
-            //   controller: _passwordController,
-            //   decoration: const InputDecoration(
-            //     hintText: 'Password',
-            //     border: OutlineInputBorder(),
-            //   ),
-            //   obscureText: true,
-            // ),
-            const SizedBox(height: 16.0),
+                });
+              },
+              errorText: '', // Pass null or empty string for no error
+              isPassword: false,
+              imagePath: 'assets/email.png', // Replace with your image path
+            ),
+            SizedBox(height: 20),
 
+
+            CustomTextField(
+              hintText: 'Enter your password',
+              onChanged: (value) {
+                setState(() {
+                  password = value;
+                  //_passwordError = validatePassword(value);
+
+                });
+              },
+              errorText: '',
+              isPassword: true,
+              imagePath: 'assets/password.png', // Replace with your image path
+            ),
+
+
+            ElevatedButton(
+              onPressed: () {
+                authenticateUser();
+              },
+              child: Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30.0),
 
 
             // Contact Administration text
@@ -119,4 +148,26 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
+  Future<void> authenticateUser() async {
+    try {
+      LoginResponse response = await APILoginClient().login(email, password);
+
+      // Call the `authenticateUser` method of the `APIClient` and pass the email and password
+      String jwtToken = response.jsonToken;
+      print("here is the token $jwtToken");
+
+    } catch (error) {
+      print("FEEH MUSHKILAAA");
+    }
+  }
+
+
+
+
+
+
 }
+
+
+

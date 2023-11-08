@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		z+ceK1jztECtE0gkHyvM3bXT9ac=
+		fB+kskCQGFQeOOaUf0YxnBKZtTI=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		SA0sAqIxsZc2WILGFlRDgmzYNzs=
+		xPWQD5JXI3bgGXB71U6/1HLVcSI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		abXSCLyzFd6E827iHJjLCoiyM9o=
+		uP74ldpT3zbC1Lu4kAB9iz+VhOQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		l8ynCQhqCnqY5SkKO5+PSHUZoQI=
+		Hh6CCcUS8rJe38iic+tyNIqoZ88=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -72,9 +72,21 @@
 		<data>
 		yK+Omxg/2TX3Jr2gZySvKBscEw0=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/alef_logo.png</key>
+		<data>
+		9bcsBNB5cCZLibLYLAqj84M1P8Q=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/email.png</key>
+		<data>
+		xDXRQzDUcn580wh6hlM9O9gtk8s=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/login.png</key>
 		<data>
 		z3V5/WMpUUNO1uuIJppXZdmYCGI=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/password.png</key>
+		<data>
+		P7sdaoe9DLltZqyUouNmsUB8TP8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/walkthrough_one.png</key>
 		<data>
@@ -94,7 +106,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		c3VFCPhN/HV923vNV0xaEYPJyYg=
+		ANgAaIsy6PjG9GHPp4vkf7+FXg4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -289,7 +301,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bdhjZU4BFxE95Xm6VGVXIi72VS+MvH/447Gd+sY8VjM=
+			PQ/LSAVB4IhBNiQPNhU+dPaeDMY/xq/EBklZhrkAufY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -303,21 +315,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JKn+8KH0aLbTd1W2ezn8j20sTWISJLr4WUVz3pM1P5g=
+			sSF0Q1KBjqGDJI9QBwNJUeRU0nflfuTPJAIrMw7Ix+0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QoI033EEXhexirYF/YKQrKc1XaEv6uDHyCTQyvM3E3g=
+			ELulwSz9Hke/TpkJKN9eW+Gt543WeWSNmIt6BpZ50nU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TRc1FwWpyMUgHoIBNR75uaJAL6BqmLTBjQbUMI1DeyU=
+			EawA9spvlX4tU5as/NwrMlsm3VxykJ72aqqv5cL59OE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -334,11 +346,32 @@
 			PwcmF5ARoJvrV3Hf9p1cRRA1Vhz9Oxo4Upsh10dBotc=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/alef_logo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YvaPhVvQ4Hby6SWT+FZ+2aGSa6EJQ0SbKFwzw1wiz4Y=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/email.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yrNrSGMoRHiOT0uV0e7g95xVIhjJOnN62VBSzIdI/FY=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/login.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			b3pKWpFo1M9NfAU6/pH4zYuYWnug0hoI+1hEsIqA+q0=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/password.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gTKpSwXuccdj1KkQJ0x590Q8GuoW/L6OUWnax8LoOAI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/walkthrough_one.png</key>
@@ -373,7 +406,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7lzSB3HdxnX9LUb4d3tDvaE1Qh4ZWWsgA9uDJKPuWs8=
+			mWKruxUNivoA7UrUhytKgBWVnktxFeay4WyrXmbsG4Y=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

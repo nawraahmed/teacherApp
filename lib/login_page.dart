@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_app/Services/APILoginClient.dart';
+import 'package:the_app/homepage.dart';
 
 import 'Styling_Elemnts/CustomTextField.dart';
 import 'main.dart';
@@ -30,25 +31,25 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               children: [
                 // Alef logo image centered
-                const SizedBox(height: 40.0),
+                const SizedBox(height: 30.0),
                 Center(
                   child: Image.asset('assets/alef_logo.png'),
                 ),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 5.0),
 
                 // Login heading centered
                 const Center(
                   child: Text(
                     'Login',
-                    style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 40.0),
+            const SizedBox(height: 30.0),
 
             Image.asset('assets/login.png'),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 10.0),
 
 
             CustomTextField(
@@ -65,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               isPassword: false,
               imagePath: 'assets/email.png', // Replace with your image path
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
 
             CustomTextField(
@@ -82,22 +83,34 @@ class _LoginScreenState extends State<LoginScreen> {
               imagePath: 'assets/password.png', // Replace with your image path
             ),
 
-
+            const SizedBox(height: 5),
             ElevatedButton(
               onPressed: () {
                 authenticateUser();
+
+                //if authentication was successful, navigate to home page
+                // Navigate to MyCustomTab after successful login
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyCustomTab(initialPage: SelectedPage.home),
+                  ),
+                );
               },
-              child: Text(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Styles.primaryPink,
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+              ),
+              child: const Text(
                 'Login',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14, // Adjust the font size as needed
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
             ),
-
-            const SizedBox(height: 30.0),
+            const SizedBox(height: 20.0),
 
 
             // Contact Administration text

@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
+  shared_preferences: ^2.0.10
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,15 @@ flutter:
   - assets/alef_logo.png
   - assets/email.png
   - assets/password.png
+  - assets/avatar.png
+  - assets/settings.png
+  - assets/settingsSelected.png
+  - assets/events.png
+  - assets/eventsSelected.png
+  - assets/attendance.png
+  - assets/attendanceSelected.png
+  - assets/Home.png
+  - assets/homeSelected.png
   - lib/Json_Files/login_client.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

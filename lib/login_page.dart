@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Styles.primaryPink,
+                backgroundColor: Styles.primaryNavy,
                 padding: const EdgeInsets.symmetric(horizontal: 5),
               ),
               child: const Text(
@@ -150,9 +150,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-
-
             )
 
           ],

@@ -46,6 +46,11 @@ class AlefTeacher extends StatelessWidget {
 class Styles{
 
   static const Color primaryPink = Color.fromRGBO(253, 132, 134, 1);
+  static const Color primaryNavy = Color.fromRGBO(19, 40, 103, 1);
+  static const Color inactivePrimaryNavy = Color.fromRGBO(19, 40, 103, 0.3);
+  static const Color primaryBlue = Color.fromRGBO(160, 210, 209, 1);
+
+
 
 
   // static Widget customTextField(String imagePath) {
@@ -131,7 +136,7 @@ class _MyCustomTabState extends State<MyCustomTab> {
     return Scaffold(
       body: _getPageForTab(_selectedPage),
       bottomNavigationBar: Container(
-        height: 60,
+        height: 55,
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
         decoration: BoxDecoration(
           color: tabBarBackgroundColor,
@@ -148,37 +153,38 @@ class _MyCustomTabState extends State<MyCustomTab> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildTabItem(
-              icon: _selectedPage == SelectedPage.home ? 'assets/homeSelected.png' : 'assets/Home.png',
-              label: _selectedPage == SelectedPage.home ? 'Home' : '',
+              selectedIcon: 'assets/homeSelected.png',
+              unselectedIcon: 'assets/Home.png',
               page: SelectedPage.home,
             ),
             _buildTabItem(
-              icon: _selectedPage == SelectedPage.events ? 'assets/eventsSelected.png' : 'assets/events.png',
-              label: _selectedPage == SelectedPage.events ? 'Events' : '',
+              selectedIcon: 'assets/eventsSelected.png',
+              unselectedIcon: 'assets/events.png',
               page: SelectedPage.events,
             ),
             _buildTabItem(
-              icon:  _selectedPage == SelectedPage.attendance ? 'assets/attendanceSelected.png' : 'assets/attendance.png',
-              label: _selectedPage == SelectedPage.attendance ? 'Attendance' : '',
+              selectedIcon: 'assets/attendanceSelected.png',
+              unselectedIcon: 'assets/attendance.png',
               page: SelectedPage.attendance,
             ),
             _buildTabItem(
-              icon: _selectedPage == SelectedPage.settings ? 'assets/settingsSelected.png' : 'assets/settings.png',
-              label: _selectedPage == SelectedPage.settings ? 'Settings' : '',
+              selectedIcon: 'assets/settingsSelected.png',
+              unselectedIcon: 'assets/settings.png',
               page: SelectedPage.settings,
             ),
           ],
         ),
+
       ),
     );
   }
 
-  Widget _buildTabItem(
-      {required String icon,
-        required String label,
-        required SelectedPage page}) {
+  Widget _buildTabItem({
+    required String selectedIcon,
+    required String unselectedIcon,
+    required SelectedPage page,
+  }) {
     final isSelected = _selectedPage == page;
-    final labelColor = isSelected ? Styles.primaryPink : Colors.black.withOpacity(0.5);
 
     return GestureDetector(
       onTap: () {
@@ -191,34 +197,27 @@ class _MyCustomTabState extends State<MyCustomTab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+
+                Image.asset(
+                  isSelected ? selectedIcon : unselectedIcon,
+                  width: 30,
+                  height: 20,
+                ),
+
+
+              ],
+            ),
+            const SizedBox(height: 5),
             Container(
               decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(25),
-                color: isSelected
-                    ? Color.fromRGBO(253, 132, 134, 0.1)
-                    : Colors.transparent,
+                shape: BoxShape.circle,
+                color: isSelected ? Styles.primaryBlue : Colors.transparent,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    icon,
-                    width: 30,
-                    height: 20,
-                    color: isSelected ? Styles.primaryPink : null,
-                  ),
-                  const SizedBox(width: 3),
-                  Text(
-                    label,
-                    style: TextStyle(
-                      color: labelColor,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
+              width: 5,
+              height: 5,
             ),
           ],
         ),
@@ -226,22 +225,39 @@ class _MyCustomTabState extends State<MyCustomTab> {
     );
   }
 
+
   Widget _getPageForTab(SelectedPage page) {
     switch (page) {
       case SelectedPage.home:
         return const HomePage();
       case SelectedPage.events:
-        return const Events();
+        return const EmptyView();
       case SelectedPage.attendance:
-        return Attendance();
+        return EmptyView();
       case SelectedPage.settings:
-        return const Settings();
+        return const EmptyView();
       default:
         return Container(); // Return an empty container as a fallback
     }
   }
 }
 
+
+class EmptyView extends StatelessWidget {
+  const EmptyView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Empty View"),
+      ),
+      body: const Center(
+        child: Text("This is an empty view"),
+      ),
+    );
+  }
+}
 
 
 

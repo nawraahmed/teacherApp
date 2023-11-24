@@ -30,7 +30,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         border: Border.all(
           color: widget.errorText != null && widget.errorText!.isNotEmpty
               ? Colors.red
-              : Styles.primaryPink, // Customize border color for error state
+              : Styles.primaryNavy, // Customize border color for error state
           width: 2.0,
         ),
       ),

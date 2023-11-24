@@ -72,13 +72,19 @@ flutter:
   - assets/avatar.png
   - assets/settings.png
   - assets/settingsSelected.png
-  - assets/events.png
   - assets/eventsSelected.png
   - assets/attendance.png
   - assets/attendanceSelected.png
   - assets/Home.png
   - assets/homeSelected.png
+  - assets/classes.png
+  - assets/back.png
+  - assets/events_home.png
+  - assets/events.png
+  - assets/enter.png
+  - assets/enter_black.png
   - lib/Json_Files/login_client.json
+  - lib/Json_Files/class_lister.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

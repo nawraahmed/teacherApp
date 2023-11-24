@@ -35,7 +35,7 @@ class APILoginClient {
     print("this is the base: $baseUrl");
   }
 
-  // Reads profile endpoint from JSON file
+  // Reads login endpoint from JSON file
   Future<String> initializeEndpoint() async {
     final loginEndpoint = await readAPIInfoFromJSONFile();
 

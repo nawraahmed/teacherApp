@@ -56,8 +56,8 @@ class _WTpageControllerState extends State<WTpageController> {
                         height: 12,
                         decoration: BoxDecoration(
                           color: currentPage == 0
-                              ? Styles.primaryPink // Active button color
-                              : const Color.fromRGBO(253, 132, 134, 0.3), // Inactive button color
+                              ? Styles.primaryNavy // Active button color
+                              : Styles.inactivePrimaryNavy, // Inactive button color
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -80,8 +80,8 @@ class _WTpageControllerState extends State<WTpageController> {
                         height: 12,
                         decoration: BoxDecoration(
                           color: currentPage == 1
-                              ? Styles.primaryPink // Active button color
-                              : const Color.fromRGBO(253, 132, 134, 0.3), // Inactive button color
+                              ? Styles.primaryNavy // Active button color
+                              : Styles.inactivePrimaryNavy, // Inactive button color
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -108,7 +108,7 @@ class _WTpageControllerState extends State<WTpageController> {
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
-                    side: const BorderSide(color: Color.fromRGBO(253, 132, 134, 1), width: 2), // Set the border color to pink
+                    side: const BorderSide(color: Styles.primaryNavy, width: 2), // Set the border color to pink
                   ),
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),

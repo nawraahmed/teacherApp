@@ -38,6 +38,11 @@ dependencies:
   google_fonts: ^5.1.0
   shared_preferences: ^2.0.10
   provider: ^6.0.5
+  table_calendar: ^3.0.9
+  animated_custom_dropdown: 1.5.0
+  toggle_switch: ^2.1.0
+  image_picker: ^1.0.4
+  camera: ^0.10.5+5
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +90,7 @@ flutter:
   - assets/enter_black.png
   - lib/Json_Files/login_client.json
   - lib/Json_Files/class_lister.json
+  - lib/Json_Files/students_in_class.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

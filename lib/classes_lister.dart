@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'Services/APIClassesLister.dart';
-import 'Styling_Elemnts/BackButtonRow.dart';
+import 'Styling_Elements/BackButtonRow.dart';
+import 'class_details.dart';
 
 class ClassLister extends StatefulWidget {
   const ClassLister({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
       body: Column(
         children: [
           const SizedBox(height: 80.0),
-          BackButtonRow(title: 'Classes'),
+          const BackButtonRow(title: 'Classes'),
 
           Expanded(
             child: ListView.builder(
@@ -40,7 +40,7 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
                   child: Container(
                     height: 80.0,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(214, 214, 214, 1),
+                      color: const Color.fromRGBO(214, 214, 214, 1),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Padding(
@@ -60,6 +60,12 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
                             icon: Image.asset('assets/enter_black.png'),
                             onPressed: () {
                               // Handle button press
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ClassDetails(className: classesList[index].className),
+                                ),
+                              );
                             },
                           ),
                         ],

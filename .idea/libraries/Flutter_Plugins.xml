@@ -12,6 +12,20 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.2+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker-1.0.4" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.8+4" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.8+2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.3+3" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_android-0.10.8+14" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera-0.10.5+5" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_web-0.3.2+3" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+7" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

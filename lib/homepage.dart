@@ -16,10 +16,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   List<String> imagesPath= [
     'assets/classes.png',
     'assets/events_home.png',
-    'assets/email.png',
+    'assets/events_home.png',
   ];
 
-  List<String> headings = ['Classes', 'Events', 'Heading 3'];
+  List<String> headings = ['Classes', 'Events', 'Stationary'];
 
 
 

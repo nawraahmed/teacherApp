@@ -5,29 +5,30 @@ import 'package:http/http.dart' as http;
 class Class {
   final int id;
   final String className;
-  final int preschoolId;
-  final int supervisor;
-  final String grade;
-  final int capacity;
-  final String classroom;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final Preschool preschool;
-  final dynamic staff; // You might want to replace this with the actual Staff class
+  final int? preschoolId;
+  final int? supervisor;
+  final String? grade;
+  final int? capacity;
+  final String? classroom;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final Preschool? preschool;
+  final dynamic? staff; // You might want to replace this with the actual Staff class
 
   Class({
     required this.id,
     required this.className,
-    required this.preschoolId,
-    required this.supervisor,
-    required this.grade,
-    required this.capacity,
-    required this.classroom,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.preschool,
-    required this.staff,
+    this.preschoolId,
+    this.supervisor,
+    this.grade,
+    this.capacity,
+    this.classroom,
+    this.createdAt,
+    this.updatedAt,
+    this.preschool,
+    this.staff,
   });
+
 
   factory Class.fromJson(Map<String, dynamic> json) {
     return Class(
@@ -101,8 +102,7 @@ class ApiClassesLister {
 
   // Reads API info from JSON file
   Future<Map<String, dynamic>> readAPIInfoFromJSONFile() async {
-    final jsonString =
-    await rootBundle.loadString('lib/Json_Files/class_lister.json');
+    final jsonString = await rootBundle.loadString('lib/Json_Files/class_lister.json');
     final jsonMap = json.decode(jsonString);
     return jsonMap;
   }

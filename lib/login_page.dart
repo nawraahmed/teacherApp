@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_app/Services/APILoginClient.dart';
 import 'package:the_app/homepage.dart';
 
-import 'Styling_Elemnts/CustomTextField.dart';
+import 'Styling_Elements/CustomTextField.dart';
 import 'main.dart';
 
 class LoginScreen extends StatefulWidget {

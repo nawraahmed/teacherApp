@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		qL50nKiEZDtkHmCrEB0PHzI1ydY=
+		IUyW5wCNMbvcfBUfhN+Wpq65XR0=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		uN/XUD8dmc741QiYH7tOmwcspgw=
+		IlYJ82B3hM6r6wfHWK8Y81fx/D4=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		UXOsJ8RBA1uOkoTiOKkrbQ7w/r0=
+		plllKbQrWZjUUVXswrovi1vKf2w=
 		</data>
 		<key>flutter_assets/assets/Home.png</key>
 		<data>
@@ -55,6 +55,18 @@
 		<key>flutter_assets/assets/email.png</key>
 		<data>
 		xDXRQzDUcn580wh6hlM9O9gtk8s=
+		</data>
+		<key>flutter_assets/assets/enter.png</key>
+		<data>
+		gxPuSY+Y+1vy5B+detyOHna5ax8=
+		</data>
+		<key>flutter_assets/assets/enter_black.png</key>
+		<data>
+		ClAjgel7SeHO6VypepEsRaLbJAQ=
+		</data>
+		<key>flutter_assets/assets/events.png</key>
+		<data>
+		Z4p1Vb+gCwqDw10KLzQVNsvVbyQ=
 		</data>
 		<key>flutter_assets/assets/eventsSelected.png</key>
 		<data>
@@ -102,11 +114,19 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		MKIpFn8VkmYp+S0e4QO3pLDUwSc=
+		9AmMz0hyBQK7XdsZ0Jmf/tnv8RM=
+		</data>
+		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
+		<data>
+		CkwtERnN6Jvr4OkdI1EktB3HWmg=
 		</data>
 		<key>flutter_assets/lib/Json_Files/login_client.json</key>
 		<data>
 		nfhNzNcOVgYoHzBTzPkL0f9eh0o=
+		</data>
+		<key>flutter_assets/lib/Json_Files/students_in_class.json</key>
+		<data>
+		5lpD/QzgXjQwur5KmXHYxTi+gUw=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -127,14 +147,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			v8kA5SFPR7H2Ryg8quRddB3fcmCpvGHZ+44E3RaA0zc=
+			Rs3cmkWv3p0NUW3trt+JWCpyBdTrXiqziw2WT/vl8pw=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uKAo6mSUZpc9B5+dqh+9rNWZR9UiCjTP/+c32dZMmb0=
+			tmUhyKEY6Qn/JMOxNSyCo0bVeNF6nLp51Iw236YlPlg=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -148,7 +168,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Fdg/7uIDRmEe2UG7uApLcNFlx7tbUxDHiygMsLRMLS4=
+			OkBwzbpgOgeU/ousZCY1kP1MtWIyNzaHRB2yGjQql74=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Home.png</key>
@@ -205,6 +225,27 @@
 			<key>hash2</key>
 			<data>
 			yrNrSGMoRHiOT0uV0e7g95xVIhjJOnN62VBSzIdI/FY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/enter.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			13AjmW1RBf4zmxw4//V92mWq/hkylTBkqriBSFAIf6o=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/enter_black.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			O2e0Ra87QT3uIk9m82W9ev+aQhr/kuHPsU2SV69VGG0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/events.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1QVn8KkG7OtJe8KFaGPyE+iavpzxc3cUGk7sqNjEOHY=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/eventsSelected.png</key>
@@ -288,7 +329,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qrUCaH/EyBdKsyBT/oXWQyHEoCAE85Mm5OqMObr3euA=
+			Wcr8uz6NlrV22pC/aM3LDpwEkqP1hWE46t6be3mFRYY=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			o38jn5tborb380F/9i2dawsOM0g4mAGckNoHHCb9tZA=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/login_client.json</key>
@@ -296,6 +344,13 @@
 			<key>hash2</key>
 			<data>
 			G6hR5ZQv09rcYgYJOGT8x/3sZdpL/SUfXuFGx3ER1ZY=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/students_in_class.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			n7YnputEJGVViYdm6JqISJRFbbirPNoVhspQj/T/wtc=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

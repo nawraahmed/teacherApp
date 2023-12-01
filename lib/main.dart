@@ -4,6 +4,7 @@ import 'package:the_app/walkthrough_page_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'all_attendance.dart';
 import 'attendance.dart';
 import 'events.dart';
 import 'homepage.dart';
@@ -29,7 +30,7 @@ class AlefTeacher extends StatelessWidget {
       title: 'Alef Teacher App',
       theme: ThemeData(
         textTheme: GoogleFonts.urbanistTextTheme(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        //colorScheme: ColorScheme.fromSeed(seedColor: Styles.primaryBlue),
         useMaterial3: true,
 
       ),
@@ -49,6 +50,8 @@ class Styles{
   static const Color primaryNavy = Color.fromRGBO(19, 40, 103, 1);
   static const Color inactivePrimaryNavy = Color.fromRGBO(19, 40, 103, 0.3);
   static const Color primaryBlue = Color.fromRGBO(160, 210, 209, 1);
+  static const Color primaryGray = Color.fromRGBO(185, 188, 190, 1);
+
 
 
 
@@ -233,7 +236,7 @@ class _MyCustomTabState extends State<MyCustomTab> {
       case SelectedPage.events:
         return const EmptyView();
       case SelectedPage.attendance:
-        return EmptyView();
+        return AllAttendance();
       case SelectedPage.settings:
         return const EmptyView();
       default:

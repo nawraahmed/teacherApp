@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_app/stationary_request.dart';
 
 import 'classes_lister.dart';
 import 'main.dart';
@@ -109,14 +110,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         // Navigate to the classes page
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ClassLister()),
+                          MaterialPageRoute(builder: (context) => const ClassLister()),
                         );
 
                       } else if (index == 1) {
                         // Navigate to the events page
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ClassLister()),
+                          MaterialPageRoute(builder: (context) => const ClassLister()),
+                        );
+                      }
+                      else if (index == 2) {
+                        // Navigate to the Stationary page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Stationary()),
                         );
                       }
                     },

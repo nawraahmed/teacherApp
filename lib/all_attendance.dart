@@ -39,6 +39,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
   void initState() {
     super.initState();
     fetchClassesList(1);
+
   }
 
 
@@ -49,6 +50,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
         children: [
           // Add top edge spacing (unified in all screens)
           const SizedBox(height: 80.0),
+        //buildAutoAttendanceListItem('Nawraao'),
 
           // Wrap the heading and dropdown in the same column
           Padding(
@@ -92,6 +94,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
                       });
                     },
                   ),
+
+
                 ),
               ],
             ),
@@ -159,7 +163,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
             child: ListView.builder(
               itemCount: hasConsentStudents.length,
               itemBuilder: (context, index) {
-                return buildAutoAttendanceListItem(hasConsentStudents[index]);
+                // return buildAutoAttendanceListItem(hasConsentStudents[index]);
+                return buildAutoAttendanceListItem('Nawraa');
               },
             ),
           ),

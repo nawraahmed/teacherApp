@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_app/walkthrough_page_controller.dart';
@@ -11,6 +13,7 @@ import 'homepage.dart';
 import 'settings.dart';
 
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(
     // Wrap your app with the ChangeNotifierProvider
     ChangeNotifierProvider(
@@ -37,6 +40,16 @@ class AlefTeacher extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: WTpageController(),
     );
+  }
+}
+
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
@@ -238,7 +251,7 @@ class _MyCustomTabState extends State<MyCustomTab> {
       case SelectedPage.attendance:
         return AllAttendance();
       case SelectedPage.settings:
-        return const EmptyView();
+        return const Settings();
       default:
         return Container(); // Return an empty container as a fallback
     }

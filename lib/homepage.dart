@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:the_app/profile_page.dart';
 import 'package:the_app/stationary_request.dart';
 
+import 'Services/APITeacherInfo.dart';
 import 'classes_lister.dart';
 import 'main.dart';
 
@@ -13,6 +15,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
 
+  late String name = '';
+  bool isLoading = true;
+
 
   List<String> imagesPath= [
     'assets/classes.png',
@@ -22,6 +27,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   List<String> headings = ['Classes', 'Events', 'Stationary'];
 
+  @override
+  void initState() {
+    super.initState();
+    fetchTeacherName(16);
+  }
 
 
   @override
@@ -36,13 +46,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: Row(
               children: [
                 // Text on the left
-                const Text(
-                  'Hello Teacher \nNawraa',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                 Text(
+                  'Hello Teacher \n${name}',
+                   style: Theme.of(context).textTheme.titleMedium,
                 ),
 
                 // Spacer to push the next widget to the right
@@ -52,10 +58,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 GestureDetector(
                   onTap: () {
                     // Navigate to the ProfilePage when the avatar is tapped
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => ProfilePage()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
                   },
                   child: Container(
                     width: 50.0, // Adjust the size as needed
@@ -76,19 +82,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           const SizedBox(height: 20),
 
           // Heading for the collection view
-          const Align(
+           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
                 "For You",
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.left,
               ),
+
             ),
           ),
 
@@ -169,23 +172,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           const SizedBox(height: 30),
 
           // Heading for the collection view
-          const Align(
+           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
                 "Today's Tasks",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.left,
               ),
             ),
           ),
 
-          // Pink containers with horizontal scrolling
+          // containers with horizontal scrolling
           SizedBox(
             height: 220.0,
             child: ListView.builder(
@@ -216,4 +215,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
     );
   }
+
+  //FUNCTIONS
+  Future<void> fetchTeacherName(int staffId) async {
+    try {
+      final APITeacherInfo teacherInfo = APITeacherInfo();
+      TeacherInfo teacher = await teacherInfo.getTeacherInfo(staffId);
+
+      setState(() {
+        name = teacher.name;
+        isLoading = false;
+      });
+    } catch (e) {
+      print("Teacher name fetching issue: $e");
+    }
+  }
+
+
 }

@@ -1,9 +1,8 @@
 
-
-
 import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:the_app/Services/APIFaceReco.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'Services/APIClassesLister.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
@@ -33,6 +32,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
   File _image = File(''); // Initialize _image with an empty File
   final picker = ImagePicker();
+  final APIFaceReco apiFaceReco = APIFaceReco();
 
 
   @override
@@ -216,6 +216,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
     );
   }
 
+
 // Function to handle taking a photo
   Future<void> takePhoto() async {
     final picker = ImagePicker();
@@ -230,6 +231,23 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       });
 
       // After taking the photo, you can integrate AI model logic for verification
+
+      // Assuming you have an instance of APIFaceReco called apiFaceReco
+      if (_image != null) {
+        try {
+          Uint8List? result = await apiFaceReco.compareImage(_image!);
+
+          if (result != null) {
+            // Handle the result, e.g., display the recognized image
+            // result is a Uint8List representing the image data
+          } else {
+            // Handle other types of responses or errors
+          }
+        } catch (e) {
+          print('Error comparing image: $e');
+        }
+      }
+
     } catch (e) {
       print('Error taking photo: $e');
     }

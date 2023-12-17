@@ -1,5 +1,8 @@
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_app/walkthrough_page_controller.dart';
@@ -12,8 +15,17 @@ import 'events.dart';
 import 'homepage.dart';
 import 'settings.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+
+
   HttpOverrides.global = MyHttpOverrides();
+
   runApp(
     // Wrap your app with the ChangeNotifierProvider
     ChangeNotifierProvider(
@@ -29,14 +41,14 @@ class AlefTeacher extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    // Retrieve the current theme mode using the DarkThemeProvider
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+    bool isDarkMode = themeProvider.darkTheme; // Move isDarkMode here
+
     return MaterialApp(
       title: 'Alef Teacher App',
-      theme: ThemeData(
-        textTheme: GoogleFonts.urbanistTextTheme(),
-        //colorScheme: ColorScheme.fromSeed(seedColor: Styles.primaryBlue),
-        useMaterial3: true,
-
-      ),
+      theme: Styles.themeData(isDarkMode, context), // Use the themeData
       debugShowCheckedModeBanner: false,
       home: WTpageController(),
     );
@@ -53,6 +65,39 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+
+
+
+
+//this class maintains the image color based on the theme of the app (light/dark)
+class MyImage extends StatelessWidget {
+  final String imagePath;
+  final bool isDarkMode;
+  final double width; // Add width parameter
+  final double height; // Add height parameter
+
+  const MyImage(
+      {super.key,
+        required this.imagePath,
+        required this.isDarkMode,
+        this.width = 24,
+        this.height = 24});
+
+  @override
+  Widget build(BuildContext context) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        isDarkMode ? Colors.white : Colors.black,
+        BlendMode.srcIn,
+      ),
+      child: Image.asset(
+        imagePath,
+        width: width,
+        height: height,
+      ),
+    );
+  }
+}
 
 
 
@@ -103,6 +148,75 @@ class Styles{
   //     ),
   //   );
   // }
+
+
+  static ThemeData themeData(bool isDarkTheme, BuildContext context) {
+    return ThemeData(
+
+      // Define the icon color based on dark mode status
+      iconTheme: IconThemeData(
+        color: isDarkTheme ? Colors.white : Colors.black,
+      ),
+
+      // Define hint color for input fields, based on dark mode status
+      hintColor: isDarkTheme
+          ? const Color.fromRGBO(105, 112, 122, 1)
+          : const Color.fromRGBO(131, 145, 161, 1),
+
+      // Define color for the main canvas area of the app
+      scaffoldBackgroundColor: isDarkTheme
+          ? const Color.fromRGBO(25, 32, 39, 1)
+          : const Color.fromRGBO(255, 255, 255, 1),
+
+      // Define the overall brightness of the app, based on dark mode status
+      brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+
+      // Customize the button theme based on the app's theme
+      buttonTheme: Theme.of(context).buttonTheme.copyWith(
+        colorScheme: isDarkTheme
+            ? const ColorScheme.dark()
+            : const ColorScheme.light(),
+      ),
+
+      // // Customize the app bar theme
+      appBarTheme: AppBarTheme(
+        backgroundColor: isDarkTheme
+            ? const Color.fromRGBO(25, 32, 39, 1)
+            : const Color.fromRGBO(160, 210, 209, 1),
+        // Add other app bar customizations as needed
+
+      ),
+
+
+      // Customize the text theme
+      textTheme: GoogleFonts.urbanistTextTheme().copyWith(
+        // Update text colors based on dark mode status
+        bodyMedium: TextStyle(
+          color: isDarkTheme ? Colors.white : Colors.black,
+          fontFamily: GoogleFonts.urbanist().fontFamily,
+          fontSize: 19,
+          fontWeight: FontWeight.bold,
+        ),
+
+        titleMedium: TextStyle(
+          color: isDarkTheme ? Colors.white : Colors.black,
+          fontFamily: GoogleFonts.urbanist().fontFamily,
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),
+
+        bodySmall: TextStyle(
+          color: isDarkTheme ? Colors.white : Colors.black,
+          fontFamily: GoogleFonts.urbanist().fontFamily,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+
+      ),
+
+    );
+  }
+
 
 
 }
@@ -249,7 +363,7 @@ class _MyCustomTabState extends State<MyCustomTab> {
       case SelectedPage.events:
         return const EmptyView();
       case SelectedPage.attendance:
-        return AllAttendance();
+        return const AllAttendance();
       case SelectedPage.settings:
         return const Settings();
       default:

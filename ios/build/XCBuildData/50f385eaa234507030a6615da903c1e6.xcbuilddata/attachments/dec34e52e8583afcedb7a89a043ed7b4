@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseCoreInternal/FirebaseCoreInternal.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCoreInternal.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseCoreInternal/FirebaseCoreInternal.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "FirebaseCoreInternal-Swift.h",
+      'external-contents': "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCoreInternal.build/unextended-interface-header.h",
+    }]
+    }]
+}

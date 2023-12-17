@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_app/Services/APILoginClient.dart';
-import 'package:the_app/homepage.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'Styling_Elements/CustomTextField.dart';
 import 'main.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,7 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   String email = '';
   String password = '';
-  String token = '';
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +52,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
             CustomTextField(
               hintText: 'Enter your email',
+              //controller: _usernameController,
               onChanged: (value) {
                 setState(() {
+                  // Update the controller value
+                  _usernameController.text = value;
                   email = value;
                   //_emailError = validateEmail(value);
-                  print("EMAIL: $email");
+                  //print("EMAIL: $email");
 
                 });
               },
@@ -71,9 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
             CustomTextField(
               hintText: 'Enter your password',
+              //controller: _passwordController,
               onChanged: (value) {
                 setState(() {
                   password = value;
+                  _passwordController.text = value;
                   //_passwordError = validatePassword(value);
 
                 });
@@ -93,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyCustomTab(initialPage: SelectedPage.home),
+                    builder: (context) => const MyCustomTab(initialPage: SelectedPage.home),
                   ),
                 );
               },
@@ -161,16 +164,60 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> authenticateUser() async {
     try {
-      LoginResponse response = await APILoginClient().login(email, password);
+      // Use the email and password from the text controllers
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _usernameController.text,
+        password: _passwordController.text,
+      );
 
-      // Call the `authenticateUser` method of the `APIClient` and pass the email and password
-      String jwtToken = response.jsonToken;
-      print("here is the token $jwtToken");
+      User? user = FirebaseAuth.instance.currentUser;
+      if(user != null){
 
+        try{
+          // Authentication successful, you can handle the result if needed
+          print('Authentication successful: ${credential.user?.email}');
+
+          IdTokenResult userDTO = await user.getIdTokenResult(true);
+          //Map<String, dynamic>? customClaims = token.claims;
+
+          print("Is this the token???? ${userDTO.token}");
+
+          //save user email and token in Flutter Secure Storage
+          const secureStorage = FlutterSecureStorage();
+          await secureStorage.write(key: 'user_email', value: credential.user?.email ?? '');
+          await secureStorage.write(key: 'user_token', value: userDTO.token ?? '');
+
+
+
+          //if platform is == android, enable the setup for notifications using Notification class
+
+
+
+        }catch (e){
+          print("Error accessing custom claims: $e");
+
+        }
+      }
+
+
+    } on FirebaseAuthException catch (e) {
+      // Handle authentication errors
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+
+      } else {
+        // Handle other exceptions if needed
+        print('Authentication failed: ${e.message}');
+      }
     } catch (error) {
-      print("FEEH MUSHKILAAA");
+      // Handle other errors
+      print('Error during authentication: $error');
     }
   }
+
 
 
 

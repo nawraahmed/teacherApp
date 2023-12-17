@@ -42,7 +42,12 @@ dependencies:
   animated_custom_dropdown: 1.5.0
   toggle_switch: ^2.1.0
   image_picker: ^1.0.4
-  camera: ^0.10.5+5
+  camera: ^0.10.5+5 #to capture the image
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  flutter_secure_storage: ^9.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +96,8 @@ flutter:
   - lib/Json_Files/login_client.json
   - lib/Json_Files/class_lister.json
   - lib/Json_Files/students_in_class.json
+  - lib/Json_Files/teacher_info.json
+  - lib/Json_Files/face_reco.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

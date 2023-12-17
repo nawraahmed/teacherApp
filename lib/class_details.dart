@@ -24,7 +24,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    listStudents(1, 26);
+    listStudents(1, 110);
 
   }
 

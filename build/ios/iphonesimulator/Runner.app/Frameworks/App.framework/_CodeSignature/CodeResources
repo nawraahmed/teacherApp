@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		IUyW5wCNMbvcfBUfhN+Wpq65XR0=
+		1ftKi8Q5qThbBEkR1QlvPobEEP8=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		IlYJ82B3hM6r6wfHWK8Y81fx/D4=
+		Pl6I/wCOAJ71SBxNLmkuH/RwL7c=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		plllKbQrWZjUUVXswrovi1vKf2w=
+		ZgUKJWhHGkJuSGehtRveF2QgR60=
 		</data>
 		<key>flutter_assets/assets/Home.png</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>flutter_assets/assets/email.png</key>
 		<data>
-		xDXRQzDUcn580wh6hlM9O9gtk8s=
+		wPuY1120J6qG0wMh7xX5j2KPntg=
 		</data>
 		<key>flutter_assets/assets/enter.png</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>flutter_assets/assets/password.png</key>
 		<data>
-		P7sdaoe9DLltZqyUouNmsUB8TP8=
+		4VsXlRTlSitSIvHWoQ1yMxmBwDQ=
 		</data>
 		<key>flutter_assets/assets/settings.png</key>
 		<data>
@@ -114,11 +114,15 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		XjmjW85mchc0L/gTkJBpRQEYgIQ=
+		P7sYA9QRSOOeKPc80uRFVKDv7mY=
 		</data>
 		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
 		<data>
-		p2gbGt8EUmgwPU+EDsxa2BniDgg=
+		CkwtERnN6Jvr4OkdI1EktB3HWmg=
+		</data>
+		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
+		<data>
+		kNDE6hHSYhoOzFFMe/wTnbPqEw8=
 		</data>
 		<key>flutter_assets/lib/Json_Files/login_client.json</key>
 		<data>
@@ -126,7 +130,11 @@
 		</data>
 		<key>flutter_assets/lib/Json_Files/students_in_class.json</key>
 		<data>
-		GODDkGpA0hjoxpqt7DBQSZRdvys=
+		5lpD/QzgXjQwur5KmXHYxTi+gUw=
+		</data>
+		<key>flutter_assets/lib/Json_Files/teacher_info.json</key>
+		<data>
+		6hnAQZWoBizSBU6EyBmXLFq2qL0=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -147,14 +155,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Rs3cmkWv3p0NUW3trt+JWCpyBdTrXiqziw2WT/vl8pw=
+			mAfPvrYBQM8tt1GbgDqCKgXmhFT3a3TJKt19rA5OoQ4=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tmUhyKEY6Qn/JMOxNSyCo0bVeNF6nLp51Iw236YlPlg=
+			ZhKT+f3SILiZ1sVIT0Y4dsvrmLZBkby/Fv4lKIV1BK0=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -168,7 +176,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OkBwzbpgOgeU/ousZCY1kP1MtWIyNzaHRB2yGjQql74=
+			OGrKqJFSG2hVakniLO0b47UYMW3IijE95yHgonEHv9s=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Home.png</key>
@@ -224,7 +232,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yrNrSGMoRHiOT0uV0e7g95xVIhjJOnN62VBSzIdI/FY=
+			U+NZtDcFikIvnOcvtsvF8V5FvqTjZimvcxTSh0YbenQ=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/enter.png</key>
@@ -280,7 +288,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gTKpSwXuccdj1KkQJ0x590Q8GuoW/L6OUWnax8LoOAI=
+			Zz0wC+T3rS2N+4yCsYrlJ0O/6llFMSuJki+bJr0cV18=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/settings.png</key>
@@ -329,14 +337,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TvjubCY09gD95xObRyvMM6jC1GJ1OCGOYxjTfD2P0Uc=
+			C1v5F2t8CgThxalc1t88gYfQPHIiT99Zt6HLjai5ebg=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3VszX+1imllZTQ0SvB8RV4lC9LggkJDipgXkhZzt1j8=
+			o38jn5tborb380F/9i2dawsOM0g4mAGckNoHHCb9tZA=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YQCBaEHal3jBTHqkwWFnqnu/gyRte9ZPbm87ZQ4mp4A=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/login_client.json</key>
@@ -350,7 +365,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ZvJiZlz/5jvZbeqRKhbtQUh5bpnlOh8oAEHqJkZGhM=
+			n7YnputEJGVViYdm6JqISJRFbbirPNoVhspQj/T/wtc=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/teacher_info.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TVYVBSQIDqcKAqoF1nTZuYKPkVK0ITSf9q6YnO//1SE=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

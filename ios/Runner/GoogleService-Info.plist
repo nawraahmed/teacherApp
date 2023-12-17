@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>514724677269-ud0en5nd4s9bi00l0b8ufjtnqtl1vk0h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.514724677269-ud0en5nd4s9bi00l0b8ufjtnqtl1vk0h</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBBFY35_Zw1WCet4-VlKDU3BhAiy9D5u24</string>
+	<key>GCM_SENDER_ID</key>
+	<string>514724677269</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.theApp.alefTeacherNA</string>
+	<key>PROJECT_ID</key>
+	<string>alef-229ac</string>
+	<key>STORAGE_BUCKET</key>
+	<string>alef-229ac.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:514724677269:ios:f5b886d6777531fc3afd9c</string>
+</dict>
+</plist>

@@ -67,6 +67,17 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRTOTPMultiFactorAssertion.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRTOTPMultiFactorGenerator.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRTOTPSecret.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FirebaseInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/FirebaseInstallations.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Target\ Support\ Files/FirebaseInstallations/FirebaseInstallations-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsAuthTokenResult.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsErrors.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Public/FirebaseMessaging/FirebaseMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/FirebaseMessaging.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Target\ Support\ Files/FirebaseMessaging/FirebaseMessaging-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Public/FirebaseMessaging/FIRMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Public/FirebaseMessaging/FIRMessagingExtensionHelper.h \
   /Users/nawraalhaji/.pub-cache/hosted/pub.dev/firebase_auth-4.15.3/ios/Classes/Public/firebase_auth_messages.g.h \
   /Users/nawraalhaji/.pub-cache/hosted/pub.dev/firebase_auth-4.15.3/ios/Classes/Public/FLTFirebaseAuthPlugin.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/firebase_core.build/module.modulemap \

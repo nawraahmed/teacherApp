@@ -170,6 +170,24 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "firebase_messaging",
+      "rootUri": "file:///Users/nawraalhaji/.pub-cache/hosted/pub.dev/firebase_messaging-14.7.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_messaging_platform_interface",
+      "rootUri": "file:///Users/nawraalhaji/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.18",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_messaging_web",
+      "rootUri": "file:///Users/nawraalhaji/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.18",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/nawraalhaji/Downloads/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -560,7 +578,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-17T20:36:20.144485Z",
+  "generated": "2023-12-18T16:40:38.666351Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

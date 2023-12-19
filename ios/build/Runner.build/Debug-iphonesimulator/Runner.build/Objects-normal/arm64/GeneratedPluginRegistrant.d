@@ -82,6 +82,17 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseAuth/FirebaseAuth.framework/Headers/FIRTOTPMultiFactorAssertion.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseAuth/FirebaseAuth.framework/Headers/FIRTOTPMultiFactorGenerator.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseAuth/FirebaseAuth.framework/Headers/FIRTOTPSecret.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Modules/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Headers/FirebaseInstallations-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Headers/FirebaseInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Headers/FIRInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Headers/FIRInstallationsAuthTokenResult.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseInstallations/FirebaseInstallations.framework/Headers/FIRInstallationsErrors.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseMessaging/FirebaseMessaging.framework/Modules/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseMessaging/FirebaseMessaging.framework/Headers/FirebaseMessaging-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseMessaging/FirebaseMessaging.framework/Headers/FirebaseMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseMessaging/FirebaseMessaging.framework/Headers/FIRMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/FirebaseMessaging/FirebaseMessaging.framework/Headers/FIRMessagingExtensionHelper.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Firebase/CoreOnly/Sources/Firebase.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_core/firebase_core.framework/Modules/module.modulemap \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_core/firebase_core.framework/Headers/firebase_core-umbrella.h \
@@ -96,6 +107,9 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_auth/firebase_auth.framework/Headers/PigeonParser.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_auth/firebase_auth.framework/Headers/FLTIdTokenChannelStreamHandler.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_auth/firebase_auth.framework/Headers/FLTPhoneNumberVerificationStreamHandler.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_messaging/firebase_messaging.framework/Headers/FLTFirebaseMessagingPlugin.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_messaging/firebase_messaging.framework/Modules/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/firebase_messaging/firebase_messaging.framework/Headers/firebase_messaging-umbrella.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/flutter_secure_storage/flutter_secure_storage.framework/Headers/FlutterSecureStoragePlugin.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/flutter_secure_storage/flutter_secure_storage.framework/Modules/module.modulemap \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/flutter_secure_storage/flutter_secure_storage.framework/Headers/flutter_secure_storage-umbrella.h \

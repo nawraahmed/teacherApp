@@ -26,7 +26,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35.0),
+        borderRadius: BorderRadius.circular(30.0),
+
         border: Border.all(
           color: widget.errorText != null && widget.errorText!.isNotEmpty
               ? Colors.red
@@ -34,26 +35,33 @@ class _CustomTextFieldState extends State<CustomTextField> {
           width: 2.0,
         ),
       ),
+
+      //image styling
       child: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2.0),  // Adjust the padding
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 20),
+              padding: const EdgeInsets.only(left: 15.0, right: 12.0),  // Adjust the image padding
               child: Image.asset(
                 widget.imagePath,
-                width: 20.0,
-                height: 20.0,
+                width: 16.0,
+                height: 16.0,
               ),
             ),
+
+            //text styling
             Expanded(
               child: TextFormField(
                 onChanged: widget.onChanged,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: widget.isPassword,
+                style: TextStyle(fontSize: 17.0),
                 decoration: InputDecoration(
                   hintText: widget.hintText,
                   border: InputBorder.none,
+                  hintStyle: TextStyle(fontSize: 17.0),
+
                 ),
                 validator: (value) {
                   if (widget.errorText != null && widget.errorText!.isNotEmpty) {
@@ -63,6 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 },
               ),
             ),
+
           ],
         ),
       ),

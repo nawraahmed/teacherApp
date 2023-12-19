@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		1ftKi8Q5qThbBEkR1QlvPobEEP8=
+		7dGplNiI20tVEJbcCChSw4Murqw=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		Pl6I/wCOAJ71SBxNLmkuH/RwL7c=
+		Jy8GTPWAUwKTx/FRMtTUHel6/8I=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		ZgUKJWhHGkJuSGehtRveF2QgR60=
+		JqmMiB34B+pOv9hjWFczUeLUDzs=
 		</data>
 		<key>flutter_assets/assets/Home.png</key>
 		<data>
@@ -114,23 +114,31 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		P7sYA9QRSOOeKPc80uRFVKDv7mY=
+		ahBK+qkPFGi7ZMDsFVzkK5dVsLc=
 		</data>
 		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
 		<data>
-		CkwtERnN6Jvr4OkdI1EktB3HWmg=
+		p2gbGt8EUmgwPU+EDsxa2BniDgg=
+		</data>
+		<key>flutter_assets/lib/Json_Files/create_evaluation.json</key>
+		<data>
+		B0c390wZ82kV7QjEdcm9C+PZC0E=
+		</data>
+		<key>flutter_assets/lib/Json_Files/delete_evaluation.json</key>
+		<data>
+		fy5PWWJAa5yL9EIldWs8e+MphZY=
 		</data>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
 		kNDE6hHSYhoOzFFMe/wTnbPqEw8=
 		</data>
-		<key>flutter_assets/lib/Json_Files/login_client.json</key>
+		<key>flutter_assets/lib/Json_Files/set_token.json</key>
 		<data>
-		nfhNzNcOVgYoHzBTzPkL0f9eh0o=
+		c95aJ0if2UOsngff6njJHfrNQss=
 		</data>
 		<key>flutter_assets/lib/Json_Files/students_in_class.json</key>
 		<data>
-		5lpD/QzgXjQwur5KmXHYxTi+gUw=
+		GODDkGpA0hjoxpqt7DBQSZRdvys=
 		</data>
 		<key>flutter_assets/lib/Json_Files/teacher_info.json</key>
 		<data>
@@ -155,14 +163,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mAfPvrYBQM8tt1GbgDqCKgXmhFT3a3TJKt19rA5OoQ4=
+			Wevkxa8cfrXgcZzxrwxndcSfL3RopkdwYAhwt2SlH00=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZhKT+f3SILiZ1sVIT0Y4dsvrmLZBkby/Fv4lKIV1BK0=
+			4w1syRSgEZcEQC+2rzat2UvEG4owwetqINt/VTFjIMQ=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -176,7 +184,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OGrKqJFSG2hVakniLO0b47UYMW3IijE95yHgonEHv9s=
+			AHfqTLE7DkZcGPOC/a/BUta1fcuKraMnJugovBs8cfU=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Home.png</key>
@@ -337,14 +345,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			C1v5F2t8CgThxalc1t88gYfQPHIiT99Zt6HLjai5ebg=
+			jK3utxOipmyF89pzDtWdqPN9I7Lfh1k8y8N8D33AOOI=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/class_lister.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o38jn5tborb380F/9i2dawsOM0g4mAGckNoHHCb9tZA=
+			3VszX+1imllZTQ0SvB8RV4lC9LggkJDipgXkhZzt1j8=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/create_evaluation.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hlB3zs5plHeE3vAzc3exXjDfNmWTUJ38SkVFrTfU21M=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/delete_evaluation.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0HPEbecaPTSRkXVgEaNKB3dR9/GslSQrMelVf4sRthA=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
@@ -354,18 +376,18 @@
 			YQCBaEHal3jBTHqkwWFnqnu/gyRte9ZPbm87ZQ4mp4A=
 			</data>
 		</dict>
-		<key>flutter_assets/lib/Json_Files/login_client.json</key>
+		<key>flutter_assets/lib/Json_Files/set_token.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			G6hR5ZQv09rcYgYJOGT8x/3sZdpL/SUfXuFGx3ER1ZY=
+			AfPNwdNV9gLsn6mxFXL7UzfoC4koVodxr0iYmM+DtrA=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/students_in_class.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			n7YnputEJGVViYdm6JqISJRFbbirPNoVhspQj/T/wtc=
+			0ZvJiZlz/5jvZbeqRKhbtQUh5bpnlOh8oAEHqJkZGhM=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/teacher_info.json</key>

@@ -26,6 +26,7 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkMessageCode.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkURLSession.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Reachability/Public/GoogleUtilities/GULReachabilityChecker.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/UserDefaults/Public/GoogleUtilities/GULUserDefaults.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuth_Internal.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Interop/FIRAuthInterop.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthBackend.h \

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:the_app/student_profile.dart';
 import 'Services/APIStudentsLister.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'main.dart';
@@ -20,12 +21,13 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
   String selectedTab = 'attendance';
   List<Student> studentsList = [];
   DateTime today = DateTime.now();
+  List<String> tabs = ['attendance', 'students', 'events', 'stationary'];
+
 
   @override
   void initState() {
     super.initState();
     listStudents(1, 110);
-
   }
 
   @override
@@ -36,14 +38,9 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
           const SizedBox(height: 80.0),
           BackButtonRow(title: 'Class ${widget.className}'),
           const SizedBox(height: 30.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildTab('attendance'),
-              buildTab('students'),
-              buildTab('events'),
-            ],
-          ),
+          buildTabRow(['attendance', 'students', 'events', 'stationary']),
+
+
           // Add your content based on the selectedTab here
           if (selectedTab == 'attendance') ...[
             // Content for attendance tab
@@ -51,12 +48,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
 
-
-
-
           ] else if (selectedTab == 'students') ...[
-              // Content for students tab
-
+            // Content for students tab
             const SizedBox(height: 15.0),
 
             // Search Bar
@@ -79,26 +72,22 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                         ),
                       ),
                     ),
-
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0),
                         color: Styles.primaryNavy,
                       ),
                       padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-
                       child: const Icon(
                         Icons.search,
-                        color: Colors.white, // Set the icon color to white
+                        color: Colors.white,
                       ),
                     ),
-                    const SizedBox(width: 15.0), // Add some space between the text field and icon
+                    const SizedBox(width: 15.0),
                   ],
                 ),
-
               ),
             ),
-
 
 
             // Students Listing
@@ -122,21 +111,18 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                           children: [
                             Text(
                               studentsList[index].studentName,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             IconButton(
                               icon: Image.asset('assets/enter_black.png'),
                               onPressed: () {
                                 // Handle button press
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => ClassDetails(className: classesList[index].className),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => StudentProfilePage(studentName: studentsList[index].studentName),
+                                  ),
+                                );
                               },
                             ),
                           ],
@@ -151,48 +137,38 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
 
-
-
-
-
-
+          ] else if (selectedTab == 'events') ...[
             // Content for events tab
-            ] else if (selectedTab == 'events') ...[
-
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TableCalendar(
-                headerStyle: const HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                headerStyle: const HeaderStyle(
+                  titleCentered: true,
+                  formatButtonVisible: false,
+                ),
                 focusedDay: today,
                 firstDay: DateTime.utc(2002, 2, 19),
                 lastDay: DateTime.utc(2100, 2, 19),
                 onDaySelected: _onDaySelected,
                 availableGestures: AvailableGestures.all,
                 selectedDayPredicate: (day) => isSameDay(day, today),
-
-
-                //styling
                 calendarStyle: CalendarStyle(
-                selectedDecoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(13),
-                color: Styles.primaryNavy,
+                  selectedDecoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(13),
+                    color: Styles.primaryNavy,
+                  ),
                 ),
-                ),
-
               ),
             ),
-
-            //New Event Button
-          const SizedBox(height: 15.0), // Add some space between the calendar and the button
+            const SizedBox(height: 15.0),
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: const EdgeInsets.all(8.0), // Adjust the padding as needed
+                padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
                     // Handle button press
-                    // Add the logic to create a new event
                   },
                   child: Container(
                     height: 45.0,
@@ -211,7 +187,6 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                             color: Colors.white,
                           ),
                         ),
-
                         Text(
                           'New Event',
                           style: TextStyle(
@@ -226,13 +201,40 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
               ),
             ),
 
-            //List of Existing Events
+
+          ]else if (selectedTab == 'stationary') ...[
+
 
           ],
+
+
         ],
       ),
     );
   }
+
+
+
+
+
+
+  //WIDGETS
+  Widget buildTabRow(List<String> tabs) {
+
+    return SizedBox(
+      height: 40.0,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: tabs.length,
+        itemBuilder: (BuildContext context, int index) {
+          final tabName = tabs[index];
+          return buildTab(tabName);
+        },
+      ),
+    );
+  }
+
+
 
   Widget buildTab(String tabName) {
     return GestureDetector(
@@ -242,7 +244,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
         });
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.0),
         decoration: BoxDecoration(
           color: selectedTab == tabName ? Styles.primaryNavy : Colors.grey[300],
           borderRadius: BorderRadius.circular(20.0),
@@ -251,6 +254,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
           tabName,
           style: TextStyle(
             color: selectedTab == tabName ? Colors.white : Colors.black,
+            fontSize: 15,
           ),
         ),
       ),
@@ -259,6 +263,9 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
 
+
+
+//FUNCTIONS
   Future<void> listStudents(int preschoolId, int classId) async {
     try {
       final APIStudentsLister studentsLister = APIStudentsLister();
@@ -272,19 +279,14 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
       for (var studentItem in students) {
         print('student ID: ${studentItem.id}, Student Name: ${studentItem.studentName}');
       }
-
-    }
-    catch(e){
+    } catch (e) {
       print("Students listing issue!");
     }
-
   }
 
-  void _onDaySelected(DateTime day, DateTime focusedDay){
-  setState(() {
-    today = day;
-
-  });
+  void _onDaySelected(DateTime day, DateTime focusedDay) {
+    setState(() {
+      today = day;
+    });
   }
-
 }

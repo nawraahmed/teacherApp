@@ -26,6 +26,7 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkMessageCode.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkURLSession.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/Reachability/Public/GoogleUtilities/GULReachabilityChecker.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleUtilities/GoogleUtilities/UserDefaults/Public/GoogleUtilities/GULUserDefaults.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseAuth/FirebaseCore/Extension/FirebaseCoreInternal.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/FirebaseCore.build/module.modulemap \
   /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Target\ Support\ Files/FirebaseCore/FirebaseCore-umbrella.h \

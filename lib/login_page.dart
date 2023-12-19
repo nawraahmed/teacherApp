@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Notifications.dart';
 import 'Styling_Elements/CustomTextField.dart';
 import 'main.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -18,7 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        body: SingleChildScrollView(
+        child: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,10 +39,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 5.0),
 
                 // Login heading centered
-                const Center(
+                 Center(
                   child: Text(
                     'Login',
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               ],
@@ -65,7 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               errorText: '', // Pass null or empty string for no error
               isPassword: false,
-              imagePath: 'assets/email.png', // Replace with your image path
+              imagePath: 'assets/email.png',
+
             ),
             const SizedBox(height: 20),
 
@@ -103,6 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Styles.primaryNavy,
                 padding: const EdgeInsets.symmetric(horizontal: 5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
               child: const Text(
                 'Login',
@@ -113,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
+
             const SizedBox(height: 20.0),
 
 
@@ -158,6 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+        ),
     );
   }
 
@@ -176,22 +185,28 @@ class _LoginScreenState extends State<LoginScreen> {
         try{
           // Authentication successful, you can handle the result if needed
           print('Authentication successful: ${credential.user?.email}');
+          print('uid? ${user.uid}');
+
+          //store uid in flutter secure storage
+          const secureStorage = FlutterSecureStorage();
+          await secureStorage.write(key: 'uid', value: user.uid ?? '');
 
           IdTokenResult userDTO = await user.getIdTokenResult(true);
-          //Map<String, dynamic>? customClaims = token.claims;
+          Map<String, dynamic>? customClaims = userDTO.claims;
+          final dbid = customClaims?['dbId'];
 
           print("Is this the token???? ${userDTO.token}");
 
           //save user email and token in Flutter Secure Storage
-          const secureStorage = FlutterSecureStorage();
           await secureStorage.write(key: 'user_email', value: credential.user?.email ?? '');
           await secureStorage.write(key: 'user_token', value: userDTO.token ?? '');
 
 
 
           //if platform is == android, enable the setup for notifications using Notification class
-
-
+          if(Platform.isAndroid){
+            await Notifications().initNotification(credential.user!.uid);
+          }
 
         }catch (e){
           print("Error accessing custom claims: $e");
@@ -207,6 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+
 
       } else {
         // Handle other exceptions if needed

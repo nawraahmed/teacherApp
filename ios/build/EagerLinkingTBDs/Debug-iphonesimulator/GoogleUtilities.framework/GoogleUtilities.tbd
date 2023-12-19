@@ -46,10 +46,11 @@
             "GULAppEnvironmentUtil",
             "GULHeartbeatDateStorageUserDefaults",
             "GULSceneDelegateSwizzler",
-            "PodsDummy_GoogleUtilities",
+            "GULUserDefaults",
             "GULKeychainStorage",
             "GULReachabilityChecker",
             "GULNetworkInfo",
+            "PodsDummy_GoogleUtilities",
             "GULLoggerWrapper",
             "GULURLSessionDataResponse",
             "GULMutableDictionary"

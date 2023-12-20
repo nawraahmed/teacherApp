@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'Services/APIClassesLister.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'class_details.dart';
@@ -19,7 +20,7 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    listTeacherClasses(1);
+    listTeacherClasses();
   }
 
   @override
@@ -63,7 +64,7 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ClassDetails(className: classesList[index].className),
+                                  builder: (context) => ClassDetails(className: classesList[index].className, classId: classesList[index].id,),
                                 ),
                               );
                             },
@@ -83,25 +84,35 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
 
 
   //call the API Classes Lister to list all the classes based on teacher's preschool id
-  Future<void> listTeacherClasses(int preschoolId) async {
+  Future<void> listTeacherClasses() async {
     try {
-      final ApiClassesLister apiClassesLister = ApiClassesLister();
-      final List<Class> classes = await apiClassesLister.getClassesList(preschoolId);
+      // Read the preschool id from the Flutter Secure Storage
+      final secureStorage = FlutterSecureStorage();
+      final preschoolId = await secureStorage.read(key: 'preschoolId');
 
-      setState(() {
-        // Update the global list with the received classes
-        classesList = classes;
-      });
+      // Check if preschoolId is not null and is not an empty string
+      if (preschoolId != null && preschoolId.isNotEmpty) {
+        // Convert preschoolId to int
+        final int preschoolIdInt = int.parse(preschoolId);
 
-      classes.forEach((classItem) {
-        print('Class ID: ${classItem.id}, Class Name: ${classItem.className}');
-      });
+        final ApiClassesLister apiClassesLister = ApiClassesLister();
+        final List<Class> classes = await apiClassesLister.getClassesList(preschoolIdInt);
 
+        setState(() {
+          // Update the global list with the received classes
+          classesList = classes;
+        });
+
+        classes.forEach((classItem) {
+          print('Class ID: ${classItem.id}, Class Name: ${classItem.className}');
+        });
+      } else {
+        print('Preschool ID is null or empty.');
+      }
+    } catch (e) {
+      print("Classes listing issue! $e");
     }
-      catch(e){
-        print("Classes listing issue!");
-    }
-
   }
+
 
 }

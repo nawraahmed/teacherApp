@@ -193,9 +193,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
           IdTokenResult userDTO = await user.getIdTokenResult(true);
           Map<String, dynamic>? customClaims = userDTO.claims;
-          final dbid = customClaims?['dbId'];
 
-          print("Is this the token???? ${userDTO.token}");
+          final dbid = customClaims?['dbId'].toString();
+
+          // Print for debugging
+          print("database user id is here: $dbid");
+
+          // Store the database user id in Flutter Secure Storage
+          await secureStorage.write(key: 'dbId', value: dbid);
+
+          // Print the value immediately after storing
+          // final storedDbId = await secureStorage.read(key: 'dbId');
+          //
+          // print("Stored Staff ID: $storedDbId");
+
+
+
+          //print("Is this the token???? ${userDTO.token}");
 
           //save user email and token in Flutter Secure Storage
           await secureStorage.write(key: 'user_email', value: credential.user?.email ?? '');

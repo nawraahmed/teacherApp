@@ -8,8 +8,13 @@ import 'main.dart';
 
 class ClassDetails extends StatefulWidget {
   final String className;
+  final int classId;
 
-  const ClassDetails({Key? key, required this.className}) : super(key: key);
+  const ClassDetails({
+    Key? key,
+    required this.className,
+    required this.classId,
+  }) : super(key: key);
 
 
 
@@ -27,7 +32,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    listStudents(1, 110);
+    listStudents(1, widget.classId);
   }
 
   @override
@@ -90,6 +95,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
             ),
 
 
+
+
             // Students Listing
             Expanded(
               child: ListView.builder(
@@ -120,7 +127,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StudentProfilePage(studentName: studentsList[index].studentName),
+                                    builder: (context) => StudentProfilePage(studentName: studentsList[index].studentName, studentId:studentsList[index].id , className: widget.className,),
                                   ),
                                 );
                               },
@@ -133,6 +140,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                 },
               ),
             ),
+
+
 
 
 
@@ -280,8 +289,9 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
         print('student ID: ${studentItem.id}, Student Name: ${studentItem.studentName}');
       }
     } catch (e) {
-      print("Students listing issue!");
+      print("Students listing issue: $e");
     }
+
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {

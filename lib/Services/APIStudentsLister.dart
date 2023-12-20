@@ -59,7 +59,7 @@ class Student {
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
       preschool: Preschool.fromJson(json['Preschool']),
-      hasConsent: json['hasConsent']
+      hasConsent: json['hasConsent'] ?? true
     );
   }
 }
@@ -148,7 +148,7 @@ class APIStudentsLister {
     );
 
     if (response.statusCode == 200) {
-      print("YES, we got 200");
+      print("YES, we got 200 for students lister");
       print(response.body);
       final List<dynamic> data = json.decode(response.body);
       return data.map((json) => Student.fromJson(json)).toList();

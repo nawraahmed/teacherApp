@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:the_app/profile_page.dart';
 import 'package:the_app/stationary_request.dart';
 
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
 
   late String name = '';
+  late int preschoolId = 0;
   bool isLoading = true;
 
 
@@ -30,7 +33,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    fetchTeacherName(16);
+
+    fetchTeacherName();
   }
 
 
@@ -217,19 +221,47 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   //FUNCTIONS
-  Future<void> fetchTeacherName(int staffId) async {
+  Future<void> fetchTeacherName() async {
     try {
-      final APITeacherInfo teacherInfo = APITeacherInfo();
-      TeacherInfo teacher = await teacherInfo.getTeacherInfo(staffId);
+      // Read the id from Flutter Secure Storage
+      final secureStorage = FlutterSecureStorage();
+      final staffId = await secureStorage.read(key: 'dbId');
 
-      setState(() {
-        name = teacher.name;
-        isLoading = false;
-      });
+      print("Staff ID: $staffId");
+
+      // Check if staffId is not null and is a non-empty string
+      if (staffId != null && staffId.isNotEmpty) {
+        // Parse staffId to int
+        final intStaffId = int.tryParse(staffId);
+
+        if (intStaffId != null) {
+          // pass the ID to the API to get the name
+          final APITeacherInfo teacherInfo = APITeacherInfo();
+          TeacherInfo teacher = await teacherInfo.getTeacherInfo(intStaffId);
+
+          //store teacher's name
+          setState(() {
+            name = teacher.name;
+            isLoading = false;
+          });
+
+          //store the preschool id in flutter secure storage
+          preschoolId = teacher.preschoolId;
+          const secureStorage = FlutterSecureStorage();
+          await secureStorage.write(key: 'preschoolId', value: preschoolId.toString());
+
+
+        } else {
+          print("Staff ID is not a valid integer.");
+        }
+      } else {
+        print("Staff ID is null or empty.");
+      }
     } catch (e) {
       print("Teacher name fetching issue: $e");
     }
   }
+
 
 
 }

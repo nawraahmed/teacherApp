@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:the_app/Services/APITeacherInfo.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'main.dart';
@@ -16,12 +17,13 @@ class _ProfilePageState extends State<ProfilePage>
   late String email = '';
   late String role = '';
   late String phone = '';
+  late String cpr = '';
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    fetchTeacherInfo(2);
+    fetchTeacherInfo();
   }
 
   @override
@@ -78,6 +80,7 @@ class _ProfilePageState extends State<ProfilePage>
                     ProfileInfoRow(label: 'Preschool Name', value: 'ABC Preschool'),
                     ProfileInfoRow(label: 'Email', value: email),
                     ProfileInfoRow(label: 'Phone', value: phone),
+                    ProfileInfoRow(label: 'CPR', value: cpr),
                   ],
                 ),
               ],
@@ -88,17 +91,27 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
+
+
   //FUNCTIONS
-  Future<void> fetchTeacherInfo(int staffId) async {
+  Future<void> fetchTeacherInfo() async {
     try {
+      // Read the id from Flutter Secure Storage
+      final secureStorage = FlutterSecureStorage();
+      final staffId = await secureStorage.read(key: 'dbId');
+
+      final intStaffId = int.tryParse(staffId!);
+
+
       final APITeacherInfo teacherInfo = APITeacherInfo();
-      TeacherInfo teacher = await teacherInfo.getTeacherInfo(staffId);
+      TeacherInfo teacher = await teacherInfo.getTeacherInfo(intStaffId!);
 
       setState(() {
         name = teacher.name;
         email = teacher.email;
         role = teacher.staffRoleName;
         phone = teacher.phone.toString();
+        cpr = teacher.cpr.toString();
         isLoading = false;
       });
     } catch (e) {

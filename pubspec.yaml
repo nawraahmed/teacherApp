@@ -101,6 +101,7 @@ flutter:
   - lib/Json_Files/delete_evaluation.json
   - lib/Json_Files/create_evaluation.json
   - lib/Json_Files/set_token.json
+  - lib/Json_Files/student_info.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

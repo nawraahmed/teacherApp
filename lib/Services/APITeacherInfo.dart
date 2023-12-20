@@ -86,7 +86,11 @@ class APITeacherInfo {
       print("YES, we got 200");
       print(response.body);
       return TeacherInfo.fromJson(data);
+
     } else {
+      print(response.request);
+      print(response.body);
+      print(response.statusCode);
       throw Exception('Failed to load teacher info');
     }
   }

@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:the_app/about_us.dart';
-
 import 'faq.dart';
 import 'login_page.dart';
 import 'main.dart';
@@ -31,6 +32,7 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
             child: ElevatedButton(
               onPressed: () {
                 // Implement logout functionality
+                signOut();
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -134,6 +136,33 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
         splashColor: Colors.transparent, // Set splashColor to transparent
       ),
     );
+  }
+
+  //FUNCTIONS
+  void signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      print('User logged out successfully');
+
+      //clear Flutter secure Storage (token, Uid, DBid, email)
+      const secureStorage = FlutterSecureStorage();
+      await secureStorage.write(key: 'uid', value: '');
+      await secureStorage.write(key: 'dbId', value: '');
+      await secureStorage.write(key: 'user_email', value: '');
+      await secureStorage.write(key: 'user_token', value: '');
+
+      //navigate to the login page
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>  LoginScreen(),
+        ),
+      );
+
+
+    } catch (e) {
+      print('Error logging out: $e');
+    }
   }
 
 }

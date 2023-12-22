@@ -1,5 +1,5 @@
 {
-  "base_url": "http://localhost:3000",
+  "base_url": "http://10.0.2.2:3000",
   "endpoints": {
     "delete_evaluation": "/StudentEvaluation/{evaluation_id}/"
   }

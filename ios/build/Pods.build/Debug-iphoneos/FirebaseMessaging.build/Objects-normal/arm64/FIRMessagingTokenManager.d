@@ -1,0 +1,29 @@
+dependencies: \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphoneos/FirebaseMessaging.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenManager.m \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenManager.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Public/FirebaseMessaging/FIRMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseInstallations/Source/Library/Private/FirebaseInstallationsInternal.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphoneos/FirebaseInstallations.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Target\ Support\ Files/FirebaseInstallations/FirebaseInstallations-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FirebaseInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallations.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsAuthTokenResult.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsErrors.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/FIRMessagingConstants.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/FIRMessagingDefines.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/FIRMessagingLogger.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/FIRMessagingCode.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/NSError+FIRMessaging.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingAuthKeychain.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingAuthService.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingCheckinService.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/FIRMessagingUtilities.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingCheckinPreferences.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingCheckinStore.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenDeleteOperation.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenOperation.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenFetchOperation.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenInfo.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingAPNSInfo.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseMessaging/FirebaseMessaging/Sources/Token/FIRMessagingTokenStore.h

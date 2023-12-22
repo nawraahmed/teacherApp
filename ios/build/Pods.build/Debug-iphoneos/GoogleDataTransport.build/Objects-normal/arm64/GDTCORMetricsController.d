@@ -1,0 +1,46 @@
+dependencies: \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphoneos/GoogleDataTransport.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/GDTCORMetricsController.m \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORMetricsController.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORMetricsControllerProtocol.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCOREventDropReason.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORStorageProtocol.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORLifecycle.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORPlatform.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORStorageEventSelector.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORTargets.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORStorageSizeBytes.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromises.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphoneos/PromisesObjC.build/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/Target\ Support\ Files/PromisesObjC/PromisesObjC-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+All.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromiseError.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Always.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Any.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Async.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Await.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Catch.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Delay.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Do.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Race.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Recover.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Reduce.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Retry.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Testing.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Then.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Timeout.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Validate.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Wrap.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORConsoleLogger.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCOREvent.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCOREventDataObject.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORRegistrar.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Internal/GDTCORUploader.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORClock.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORFlatFileStorage+Promises.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORFlatFileStorage.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORLogSourceMetrics.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORMetrics.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORMetricsMetadata.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Private/GDTCORStorageMetadata.h

@@ -115,11 +115,18 @@ class APICreateEvaluation {
     return jsonMap;
   }
 
-  // Read the Base URL and the Endpoint from the JSON file
+  Future<Map<String, dynamic>> readBASEFromJSONFile() async {
+    final jsonString = await rootBundle.loadString('lib/Json_Files/base_url.json');
+    final jsonMap = json.decode(jsonString);
+    return jsonMap;
+  }
+
+
+  //Read the Base URL and the Endpoint from the JSON file
   Future<void> initializeBaseURL() async {
-    final base = await readAPIInfoFromJSONFile();
+    final base = await readBASEFromJSONFile();
     baseUrl = base['base_url'] as String;
-    print("this is the create base: $baseUrl");
+    print("this is the classes base: $baseUrl");
   }
 
   // Reads create evaluation endpoint from JSON file

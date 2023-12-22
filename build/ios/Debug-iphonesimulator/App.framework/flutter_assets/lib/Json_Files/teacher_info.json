@@ -1,6 +1,6 @@
 {
-"base_url": "http://localhost:3000",
+"base_url": "https://us-central1-alef-229ac.cloudfunctions.net/app",
 "endpoints": {
-"staff": "/staff"
+"staff": "/staff/user"
 }
 }

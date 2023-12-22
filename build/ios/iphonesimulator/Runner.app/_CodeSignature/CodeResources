@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		KxSR4E3QsJKRR3DYHhxj2lgDjXk=
+		jiHmwtnc0ul0mQD5aFH+cHJ9/DE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Wg1JEeglv76QmKRrDSqqEEXt/Gk=
+		7+Fei1DDSzAFf/0II6zDBSLV2uc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		7dGplNiI20tVEJbcCChSw4Murqw=
+		0jcGSwCuWxzrWZILE+QzTqJLlcg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Jy8GTPWAUwKTx/FRMtTUHel6/8I=
+		H5yn9twr9C4wz4I/U0BSWKm5nCQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -162,35 +162,47 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		iiCZx1ZDjE5cxbz2sH49gf3cPzk=
+		NInhIuR9gNWm/QP79IYxE5W6n/4=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
+		<data>
+		W/S1S2kRT/Y4JBe/HsGclP0Nrs8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/class_lister.json</key>
 		<data>
-		p2gbGt8EUmgwPU+EDsxa2BniDgg=
+		qKnZZt8x2f92DaxnTRcrLsORyuU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/create_evaluation.json</key>
 		<data>
-		B0c390wZ82kV7QjEdcm9C+PZC0E=
+		n8QtXe3eeW/6Rf+mGP0eq4GUevw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/delete_evaluation.json</key>
 		<data>
-		fy5PWWJAa5yL9EIldWs8e+MphZY=
+		IE4KzL1+H7g/f8WrOTiK8WvKWHA=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/events_endpoints.json</key>
+		<data>
+		OcgpgKvnHH6gTjxUp37qCru3EKw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
-		kNDE6hHSYhoOzFFMe/wTnbPqEw8=
+		MuCYBQ6Cfi8dil/SFCnqm0L1maE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/set_token.json</key>
 		<data>
 		c95aJ0if2UOsngff6njJHfrNQss=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/student_info.json</key>
+		<data>
+		kke+vvaxDJUyawVLQb4+nx4yS5I=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/students_in_class.json</key>
 		<data>
-		GODDkGpA0hjoxpqt7DBQSZRdvys=
+		Txi3XumA9GIqO42JHe5mja7lsLE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/teacher_info.json</key>
 		<data>
-		6hnAQZWoBizSBU6EyBmXLFq2qL0=
+		U02ezQv2TtNC8Qfw5nl20jFXKlY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -581,7 +593,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wHF/05cobAk6kqjsH6IpFw0SMqMksxIB6bH/pWFFSJ8=
+			mxi8iRvlTGB3jMtzeOSEeP9pmdCYZEpmGofrbboVrTc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -595,21 +607,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			l/fRylR/7Pwb9E4dVwxH6bAgF+Q8d2vOG1bYc/dJBS4=
+			JZCLYwMKyfyEmUFlbnGThNd0hm3ke4hF955kH7bZ154=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Wevkxa8cfrXgcZzxrwxndcSfL3RopkdwYAhwt2SlH00=
+			XaaitAEgoUKndq4pmkN4sY+C2j0bzpSoClqMar2d27I=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4w1syRSgEZcEQC+2rzat2UvEG4owwetqINt/VTFjIMQ=
+			9JG/Fc7xIXFl6HbPEy+za3l6TADz7vqQGeH2NN2P/FI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -784,35 +796,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hqp2VKoAOa1bXdRzcVuD5E1TEn8AzLekdsWf04H7KYs=
+			UR37a7W0nGVAjx9z0NrsHIkXCnxwVcEOAXkxZTzMTnY=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pLNXWnX5LndG9oUcX4QF9rSIboM26+ll0ECeVJnccDE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/class_lister.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3VszX+1imllZTQ0SvB8RV4lC9LggkJDipgXkhZzt1j8=
+			1d5O2KLnJ4BnrFagYfABRBEau2U8QDxvI8dDj3lQQeI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/create_evaluation.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hlB3zs5plHeE3vAzc3exXjDfNmWTUJ38SkVFrTfU21M=
+			CBC7++HDEje4t1rCB7hgKQmcChJ2x39+CtLYcMWR9Gs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/delete_evaluation.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0HPEbecaPTSRkXVgEaNKB3dR9/GslSQrMelVf4sRthA=
+			c6lRVRp7ch69GXboHw+PTXE0rK923n4Pbiw4iIPDMEI=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/events_endpoints.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tdVvyqN4kfOqJOHnRQWn/E1SV+X4kebZY0/jmB/Mhto=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/face_reco.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YQCBaEHal3jBTHqkwWFnqnu/gyRte9ZPbm87ZQ4mp4A=
+			sF6eT7kbSnyNOJ0JR3Or4KV1i8pLUIHy3qcYvcjOEK4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/set_token.json</key>
@@ -822,18 +848,25 @@
 			AfPNwdNV9gLsn6mxFXL7UzfoC4koVodxr0iYmM+DtrA=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/student_info.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NS+JAfQIhr7SSQJ8O37HMpal/D0RXysXse4WbuJMJHQ=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/students_in_class.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ZvJiZlz/5jvZbeqRKhbtQUh5bpnlOh8oAEHqJkZGhM=
+			4XXboJeW7/AUHhzGozO28L01BH06QAYzmISX7BQvN9k=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/teacher_info.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TVYVBSQIDqcKAqoF1nTZuYKPkVK0ITSf9q6YnO//1SE=
+			PD8aok6eyACYo9dXSln86Whwn1F7BxTa2GlpYIvheXM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

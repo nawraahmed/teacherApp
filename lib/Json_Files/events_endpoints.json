@@ -1,0 +1,9 @@
+{
+
+  "endpoints": {
+    "create_event": "/events/",
+    "list_events": "/events",
+    "edit_event": "/StudentEvaluation",
+    "delete_event": "/StudentEvaluation"
+  }
+}

@@ -46,10 +46,14 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Attendance'),
+        automaticallyImplyLeading: false, // Remove the back button
+      ),
       body: Column(
         children: [
           // Add top edge spacing (unified in all screens)
-          const SizedBox(height: 80.0),
+          const SizedBox(height: 30.0),
         //buildAutoAttendanceListItem('Nawraao'),
 
           // Wrap the heading and dropdown in the same column

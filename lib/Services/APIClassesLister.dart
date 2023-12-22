@@ -101,6 +101,21 @@ class ApiClassesLister {
 
 
   // Reads API info from JSON file
+
+  Future<Map<String, dynamic>> readBASEFromJSONFile() async {
+    final jsonString = await rootBundle.loadString('lib/Json_Files/base_url.json');
+    final jsonMap = json.decode(jsonString);
+    return jsonMap;
+  }
+
+
+  //Read the Base URL and the Endpoint from the JSON file
+  Future<void> initializeBaseURL() async {
+    final base = await readBASEFromJSONFile();
+    baseUrl = base['base_url'] as String;
+    print("this is the classes base: $baseUrl");
+  }
+
   Future<Map<String, dynamic>> readAPIInfoFromJSONFile() async {
     final jsonString = await rootBundle.loadString('lib/Json_Files/class_lister.json');
     final jsonMap = json.decode(jsonString);
@@ -109,12 +124,6 @@ class ApiClassesLister {
 
 
 
-  //Read the Base URL and the Endpoint from the JSON file
-  Future<void> initializeBaseURL() async {
-    final base = await readAPIInfoFromJSONFile();
-    baseUrl = base['base_url'] as String;
-    print("this is the classes base: $baseUrl");
-  }
 
 
 

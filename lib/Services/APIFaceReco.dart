@@ -37,30 +37,44 @@ class APIFaceReco {
     await initializeBaseURL();
     await initializeEndpoint();
 
-    // Read the image bytes
-    List<int> imageBytes = await takenImage.readAsBytes();
+    // Create a MultipartRequest
+    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl$endPoint'));
 
-    final response = await http.post(
-      Uri.parse('$baseUrl$endPoint'),
-      body: imageBytes,
-      headers: {
-        'Content-Type': 'application/octet-stream',
-      },
-    );
+    // Add the image as form-data with the key "file"
+    request.files.add(await http.MultipartFile.fromPath('file', takenImage.path));
 
-    if (response.statusCode == 200) {
-      // Check if the response contains image data
-      if (response.headers['content-type']?.startsWith('image') ?? false) {
-        return response.bodyBytes;
+    print(takenImage.path);
+
+    try {
+      // Send the request
+      var response = await request.send();
+
+      // Check the response status code
+      if (response.statusCode == 200) {
+
+        // Check if the response contains image data
+        if (response.headers['content-type']?.startsWith('image') ?? false) {
+          return Uint8List.fromList(await response.stream.toBytes());
+        } else {
+          // Handle other types of responses (JSON, etc.) as needed
+          final Map<String, dynamic> data = jsonDecode(await response.stream.bytesToString());
+          print("YES, we got 200");
+          print(data);
+          return null; // Adjust this based on your needs
+        }
+
       } else {
-        // Handle other types of responses (JSON, etc.) as needed
-        final Map<String, dynamic> data = jsonDecode(response.body);
-        print("YES, we got 200");
-        print(response.body);
+        // Handle non-200 status codes
+        print('Unexpected response: ${response.statusCode}');
+        print('Response body: ${await response.stream.bytesToString()}');
+        print('Response bodaay: ${await response.request}');
         return null; // Adjust this based on your needs
       }
-    } else {
-      throw Exception('Failed to compare image');
+
+    } catch (error) {
+      // Handle request errors
+      print('Error comparing image: $error');
+      return null; // Adjust this based on your needs
     }
   }
 }

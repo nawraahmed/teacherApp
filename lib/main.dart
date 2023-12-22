@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
+import 'all_events.dart';
 import 'firebase_options.dart';
 
 import 'package:camera/camera.dart';
@@ -109,6 +110,7 @@ class Styles{
   static const Color inactivePrimaryNavy = Color.fromRGBO(19, 40, 103, 0.3);
   static const Color primaryBlue = Color.fromRGBO(160, 210, 209, 1);
   static const Color primaryGray = Color.fromRGBO(185, 188, 190, 1);
+  static const Color primaryPurple = Color.fromRGBO(165, 167, 224, 1);
 
 
 
@@ -194,14 +196,14 @@ class Styles{
         bodyMedium: TextStyle(
           color: isDarkTheme ? Colors.white : Colors.black,
           fontFamily: GoogleFonts.urbanist().fontFamily,
-          fontSize: 19,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
 
         titleMedium: TextStyle(
           color: isDarkTheme ? Colors.white : Colors.black,
           fontFamily: GoogleFonts.urbanist().fontFamily,
-          fontSize: 22,
+          fontSize: 21,
           fontWeight: FontWeight.bold,
         ),
 
@@ -211,6 +213,8 @@ class Styles{
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
+
+
 
       ),
 
@@ -361,7 +365,7 @@ class _MyCustomTabState extends State<MyCustomTab> {
       case SelectedPage.home:
         return const HomePage();
       case SelectedPage.events:
-        return const EmptyView();
+        return const AllEvents();
       case SelectedPage.attendance:
         return const AllAttendance();
       case SelectedPage.settings:

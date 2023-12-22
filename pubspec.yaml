@@ -47,6 +47,7 @@ dependencies:
   firebase_auth: ^4.15.3
   flutter_secure_storage: ^9.0.0
   firebase_messaging: ^14.7.9
+  intl: ^0.18.0
 
 
 
@@ -102,6 +103,8 @@ flutter:
   - lib/Json_Files/create_evaluation.json
   - lib/Json_Files/set_token.json
   - lib/Json_Files/student_info.json
+  - lib/Json_Files/base_url.json
+  - lib/Json_Files/events_endpoints.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

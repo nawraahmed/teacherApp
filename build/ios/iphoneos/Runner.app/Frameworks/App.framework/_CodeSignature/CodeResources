@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		yxHTU0H05td2kGDl88XpHqA6V/A=
+		lgC2CSJ7A5EYz9adzQDfPIKdCbk=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		88WavOdKOr1E/tu9+rrXcz4BrK0=
+		Pz0lbjOwzfCJxfa6qprW25CsFTI=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -27,6 +27,10 @@
 		<key>flutter_assets/assets/Home.png</key>
 		<data>
 		wPXhiadXxCCDIr//KNazzbKxp38=
+		</data>
+		<key>flutter_assets/assets/LoginContainer.png</key>
+		<data>
+		PUHeBHbuZeGO+LH4F7b254CFP18=
 		</data>
 		<key>flutter_assets/assets/alef_logo.png</key>
 		<data>
@@ -114,7 +118,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		5iZfyNYyj2Tcf+Q6kDPYbcoWdjA=
+		1JPiNmebVH9yGRXvmi4exqGqrS4=
 		</data>
 		<key>flutter_assets/lib/Json_Files/base_url.json</key>
 		<data>
@@ -131,6 +135,10 @@
 		<key>flutter_assets/lib/Json_Files/delete_evaluation.json</key>
 		<data>
 		IE4KzL1+H7g/f8WrOTiK8WvKWHA=
+		</data>
+		<key>flutter_assets/lib/Json_Files/events_endpoints.json</key>
+		<data>
+		6ciVMfTMVHSgQrlK0lnUfavFNhE=
 		</data>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
@@ -171,14 +179,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fBLCuRS43zhn+cIDBosqsuidUj7hYQ/v/zYE6+ntNR0=
+			tDiywE0h/I3n0YRKvq3B5/XPdoM9kXo6WkTcNcGdtUY=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mK97PFmb/9FELqmHwQRwEZDgwB6kL6dWWGZ3tKns4e0=
+			S41ewtV2Tb+ukcP3pS3OxAIfVadYY0NO722pUpyf/FU=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -200,6 +208,13 @@
 			<key>hash2</key>
 			<data>
 			mnutIrcX691cjgXBi+hXJquRFWeEUdbMTWypK8E9Wfg=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/LoginContainer.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rKxaIt/eKYISMum8LjtGSaOMiYEEjU1t0QZw2sIg47Q=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/alef_logo.png</key>
@@ -353,7 +368,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7ZLPA0URm0DEvRG4vjiPWjI0qkjhnyB7cLz5zgnpqYM=
+			/iOrPVFnT39bcviN3zrzI2AFveJ/DkdNuatAAyAX57k=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/base_url.json</key>
@@ -382,6 +397,13 @@
 			<key>hash2</key>
 			<data>
 			c6lRVRp7ch69GXboHw+PTXE0rK923n4Pbiw4iIPDMEI=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/events_endpoints.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YlsobzRl7moElh07xyjkvQHB+CmdDq1dnyl48hUqJrE=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>

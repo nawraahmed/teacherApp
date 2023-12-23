@@ -3,7 +3,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:the_app/profile_page.dart';
 import 'package:the_app/stationary_request.dart';
-
 import 'Services/APITeacherInfo.dart';
 import 'classes_lister.dart';
 import 'main.dart';
@@ -29,6 +28,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   ];
 
   List<String> headings = ['Classes', 'Events', 'Stationary'];
+
+  List<String> otherHeadings = [ 'Teachers', 'Reports', 'Tasks'];
 
   @override
   void initState() {
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     // Navigate to the ProfilePage when the avatar is tapped
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                      MaterialPageRoute(builder: (context) => const ProfilePage()),
                     );
                   },
                   child: Container(
@@ -86,15 +87,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           const SizedBox(height: 20),
 
           // Heading for the collection view
-           Align(
+           const Align(
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: EdgeInsets.only(left: 15.0),
-              child: Text(
-                "For You",
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.left,
-              ),
+              // child: Text(
+              //   "For You",
+              //   style: Theme.of(context).textTheme.bodyMedium,
+              //   textAlign: TextAlign.left,
+              // ),
 
             ),
           ),
@@ -105,7 +106,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             height: 220.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 3,
+              itemCount: headings.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(15.0, 15.0, 0.0, 0.0),
@@ -179,9 +180,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
            Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 15.0),
+              padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Today's Tasks",
+                "For You",
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.left,
               ),
@@ -193,7 +194,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             height: 220.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 1, // Adjust the number of pink containers as needed
+              itemCount: otherHeadings.length, // Adjust the number of pink containers as needed
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(15.0, 15.0, 0.0, 0.0),
@@ -208,6 +209,27 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         shape: BoxShape.rectangle,
                         color: Styles.primaryNavy,
                         borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            imagesPath[index], // Select the corresponding image asset path
+                            width: 80.0,
+                            height: 80.0,
+                            fit: BoxFit.cover,
+                          ),
+
+                          const SizedBox(height: 10.0),
+                          Text(
+                            otherHeadings[index], // Select the corresponding heading
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 19,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -224,7 +246,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Future<void> fetchTeacherName() async {
     try {
       // Read the id from Flutter Secure Storage
-      final secureStorage = FlutterSecureStorage();
+      final secureStorage = const FlutterSecureStorage();
       final staffId = await secureStorage.read(key: 'dbId');
 
       print("Staff ID: $staffId");

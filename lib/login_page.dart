@@ -20,155 +20,173 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-        child: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              color: Styles.primaryNavy,
+              child: Column(
+                children: [
+                  const SizedBox(height: 30.0),
+                  const Center(
+                    // child: Image.asset('assets/alef_logo.png'),
+                  ),
+                  const SizedBox(height: 20.0),
 
-          children: [
-            // Column containing Alef logo and Login heading
-            Column(
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30.0, 40.0, 0, 0),
+                      child: Text(
+                        'Login',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: 40,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+
+            ),
+          ),
+
+          Positioned(
+            bottom: 0,
+            child: Image.asset(
+              'assets/LoginContainer.png',
+              fit: BoxFit.fill,
+            ),
+          ),
+
+
+
+          Container(
+            color: Colors.transparent,
+
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+
               children: [
-                // Alef logo image centered
-                const SizedBox(height: 30.0),
-                Center(
-                  child: Image.asset('assets/alef_logo.png'),
-                ),
-                const SizedBox(height: 5.0),
+                // Column containing Alef logo and Login heading
 
-                // Login heading centered
-                 Center(
-                  child: Text(
+                const SizedBox(height: 30.0),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(55, 100, 55, 20),
+                  child: CustomTextField(
+                    hintText: 'Email',
+                    onChanged: (value) {
+                      setState(() {
+                        _usernameController.text = value;
+                        email = value;
+                      });
+                    },
+                    errorText: '',
+                    isPassword: false,
+                  ),
+                ),
+
+
+
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(55, 0, 55, 25),
+              child: CustomTextField(
+                  hintText: 'password',
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                      _passwordController.text = value;
+                    });
+                  },
+                  errorText: '',
+                  isPassword: true,
+                ),
+            ),
+
+                const SizedBox(height: 5),
+
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(100, 15, 100, 5),
+              child:ElevatedButton(
+                  onPressed: () {
+                    authenticateUser();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyCustomTab(initialPage: SelectedPage.home),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.primaryNavy,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+
+                  ),
+                  child: const Text(
                     'Login',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+            ),
+
+
+                const SizedBox(height: 20.0),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      // Navigate to
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNewAccount()));
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: "Account Not Working?",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' Contact Administration',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Styles.primaryPink,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 30.0),
-
-            Image.asset('assets/login.png'),
-            const SizedBox(height: 10.0),
-
-
-            CustomTextField(
-              hintText: 'Enter your email',
-              //controller: _usernameController,
-              onChanged: (value) {
-                setState(() {
-                  // Update the controller value
-                  _usernameController.text = value;
-                  email = value;
-                  //_emailError = validateEmail(value);
-                  //print("EMAIL: $email");
-
-                });
-              },
-              errorText: '', // Pass null or empty string for no error
-              isPassword: false,
-              imagePath: 'assets/email.png',
-
-            ),
-            const SizedBox(height: 20),
-
-
-            CustomTextField(
-              hintText: 'Enter your password',
-              //controller: _passwordController,
-              onChanged: (value) {
-                setState(() {
-                  password = value;
-                  _passwordController.text = value;
-                  //_passwordError = validatePassword(value);
-
-                });
-              },
-              errorText: '',
-              isPassword: true,
-              imagePath: 'assets/password.png', // Replace with your image path
-            ),
-
-            const SizedBox(height: 5),
-            ElevatedButton(
-              onPressed: () {
-                authenticateUser();
-
-                //if authentication was successful, navigate to home page
-                // Navigate to MyCustomTab after successful login
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyCustomTab(initialPage: SelectedPage.home),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Styles.primaryNavy,
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-              child: const Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 14, // Adjust the font size as needed
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20.0),
-
-
-            // Contact Administration text
-            Center(
-              child: GestureDetector(
-                onTap: () {
-
-                  // Navigate to
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNewAccount()));
-                },
-                child: RichText(
-                  text: const TextSpan(
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-
-                    ),
-                    children: [
-                      TextSpan(
-                        text: "Account Not Working?",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black,
-
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' Contact Administration',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Styles.primaryPink,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-
-          ],
-        ),
+          ),
+        ],
       ),
-        ),
     );
   }
+
 
 
   Future<void> authenticateUser() async {

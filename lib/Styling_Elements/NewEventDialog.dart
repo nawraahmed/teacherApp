@@ -1,4 +1,3 @@
-import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../Services/APICreateEvent.dart';
@@ -48,11 +47,13 @@ class _NewEventDialogState extends State<NewEventDialog> {
                         'Close',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+
+
                     TextButton(
                       onPressed: () {
                         // Handle the creation of the event
@@ -88,44 +89,75 @@ class _NewEventDialogState extends State<NewEventDialog> {
                         // Close the dialog
                         Navigator.of(context).pop();
                       },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                        ),
+                        backgroundColor: Styles.primaryNavy,
+                      ),
                       child: const Text(
                         'Create Event',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                          color: Colors.white,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+
+
+
                   ],
                 ),
 
                 const SizedBox(height: 20),
+
                 TextField(
                   controller: eventNameController,
-                  decoration: const InputDecoration(
+                  style: const TextStyle(fontSize: 14.0), // Adjust the font size of the text
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                     labelText: 'Event Name',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0), // Adjust the radius as needed
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
+
+
+                const SizedBox(height: 15),
+
                 TextField(
                   controller: notesController,
+                  style: const TextStyle(fontSize: 14.0), // Adjust the font size of the text
                   maxLines: 2,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                     labelText: 'Notes',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0), // Adjust the radius as needed
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  'Selected Date: ${DateFormat('yyyy-MM-dd').format(widget.selectedDate)}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+
+
+
+                const SizedBox(height: 15),
+
+                Align(
+                  alignment: Alignment.topLeft, // Adjust alignment as needed
+                  child: Text(
+                    'Selected Date: ${DateFormat('yyyy-MM-dd').format(widget.selectedDate)}',
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Styles.primaryNavy,
+                    ),
                   ),
                 ),
+
                 const SizedBox(height: 10),
+
 
                 // DropdownButton for selecting classes
                 DropdownButton<int>(
@@ -155,19 +187,19 @@ class _NewEventDialogState extends State<NewEventDialog> {
                   icon: const Icon(Icons.keyboard_arrow_down_rounded),
                   iconSize: 24,
                   elevation: 16,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
 
                 // Display selected classes as chips
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Wrap(
                     spacing: 8.0,
                     children: selectedClasses.map((int classId) {
                       return Chip(
                         label: Text(
                           widget.classesList.firstWhere((classItem) => classItem.id == classId).className,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         backgroundColor: Styles.primaryBlue,
                         deleteIcon: const Icon(Icons.cancel, color: Colors.white),

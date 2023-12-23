@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		AwYZ74Y5HpzSRCOJ1HjhrmbTdno=
+		rB7YNFUPPR+gDb0NUEt3p9zzI1o=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		jiHmwtnc0ul0mQD5aFH+cHJ9/DE=
+		UEEGzj65gpH7M1oDJ6mZHrV8f0c=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		7+Fei1DDSzAFf/0II6zDBSLV2uc=
+		bEr2sGD0usG12jFh/Rm1OHXYgf8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		0jcGSwCuWxzrWZILE+QzTqJLlcg=
+		lgC2CSJ7A5EYz9adzQDfPIKdCbk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		H5yn9twr9C4wz4I/U0BSWKm5nCQ=
+		Pz0lbjOwzfCJxfa6qprW25CsFTI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -75,6 +75,10 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/Home.png</key>
 		<data>
 		wPXhiadXxCCDIr//KNazzbKxp38=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/LoginContainer.png</key>
+		<data>
+		PUHeBHbuZeGO+LH4F7b254CFP18=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/alef_logo.png</key>
 		<data>
@@ -162,7 +166,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		NInhIuR9gNWm/QP79IYxE5W6n/4=
+		1JPiNmebVH9yGRXvmi4exqGqrS4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
 		<data>
@@ -182,7 +186,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/events_endpoints.json</key>
 		<data>
-		OcgpgKvnHH6gTjxUp37qCru3EKw=
+		6ciVMfTMVHSgQrlK0lnUfavFNhE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
@@ -544,7 +548,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9X8iA5sPOUjQVtFpfkOk5dY5+0rN/JIzv4n8AloTxDk=
+			nY2LpHW16eXLd6NDxKV/qqe6UQtc9vtM11IKwmLxQ4Q=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -593,7 +597,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mxi8iRvlTGB3jMtzeOSEeP9pmdCYZEpmGofrbboVrTc=
+			hMQnBBg0UytXAr2k/UjA1x9HjEXgpMBYs/9q50zUdP8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -607,21 +611,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JZCLYwMKyfyEmUFlbnGThNd0hm3ke4hF955kH7bZ154=
+			4sB+1HA/ge3eKeqHbY/Ugq2MpT451AzlvCfb3w2+ySA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XaaitAEgoUKndq4pmkN4sY+C2j0bzpSoClqMar2d27I=
+			tDiywE0h/I3n0YRKvq3B5/XPdoM9kXo6WkTcNcGdtUY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9JG/Fc7xIXFl6HbPEy+za3l6TADz7vqQGeH2NN2P/FI=
+			S41ewtV2Tb+ukcP3pS3OxAIfVadYY0NO722pUpyf/FU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -643,6 +647,13 @@
 			<key>hash2</key>
 			<data>
 			mnutIrcX691cjgXBi+hXJquRFWeEUdbMTWypK8E9Wfg=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/LoginContainer.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rKxaIt/eKYISMum8LjtGSaOMiYEEjU1t0QZw2sIg47Q=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/alef_logo.png</key>
@@ -796,7 +807,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UR37a7W0nGVAjx9z0NrsHIkXCnxwVcEOAXkxZTzMTnY=
+			/iOrPVFnT39bcviN3zrzI2AFveJ/DkdNuatAAyAX57k=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
@@ -831,7 +842,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tdVvyqN4kfOqJOHnRQWn/E1SV+X4kebZY0/jmB/Mhto=
+			YlsobzRl7moElh07xyjkvQHB+CmdDq1dnyl48hUqJrE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/face_reco.json</key>

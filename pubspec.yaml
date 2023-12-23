@@ -95,6 +95,7 @@ flutter:
   - assets/events.png
   - assets/enter.png
   - assets/enter_black.png
+  - assets/LoginContainer.png
   - lib/Json_Files/class_lister.json
   - lib/Json_Files/students_in_class.json
   - lib/Json_Files/teacher_info.json

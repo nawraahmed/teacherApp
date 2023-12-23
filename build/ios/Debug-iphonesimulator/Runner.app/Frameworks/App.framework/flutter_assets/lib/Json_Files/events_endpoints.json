@@ -2,7 +2,7 @@
 
   "endpoints": {
     "create_event": "/events/",
-    "edit_event": "/StudentEvaluation",
-    "delete_event": "/StudentEvaluation"
+    "list_events": "/events",
+    "delete_event": "/events/{event_id}"
   }
 }

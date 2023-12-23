@@ -152,6 +152,127 @@ class Styles{
   // }
 
 
+  static void showCustomDialog(BuildContext context, String type, String title, String text, IconData icon) {
+    Color titleColor;
+    Color iconColor;
+    String positiveButtonLabel;
+    String negativeButtonLabel;
+
+    // Set colors and button labels based on the type
+    switch (type) {
+      case 'success':
+        titleColor = Colors.green;
+        iconColor = Colors.green;
+        break;
+      case 'warning':
+        titleColor = const Color.fromRGBO(255, 193, 7, 1);
+        iconColor = const Color.fromRGBO(255, 193, 7, 1);
+        break;
+      case 'error':
+        titleColor = Colors.red;
+        iconColor = Colors.red;
+        break;
+      default:
+        titleColor = Colors.black;
+        iconColor = Colors.black;
+    }
+
+    // Set button labels based on the message text
+    if (text == "Are you sure you want to delete this event?") {
+      positiveButtonLabel = 'Yes';
+      negativeButtonLabel = 'Cancel';
+    } else {
+      positiveButtonLabel = 'OK';
+      negativeButtonLabel = ''; // No negative button for other messages
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  icon,
+                  color: iconColor,
+                  size: 50.0,
+                ),
+                const SizedBox(height: 16.0),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: titleColor,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        primary: negativeButtonLabel.isEmpty
+                            ? Colors.transparent // Make the button transparent if no negative button
+                            : titleColor,
+                      ),
+                      child: Text(
+                        negativeButtonLabel,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        primary: titleColor,
+                      ),
+                      child: Text(
+                        positiveButtonLabel,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
 

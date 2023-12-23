@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		0jcGSwCuWxzrWZILE+QzTqJLlcg=
+		lgC2CSJ7A5EYz9adzQDfPIKdCbk=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		H5yn9twr9C4wz4I/U0BSWKm5nCQ=
+		Pz0lbjOwzfCJxfa6qprW25CsFTI=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -27,6 +27,10 @@
 		<key>flutter_assets/assets/Home.png</key>
 		<data>
 		wPXhiadXxCCDIr//KNazzbKxp38=
+		</data>
+		<key>flutter_assets/assets/LoginContainer.png</key>
+		<data>
+		PUHeBHbuZeGO+LH4F7b254CFP18=
 		</data>
 		<key>flutter_assets/assets/alef_logo.png</key>
 		<data>
@@ -114,7 +118,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		NInhIuR9gNWm/QP79IYxE5W6n/4=
+		1JPiNmebVH9yGRXvmi4exqGqrS4=
 		</data>
 		<key>flutter_assets/lib/Json_Files/base_url.json</key>
 		<data>
@@ -134,7 +138,7 @@
 		</data>
 		<key>flutter_assets/lib/Json_Files/events_endpoints.json</key>
 		<data>
-		OcgpgKvnHH6gTjxUp37qCru3EKw=
+		6ciVMfTMVHSgQrlK0lnUfavFNhE=
 		</data>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
@@ -175,14 +179,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XaaitAEgoUKndq4pmkN4sY+C2j0bzpSoClqMar2d27I=
+			tDiywE0h/I3n0YRKvq3B5/XPdoM9kXo6WkTcNcGdtUY=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9JG/Fc7xIXFl6HbPEy+za3l6TADz7vqQGeH2NN2P/FI=
+			S41ewtV2Tb+ukcP3pS3OxAIfVadYY0NO722pUpyf/FU=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -204,6 +208,13 @@
 			<key>hash2</key>
 			<data>
 			mnutIrcX691cjgXBi+hXJquRFWeEUdbMTWypK8E9Wfg=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/LoginContainer.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rKxaIt/eKYISMum8LjtGSaOMiYEEjU1t0QZw2sIg47Q=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/alef_logo.png</key>
@@ -357,7 +368,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UR37a7W0nGVAjx9z0NrsHIkXCnxwVcEOAXkxZTzMTnY=
+			/iOrPVFnT39bcviN3zrzI2AFveJ/DkdNuatAAyAX57k=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/base_url.json</key>
@@ -392,7 +403,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tdVvyqN4kfOqJOHnRQWn/E1SV+X4kebZY0/jmB/Mhto=
+			YlsobzRl7moElh07xyjkvQHB+CmdDq1dnyl48hUqJrE=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/face_reco.json</key>

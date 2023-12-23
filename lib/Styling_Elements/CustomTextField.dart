@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
 class CustomTextField extends StatefulWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
   final String? errorText;
   final bool isPassword;
-  final String imagePath;
 
   CustomTextField({
     required this.hintText,
     required this.onChanged,
     this.errorText,
     this.isPassword = false,
-    required this.imagePath,
   });
 
   @override
@@ -26,55 +22,38 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-
+        borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
           color: widget.errorText != null && widget.errorText!.isNotEmpty
               ? Colors.red
-              : Styles.primaryNavy, // Customize border color for error state
-          width: 2.0,
+              : Color.fromRGBO(185, 188, 190, 1),
+          width: 1.0,
         ),
       ),
 
-      //image styling
       child: Padding(
-        padding: const EdgeInsets.all(2.0),  // Adjust the padding
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 12.0),  // Adjust the image padding
-              child: Image.asset(
-                widget.imagePath,
-                width: 16.0,
-                height: 16.0,
-              ),
-            ),
+        padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+        child: TextFormField(
+          onChanged: widget.onChanged,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: widget.isPassword,
+          style: const TextStyle(
+            fontSize: 14.0, // Set the font size for non-obscured text
+          ),
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            border: InputBorder.none,
+            hintStyle: const TextStyle(fontSize: 15.0),
+            errorText: widget.errorText,
 
-            //text styling
-            Expanded(
-              child: TextFormField(
-                onChanged: widget.onChanged,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                obscureText: widget.isPassword,
-                style: TextStyle(fontSize: 17.0),
-                decoration: InputDecoration(
-                  hintText: widget.hintText,
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(fontSize: 17.0),
+          ),
+          // Set a separate style for obscured text
+          obscuringCharacter: '*', // Use a bullet character to represent obscured text
 
-                ),
-                validator: (value) {
-                  if (widget.errorText != null && widget.errorText!.isNotEmpty) {
-                    return widget.errorText;
-                  }
-                  return null;
-                },
-              ),
-            ),
-
-          ],
         ),
       ),
+
+
     );
   }
 }

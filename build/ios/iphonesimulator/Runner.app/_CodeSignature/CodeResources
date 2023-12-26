@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		p1jruxvWdM0G0NlWel9pIopRkh0=
+		BTkrQexOrr41ZlPbeQ7DdmdyFzE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,15 +54,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		uRZO01alNL9NyJgUamz5r0RxvMA=
+		oaHUcDEKiO19a5q8AE+LAMmrYuI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		lgC2CSJ7A5EYz9adzQDfPIKdCbk=
+		p2hzJz82DryW2SSeozyoji5Ejdk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Pz0lbjOwzfCJxfa6qprW25CsFTI=
+		rfgCeFHW9TaoWRpleMHdOsCZrts=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		JqmMiB34B+pOv9hjWFczUeLUDzs=
+		VRodqRwb4/XQKGilQd4qiW50wqE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/Home.png</key>
 		<data>
@@ -148,6 +148,10 @@
 		<data>
 		6sIxS3dwsCrVRB4Tw71EHt7gJns=
 		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/tasks.png</key>
+		<data>
+		CTiDj5ptULhldvSVYT5osU+b+Wo=
+		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/walkthrough_one.png</key>
 		<data>
 		BHtyzg7SD0+CA+r1dvehXSFnS4g=
@@ -166,11 +170,15 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		0s2pkZQAMBp3+D/mfOXji/Qx4SU=
+		jqncofm4VQJoMQM0exu+Pv9XoqM=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/attendance_endpoints.json</key>
+		<data>
+		tqkTPJz2tMOr5+OYSl7loJdLPfw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
 		<data>
-		upKxXRksRDVVJObwQCavsRB76wI=
+		3Qxpyxa+4c/51fPKU6GHkDENLYU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/class_lister.json</key>
 		<data>
@@ -190,7 +198,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/face_reco.json</key>
 		<data>
-		MuCYBQ6Cfi8dil/SFCnqm0L1maE=
+		bcG20p5JCG/K4bCPa5gNbMtlrZ0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/set_token.json</key>
 		<data>
@@ -597,7 +605,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GKkPITcUU4JjeQa9d/NoqP/+cuxXllDEYbkFjjKIdSA=
+			zkoo+Ly4ocM0fHTxbh/9ucrY4lE6G275T+40+08MiAo=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -611,21 +619,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7669j08UNKm1iLel80cBoeqfC0C7JTh4IWgAWAK4LN4=
+			UHmUffUvTAynMOgoBaW81xz6yQgQO9isJxAGZWOKUNo=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tDiywE0h/I3n0YRKvq3B5/XPdoM9kXo6WkTcNcGdtUY=
+			a3XQwkFKw3/E11aeZCKQlgCPJZHkchFcYDPwzGUjn5k=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S41ewtV2Tb+ukcP3pS3OxAIfVadYY0NO722pUpyf/FU=
+			hCXiygj9mjm4vy1XK/RqRdFUGhsrnuE7F75Va03aypg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -639,7 +647,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AHfqTLE7DkZcGPOC/a/BUta1fcuKraMnJugovBs8cfU=
+			ExbutreNmKs/bpeAe9ffbO+1WlpWpxltCjjgDuQr5dI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/Home.png</key>
@@ -775,6 +783,13 @@
 			5+oqLZjYda1alZMzWVh6J3/zIxK1wMfkNZL1lSko6K8=
 			</data>
 		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/tasks.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3gk8HqBRTYvlt9XDfWGOPo21D4zN6jQIs3w4V4lp3xU=
+			</data>
+		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/walkthrough_one.png</key>
 		<dict>
 			<key>hash2</key>
@@ -807,14 +822,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eoDANVwaYYX6t0vhHmODG/fiuPEJFHaDCjxfimZx1SI=
+			WWPl335fxtxP8sIzvo2yI0kRfopMwrfzjFFIdQ1A1YQ=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/attendance_endpoints.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QD2KB8RowtLKsTYFpjV6NcI6fu04TYTXdgu2d1M5KAg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/base_url.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LYfwr/g1eQ6OcvXXZ+ntQKpAURD6nwBTryTKH1eNxkw=
+			dxqcWtZPE/VOtp+9wmYQHouZsV249tZZe5aIr50kxCA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/class_lister.json</key>
@@ -849,7 +871,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sF6eT7kbSnyNOJ0JR3Or4KV1i8pLUIHy3qcYvcjOEK4=
+			wlgybCQUNoNx3XcJjRFxpVQQ96J/lblsiQhzkI4wdHQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/Json_Files/set_token.json</key>

@@ -231,12 +231,12 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       setState(() {
         if (pickedFile != null) {
           _image = File(pickedFile.path);
+          print("u did take an image: $_image");
         }
       });
 
       // After taking the photo, you can integrate AI model logic for verification
 
-      // Assuming you have an instance of APIFaceReco called apiFaceReco
       if (_image != null) {
         try {
           Uint8List? result = await apiFaceReco.compareImage(_image!);
@@ -244,11 +244,14 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
           if (result != null) {
             // Handle the result, e.g., display the recognized image
             // result is a Uint8List representing the image data
+            print("result is not null");
+            print(result);
           } else {
             // Handle other types of responses or errors
+            print("yup, that was null");
           }
         } catch (e) {
-          print('Error comparing image: $e');
+          print('Error comparing image (from ui): $e');
         }
       }
 

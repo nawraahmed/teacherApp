@@ -7,6 +7,8 @@ import 'login_page.dart';
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_app//Users/nawraalhaji/StudioProjects/teacherApp/.dart_tool/flutter_gen/gen_l10n/app_localization.dart';
+
 
 // The stateful widget for the home page
 class Settings extends StatefulWidget {
@@ -22,7 +24,10 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+
+    final lang = Localizations.localeOf(context);
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('Settings'),
         automaticallyImplyLeading: false, // Remove the back button
@@ -92,6 +97,24 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
           buildSettingItem('About Us', Icons.info),
           buildSettingItem('Report a Bug', Icons.bug_report),
           buildSettingItem('Language', Icons.language),
+          Text(AppLocalizations.of(context)!.language,
+            style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Styles.primaryGray,
+            fontSize: 17.0,
+          ),
+          ),
+
+
+
+          Text(AppLocalizations.of(context)!.language,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Styles.primaryGray,
+              fontSize: 17.0,
+            ),
+          ),
+
         ],
       ),
     );

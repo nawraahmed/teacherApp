@@ -6,6 +6,8 @@ import 'package:the_app/stationary_request.dart';
 import 'Services/APITeacherInfo.dart';
 import 'classes_lister.dart';
 import 'main.dart';
+import 'package:the_app//Users/nawraalhaji/StudioProjects/teacherApp/.dart_tool/flutter_gen/gen_l10n/app_localization.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,9 +29,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     'assets/events_home.png',
   ];
 
-  List<String> headings = ['Classes', 'Events', 'Stationary'];
 
-  List<String> otherHeadings = [ 'Teachers', 'Reports', 'Tasks'];
+
 
   @override
   void initState() {
@@ -41,6 +42,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    List<String> headings = ['${AppLocalizations.of(context)!.classes}', '${AppLocalizations.of(context)!.events}', '${AppLocalizations.of(context)!.stationary}'];
+    List<String> otherHeadings = [ '${AppLocalizations.of(context)!.teachers}', '${AppLocalizations.of(context)!.reports}', 'Tasks'];
     return Scaffold(
       body: Column(
         children: [
@@ -52,7 +55,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: [
                 // Text on the left
                  Text(
-                  'Hello Teacher \n${name}',
+                  '${AppLocalizations.of(context)!.helloTeacher} \n${name}',
                    style: Theme.of(context).textTheme.titleMedium,
                 ),
 
@@ -177,17 +180,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           const SizedBox(height: 30),
 
           // Heading for the collection view
-           Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
+           Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "For You",
+                  '${AppLocalizations.of(context)!.forYou}',
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.left,
               ),
             ),
-          ),
+          
 
           // containers with horizontal scrolling
           SizedBox(

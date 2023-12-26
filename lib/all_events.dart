@@ -5,6 +5,7 @@ import 'Services/APIDeleteEvent.dart';
 import 'Services/APIListEvents.dart' as APIListEvents;
 import 'Styling_Elements/NewEventDialog.dart';
 import 'main.dart';
+import 'package:the_app//Users/nawraalhaji/StudioProjects/teacherApp/.dart_tool/flutter_gen/gen_l10n/app_localization.dart';
 
 // The stateful widget for the home page
 class AllEvents extends StatefulWidget {
@@ -54,7 +55,7 @@ void initState() {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: const Text('Events'),
+      title: Text('${AppLocalizations.of(context)!.events}'),
       automaticallyImplyLeading: false,
     ),
     body: Stack(

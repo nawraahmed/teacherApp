@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:the_app/l10n/L10n.dart';
 import 'all_events.dart';
 import 'firebase_options.dart';
 
@@ -15,6 +17,7 @@ import 'attendance.dart';
 import 'events.dart';
 import 'homepage.dart';
 import 'settings.dart';
+import 'package:the_app//Users/nawraalhaji/StudioProjects/teacherApp/.dart_tool/flutter_gen/gen_l10n/app_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +64,13 @@ class AlefTeacher extends StatelessWidget {
       theme: Styles.themeData(isDarkMode, context), // Use the themeData
       debugShowCheckedModeBanner: false,
       home: WTpageController(),
+      supportedLocales: L10n.all,
+localizationsDelegates: [
+  AppLocalizations.delegate,
+  GlobalMaterialLocalizations.delegate,
+  GlobalCupertinoLocalizations.delegate,
+  GlobalWidgetsLocalizations.delegate,
+],
     );
   }
 }

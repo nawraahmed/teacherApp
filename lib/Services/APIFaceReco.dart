@@ -11,7 +11,7 @@ class APIFaceReco {
 
   // Reads API info from JSON file
   Future<Map<String, dynamic>> readAPIInfoFromJSONFile() async {
-    final jsonString = await rootBundle.loadString('lib/Json_Files/face_reco.json');
+    final jsonString = await rootBundle.loadString('lib/Json_Files/base_url.json');
     final jsonMap = json.decode(jsonString);
     return jsonMap;
   }
@@ -20,25 +20,27 @@ class APIFaceReco {
   // Read the Base URL and the Endpoint from the JSON file
   Future<void> initializeBaseURL() async {
     final base = await readAPIInfoFromJSONFile();
-    baseUrl = base['base_url'] as String;
+    baseUrl = base['base_url'] as String? ?? 'https://us-central1-alef-229ac.cloudfunctions.net/app'; // Provide a default value if null
     print("this is the reco base: $baseUrl");
   }
 
   // Reads teacher endpoint from JSON file
-  Future<void> initializeEndpoint() async {
-    final studentsEndpoint = await readAPIInfoFromJSONFile();
-
-    endPoint = studentsEndpoint['endpoints']['face_reco'] as String;
-    print("this is the EP: $endPoint");
-  }
+  // Future<void> initializeEndpoint() async {
+  //   final studentsEndpoint = await readAPIInfoFromJSONFile();
+  //
+  //   endPoint = studentsEndpoint['endpoints']['face_reco'] as String? ?? '/faceDetection';
+  //   print("this is the EP: $endPoint");
+  // }
 
 
   Future<Uint8List?> compareImage(File takenImage) async {
     await initializeBaseURL();
-    await initializeEndpoint();
+    //await initializeEndpoint();
 
     // Create a MultipartRequest
-    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl$endPoint'));
+    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/attendance/faceDetection'));
+
+    print(request);
 
     // Add the image as form-data with the key "file"
     request.files.add(await http.MultipartFile.fromPath('file', takenImage.path));
@@ -71,9 +73,10 @@ class APIFaceReco {
         return null; // Adjust this based on your needs
       }
 
+
     } catch (error) {
       // Handle request errors
-      print('Error comparing image: $error');
+      print('Error comparing image (from API): $error');
       return null; // Adjust this based on your needs
     }
   }

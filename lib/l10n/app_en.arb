@@ -1,0 +1,14 @@
+{
+"language": "En",
+    "@language":{
+    "desc": "current lang"
+    },
+    "helloTeacher": "Hello Teacher",
+    "classes": "Classes",
+    "events": "Events",
+    "stationary": "Stationary",
+    "teachers": "Teachers",
+    "reports": "Reports",
+    "forYou": "For You"
+
+}

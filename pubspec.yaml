@@ -51,6 +51,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,37 +76,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/walkthrough_one.png
-  - assets/walkthrough_two.png
-  - assets/login.png
-  - assets/alef_logo.png
-  - assets/email.png
-  - assets/password.png
-  - assets/avatar.png
-  - assets/settings.png
-  - assets/settingsSelected.png
-  - assets/eventsSelected.png
-  - assets/attendance.png
-  - assets/attendanceSelected.png
-  - assets/Home.png
-  - assets/homeSelected.png
-  - assets/classes.png
-  - assets/back.png
-  - assets/events_home.png
-  - assets/events.png
-  - assets/enter.png
-  - assets/enter_black.png
-  - assets/LoginContainer.png
-  - lib/Json_Files/class_lister.json
-  - lib/Json_Files/students_in_class.json
-  - lib/Json_Files/teacher_info.json
-  - lib/Json_Files/face_reco.json
-  - lib/Json_Files/delete_evaluation.json
-  - lib/Json_Files/create_evaluation.json
-  - lib/Json_Files/set_token.json
-  - lib/Json_Files/student_info.json
+  - assets/
   - lib/Json_Files/base_url.json
-  - lib/Json_Files/events_endpoints.json
+  - lib/Json_Files/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

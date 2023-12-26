@@ -1,9 +1,0 @@
-dependencies: \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphoneos/FirebaseInstallations.build/module.modulemap \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallationsItem.m \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallationsItem.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsIDController/FIRInstallationsStatus.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsStore/FIRInstallationsStoredAuthToken.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsStore/FIRInstallationsStoredItem.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Errors/FIRInstallationsErrorUtil.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsErrors.h

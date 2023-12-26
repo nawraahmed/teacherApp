@@ -1,0 +1,39 @@
+{
+  "name": "firebase_installations",
+  "version": "16.3.6",
+  "summary": "Firebase installations Flutter plugin",
+  "description": "Firebase installations Flutter plugin",
+  "homepage": "https://github.com/lidio601/flutter_installations",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Fabio Cigliano": "fabio.cigliano@gmail.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*.{h,m}",
+  "public_header_files": "Classes/Public/*.h",
+  "private_header_files": "Classes/Private/*.h",
+  "platforms": {
+    "ios": "11.0"
+  },
+  "dependencies": {
+    "Flutter": [
+
+    ],
+    "firebase_core": [
+
+    ],
+    "Firebase/Installations": [
+      "10.18.0"
+    ]
+  },
+  "static_framework": true,
+  "pod_target_xcconfig": {
+    "GCC_PREPROCESSOR_DEFINITIONS": "LIBRARY_VERSION=\\@\\\"16.3.6\\\" LIBRARY_NAME=\\@\\\"flutter-fire-analytics\\\"",
+    "DEFINES_MODULE": "YES",
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "i386"
+  }
+}

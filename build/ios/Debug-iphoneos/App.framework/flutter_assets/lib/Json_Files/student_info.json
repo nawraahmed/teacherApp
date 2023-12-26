@@ -1,6 +1,0 @@
-{
-"base_url": "https://us-central1-alef-229ac.cloudfunctions.net/app",
-"endpoints": {
-"student": "/student/"
-}
-}

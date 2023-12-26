@@ -72,9 +72,9 @@ class APITeacherInfo {
   }
   // Reads teacher endpoint from JSON file
   Future<void> initializeEndpoint() async {
-    final studentsEndpoint = await readAPIInfoFromJSONFile();
+    final staffEndpoint = await readAPIInfoFromJSONFile();
 
-    endPoint = studentsEndpoint['endpoints']['staff'] as String;
+    endPoint = staffEndpoint['endpoints']['staff'] as String;
     print("this is the EP: $endPoint");
   }
 

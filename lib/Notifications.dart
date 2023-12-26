@@ -30,6 +30,8 @@ class Notifications {
     print("uid again from notification: $uid");
 
 
+
+
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
 
     // Send token to server

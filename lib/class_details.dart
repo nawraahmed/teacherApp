@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:the_app/student_profile.dart';
-import 'Services/APIStudentsLister.dart';
+import 'Services/APIAttendancCIDbased.dart' as AttendancCIDbased;
+import 'Services/APIStudentsLister.dart' as StudentsLister;
 import 'Styling_Elements/BackButtonRow.dart';
+import 'attendance_details.dart';
 import 'main.dart';
+import 'package:intl/intl.dart';
+
 
 
 class ClassDetails extends StatefulWidget {
@@ -24,15 +28,23 @@ class ClassDetails extends StatefulWidget {
 
 class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderStateMixin {
   String selectedTab = 'attendance';
-  List<Student> studentsList = [];
+  List<StudentsLister.Student> studentsList = [];
   DateTime today = DateTime.now();
   List<String> tabs = ['attendance', 'students', 'events', 'stationary'];
-
+  List<AttendancCIDbased.AttendanceRecord> recordsList = [];
+  late Map<String, List<AttendancCIDbased.AttendanceRecord>> groupedRecords;
+  late List<String> uniqueDates;
 
   @override
   void initState() {
     super.initState();
     listStudents(1, widget.classId);
+
+    print("Your in class: ${widget.classId}");
+
+    fetchAttendanceRecords(110);
+    initializeGroupedRecords();
+
   }
 
   @override
@@ -50,6 +62,68 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
           if (selectedTab == 'attendance') ...[
             // Content for attendance tab
 
+            // Heading for past attendance records
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+              child: Text(
+                'Past Attendance Records',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+
+            // List of past attendance records
+            Expanded(
+              child: ListView.builder(
+                itemCount: uniqueDates.length,
+                itemBuilder: (BuildContext context, int index) {
+                  // Get the unique date for the current index
+                  final formattedDate = uniqueDates[index];
+
+                  // Get all records for the current date
+                  final recordsForDate = groupedRecords[formattedDate]!;
+
+                  return Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      height: 80.0,
+                      decoration: BoxDecoration(
+                        color: Styles.primaryNavy,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: ListTile(
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.white,
+                        ),
+                        title: Text(
+                          'Record of $formattedDate', // Use the formatted date here
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                        ),
+                        onTap: () {
+                          // Handle tap on a past record
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AttendanceDetailsScreen(
+                                date: formattedDate,
+                                studentAttendanceList: recordsForDate.map((record) {
+                                  return StudentAttendance(
+                                    studentName: record.student.studentName,
+                                    attendanceStatus: record.attendanceStatus ?? 'Not recorded',
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+
 
 
 
@@ -58,41 +132,41 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
             const SizedBox(height: 15.0),
 
             // Search Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Container(
-                height: 45.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  border: Border.all(color: Colors.grey[300]!),
-                ),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          contentPadding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: Styles.primaryNavy,
-                      ),
-                      padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                      child: const Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(width: 15.0),
-                  ],
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            //   child: Container(
+            //     height: 45.0,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(30.0),
+            //       border: Border.all(color: Colors.grey[300]!),
+            //     ),
+            //     child: Row(
+            //       children: [
+            //         const Expanded(
+            //           child: TextField(
+            //             decoration: InputDecoration(
+            //               border: InputBorder.none,
+            //               hintText: 'Search',
+            //               contentPadding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 10.0),
+            //             ),
+            //           ),
+            //         ),
+            //         Container(
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(20.0),
+            //             color: Styles.primaryNavy,
+            //           ),
+            //           padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+            //           child: const Icon(
+            //             Icons.search,
+            //             color: Colors.white,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 15.0),
+            //       ],
+            //     ),
+            //   ),
+            // ),
 
 
 
@@ -108,38 +182,38 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                     child: Container(
                       height: 80.0,
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        color: Styles.primaryNavy,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              studentsList[index].studentName,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            IconButton(
-                              icon: Image.asset('assets/enter_black.png'),
-                              onPressed: () {
-                                // Handle button press
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => StudentProfilePage(studentName: studentsList[index].studentName, studentId:studentsList[index].id , className: widget.className,),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
+                      child: ListTile(
+                        title: Text(
+                          studentsList[index].studentName,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          // Handle tap on a student
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => StudentProfilePage(
+                                studentName: studentsList[index].studentName,
+                                studentId: studentsList[index].id,
+                                className: widget.className,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   );
                 },
               ),
             ),
+
 
 
 
@@ -256,13 +330,13 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.0),
         decoration: BoxDecoration(
-          color: selectedTab == tabName ? Styles.primaryNavy : Colors.grey[300],
+          color: selectedTab == tabName ? Styles.primaryBlue : Colors.grey[300],
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Text(
           tabName,
           style: TextStyle(
-            color: selectedTab == tabName ? Colors.white : Colors.black,
+            color: selectedTab == tabName ? Colors.black : Colors.black,
             fontSize: 15,
           ),
         ),
@@ -277,8 +351,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 //FUNCTIONS
   Future<void> listStudents(int preschoolId, int classId) async {
     try {
-      final APIStudentsLister studentsLister = APIStudentsLister();
-      final List<Student> students = await studentsLister.getStudentsList(preschoolId, classId);
+      final StudentsLister.APIStudentsLister studentsLister = StudentsLister.APIStudentsLister();
+      final List<StudentsLister.Student> students = await studentsLister.getStudentsList(preschoolId, classId);
 
       setState(() {
         // Update the global list with the received students
@@ -293,6 +367,61 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
     }
 
   }
+
+
+  Future<void> fetchAttendanceRecords(int classId) async {
+    try {
+      final apiAttendance = AttendancCIDbased.APIAttendanceCIDbased();
+      List<AttendancCIDbased.AttendanceRecord> attendanceRecords = await apiAttendance.getAttendanceRecords(classId);
+
+      setState(() {
+        // Update the global list with the received students
+        recordsList = attendanceRecords;
+      });
+
+      // Initialize groupedRecords after updating the state
+      initializeGroupedRecords();
+
+      // Do something with each attendance record
+      for (AttendancCIDbased.AttendanceRecord attendanceRecord in attendanceRecords) {
+        print('Attendance Record Date: ${attendanceRecord.date}');
+        print('Student Name: ${attendanceRecord.student.studentName}');
+        print('Attendance Status: ${attendanceRecord.attendanceStatus}');
+        // Add more fields as needed
+        print('-------------------'); // Separator between records
+      }
+
+    } catch (e) {
+      print('Error fetching attendance records: $e');
+      // Handle the error as needed
+    }
+  }
+
+
+  // Function to group records by date
+  Map<String, List<AttendancCIDbased.AttendanceRecord>> groupRecordsByDate(List<AttendancCIDbased.AttendanceRecord> records) {
+    final groupedRecords = <String, List<AttendancCIDbased.AttendanceRecord>>{};
+
+    for (final record in records) {
+      final formattedDate = DateFormat.yMMMMd().format(DateTime.parse(record.date));
+      if (!groupedRecords.containsKey(formattedDate)) {
+        groupedRecords[formattedDate] = [];
+      }
+      groupedRecords[formattedDate]!.add(record);
+    }
+
+    return groupedRecords;
+  }
+
+  void initializeGroupedRecords() {
+    // Initialize groupedRecords
+    groupedRecords = groupRecordsByDate(recordsList);
+
+    // Get the list of unique dates
+    uniqueDates = groupedRecords.keys.toList();
+  }
+
+
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {

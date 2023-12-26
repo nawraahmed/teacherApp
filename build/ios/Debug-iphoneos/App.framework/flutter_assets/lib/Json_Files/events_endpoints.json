@@ -1,8 +1,0 @@
-{
-
-  "endpoints": {
-    "create_event": "/events/",
-    "list_events": "/events",
-    "delete_event": "/events/{event_id}"
-  }
-}

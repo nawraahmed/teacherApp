@@ -23,7 +23,16 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // FirebaseInstallations.instance.onIdChange.listen((token) {
+  //   print('FID token: $token');
+  // });
 
+  // print("app name: ${FirebaseInstallations.instance.app.name}");
+  // print("messaiging sender name: ${FirebaseInstallations.instance.app.options.messagingSenderId}");
+  // print("token name: ${FirebaseInstallations.instance.getToken(true)}");
+  //
+  // String id = await FirebaseInstallations.instance.getId();
+  // print("IDDD: $id");
 
   HttpOverrides.global = MyHttpOverrides();
 

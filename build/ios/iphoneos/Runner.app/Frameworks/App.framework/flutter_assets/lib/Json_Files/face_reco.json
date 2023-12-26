@@ -1,6 +1,0 @@
-{
-  "base_url": "https://e9b8-37-131-42-43.ngrok-free.app",
-  "endpoints": {
-    "face_reco": "/detect_faces"
-  }
-}

@@ -1,0 +1,7 @@
+{
+  "endpoints": {
+    "create_requests": "/events/",
+    "list_requests": "/StationaryRequest/preschool/1",
+    "list_stationary": "/Stationary/preschool/1"
+  }
+}

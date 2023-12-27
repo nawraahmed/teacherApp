@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
@@ -239,13 +238,14 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
       if (_image != null) {
         try {
-          Uint8List? result = await apiFaceReco.compareImage(_image!);
+          ApiResponseforAi? result = await apiFaceReco.compareImage(_image!);
 
           if (result != null) {
             // Handle the result, e.g., display the recognized image
             // result is a Uint8List representing the image data
             print("result is not null");
             print(result);
+
           } else {
             // Handle other types of responses or errors
             print("yup, that was null");

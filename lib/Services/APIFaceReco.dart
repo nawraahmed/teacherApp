@@ -4,6 +4,49 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+class ApiResponseforAi {
+  String message;
+  Attendance newAttendance;
+
+  ApiResponseforAi({required this.message, required this.newAttendance});
+
+  factory ApiResponseforAi.fromJson(Map<String, dynamic> json) {
+    return ApiResponseforAi(
+      message: json['message'],
+      newAttendance: Attendance.fromJson(json['newAttendance']),
+    );
+  }
+}
+
+class Attendance {
+  int id;
+  String attendanceStatus;
+  String date;
+  String createdAt;
+  String updatedAt;
+  int studentId;
+
+  Attendance({
+    required this.id,
+    required this.attendanceStatus,
+    required this.date,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.studentId,
+  });
+
+  factory Attendance.fromJson(Map<String, dynamic> json) {
+    return Attendance(
+      id: json['id'],
+      attendanceStatus: json['attendance_status'],
+      date: json['date'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
+      studentId: json['student_id'],
+    );
+  }
+}
+
 
 class APIFaceReco {
   late String baseUrl;
@@ -20,7 +63,7 @@ class APIFaceReco {
   // Read the Base URL and the Endpoint from the JSON file
   Future<void> initializeBaseURL() async {
     final base = await readAPIInfoFromJSONFile();
-    baseUrl = base['base_url'] as String? ?? 'https://us-central1-alef-229ac.cloudfunctions.net/app'; // Provide a default value if null
+    baseUrl = base['base_url'] as String? ?? 'https://server-bckggkpqeq-uc.a.run.app'; // Provide a default value if null
     print("this is the reco base: $baseUrl");
   }
 
@@ -33,19 +76,15 @@ class APIFaceReco {
   // }
 
 
-  Future<Uint8List?> compareImage(File takenImage) async {
+  Future<ApiResponseforAi?> compareImage(File takenImage) async {
     await initializeBaseURL();
-    //await initializeEndpoint();
 
     // Create a MultipartRequest
     var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/attendance/faceDetection'));
 
-    print(request);
-
     // Add the image as form-data with the key "file"
     request.files.add(await http.MultipartFile.fromPath('file', takenImage.path));
 
-    print(takenImage.path);
 
     try {
       // Send the request
@@ -53,17 +92,15 @@ class APIFaceReco {
 
       // Check the response status code
       if (response.statusCode == 200) {
+        // Parse the response JSON using ApiResponseforAi
+        Map<String, dynamic> data = json.decode(await response.stream.bytesToString());
+        ApiResponseforAi apiResponse = ApiResponseforAi.fromJson(data);
 
-        // Check if the response contains image data
-        if (response.headers['content-type']?.startsWith('image') ?? false) {
-          return Uint8List.fromList(await response.stream.toBytes());
-        } else {
-          // Handle other types of responses (JSON, etc.) as needed
-          final Map<String, dynamic> data = jsonDecode(await response.stream.bytesToString());
-          print("YES, we got 200");
-          print(data);
-          return null; // Adjust this based on your needs
-        }
+        print('Message: ${apiResponse.message}');
+        print('New Attendance ID: ${apiResponse.newAttendance.id}');
+        print('Attendance Status: ${apiResponse.newAttendance.attendanceStatus}');
+
+        return apiResponse;
 
       } else {
         // Handle non-200 status codes
@@ -73,11 +110,11 @@ class APIFaceReco {
         return null; // Adjust this based on your needs
       }
 
-
     } catch (error) {
       // Handle request errors
       print('Error comparing image (from API): $error');
       return null; // Adjust this based on your needs
     }
   }
+
 }

@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         // Navigate to the Stationary page
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Stationary()),
+                          MaterialPageRoute(builder: (context) => const StationaryRequestForm()),
                         );
                       }
                     },

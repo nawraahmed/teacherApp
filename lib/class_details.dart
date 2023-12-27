@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:the_app/student_profile.dart';
 import 'Services/APIAttendancCIDbased.dart' as AttendancCIDbased;
+import 'Services/APIListRequests.dart';
 import 'Services/APIStudentsLister.dart' as StudentsLister;
+import 'StationaryRequestDetails.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'attendance_details.dart';
 import 'main.dart';
@@ -34,6 +36,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
   List<AttendancCIDbased.AttendanceRecord> recordsList = [];
   late Map<String, List<AttendancCIDbased.AttendanceRecord>> groupedRecords;
   late List<String> uniqueDates;
+  List<StationaryRequest> requestsList = [];
 
   @override
   void initState() {
@@ -44,6 +47,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
     fetchAttendanceRecords(110);
     initializeGroupedRecords();
+    fetchStationaryRequests();
 
   }
 
@@ -287,6 +291,74 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
           ]else if (selectedTab == 'stationary') ...[
 
+            // Heading for past attendance records
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+              child: Text(
+                'Past Stationary Requests Records',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+
+
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: requestsList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Color statusColor = Colors.white; // Default color
+
+                  if (requestsList[index].statusName == 'Approved') {
+                    statusColor = Styles.primaryPink;
+                  } else if (requestsList[index].statusName == 'Pending') {
+                    statusColor = Colors.white;
+                  }
+
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+                    child: Container(
+                      height: 80.0,
+                      decoration: BoxDecoration(
+                        color: Styles.primaryNavy,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5.0),
+                            Text(
+                              '${formatDate(requestsList[index].createdAt)}',
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                            ),
+                            SizedBox(height: 5.0),
+                            Text(
+                              'Status: ${requestsList[index].statusName}',
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: statusColor),
+                            ),
+                            SizedBox(height: 5.0),
+                          ],
+                        ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          // Handle tap on a stationary request
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => StationaryRequestDetailsPage(stationaryRequest: requestsList[index]),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
 
           ],
 
@@ -343,6 +415,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
       ),
     );
   }
+
 
 
 
@@ -423,9 +496,48 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
 
+  Future<void> fetchStationaryRequests() async {
+    try {
+      final apiListRequests = APIListRequests();
+      List<StationaryRequest> allRequests = await apiListRequests.getRequestsRecords();
+
+      // Filter requests based on the classId
+      List<StationaryRequest> filteredRequests = allRequests.where((request) => request.classId == 27).toList();
+
+      setState(() {
+        // Update the global list with the received stationary requests
+        requestsList = filteredRequests;
+      });
+
+      // Do something with each stationary request
+      for (StationaryRequest request in filteredRequests) {
+        print('Request ID: ${request.id}');
+        print('Status Name: ${request.createdAt}');
+        // print('Requested Quantity: ${request.requestedQuantity}');
+        // // Add more fields as needed
+        // print('-------------------'); // Separator between records
+      }
+
+    } catch (e) {
+      print('Error fetching stationary requests: $e');
+      // Handle the error as needed
+    }
+  }
+
+
+
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       today = day;
     });
   }
+
+  // Function to format date
+  String formatDate(String dateTimeString) {
+    final DateTime dateTime = DateTime.parse(dateTimeString);
+    final formattedDate = DateFormat.yMMMMd().format(dateTime);
+    return formattedDate;
+  }
+
+
 }

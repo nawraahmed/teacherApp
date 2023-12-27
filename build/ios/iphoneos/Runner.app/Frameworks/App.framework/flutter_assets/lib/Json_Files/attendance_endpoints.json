@@ -1,0 +1,8 @@
+{
+
+  "endpoints": {
+    "get_using_CID": "/attendance/class/{class_id}",
+    "edit_attendance": "/events",
+    "delete_attendance": "/events/{event_id}"
+  }
+}

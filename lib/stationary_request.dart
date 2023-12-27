@@ -1,3 +1,4 @@
+import 'Services/APIListStationary.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'package:flutter/material.dart';
 import 'Services/APIClassesLister.dart';
@@ -5,21 +6,25 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 
 import 'main.dart';
 
-class Stationary extends StatefulWidget {
-  const Stationary({Key? key}) : super(key: key);
+class StationaryRequestForm extends StatefulWidget {
+  const StationaryRequestForm({Key? key}) : super(key: key);
 
   @override
-  _StationaryState createState() => _StationaryState();
+  _StationaryRequestFormState createState() => _StationaryRequestFormState();
 }
 
-class _StationaryState extends State<Stationary>
+class _StationaryRequestFormState extends State<StationaryRequestForm>
     with SingleTickerProviderStateMixin {
   List<Class> classesList = [
     Class(className: 'Select class', id: 1)
   ]; // Initialize with a default value
   Class? selectedClass; // Selected class
+  Stationary? selectedItem;
+  final statCtrl = TextEditingController();
   final classCtrl = TextEditingController();
-
+  List<Stationary> stationaryList = [
+    Stationary(stationaryName: 'Select Item', quantityAvailable: 0, id: 0, )
+  ]; // Initialize with a default item
   final _formKey = GlobalKey<FormState>();
   TextEditingController quantityController = TextEditingController();
   TextEditingController notesController = TextEditingController();
@@ -28,6 +33,7 @@ class _StationaryState extends State<Stationary>
   void initState() {
     super.initState();
     fetchClassesList(1);
+    fetchStationary();
   }
 
   @override
@@ -54,8 +60,8 @@ class _StationaryState extends State<Stationary>
                   ),
                 ),
                 const SizedBox(height: 5.0),
-                SizedBox(
-                  width: 150,
+                 Align(
+                  alignment: Alignment.topLeft,
                   child: CustomDropdown(
                     hintText: 'Select class',
                     items: classesList
@@ -67,17 +73,46 @@ class _StationaryState extends State<Stationary>
                       setState(() {
                         selectedClass = classesList.firstWhere(
                                 (classItem) => classItem.className == selectedItem);
-
-                        // Access the selected class
-                        if (selectedClass != null) {
-                          // Display the form on the screen
-                          //_buildForm();
-                        }
                       });
                     },
                   ),
                 ),
+                const SizedBox(height: 30.0), // Adjust the space as needed
+
+
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Choose Stationary Item',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Styles.primaryGray,
+                      fontSize: 17.0,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5.0),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: CustomDropdown(
+                hintText: 'Select Item',
+                items: stationaryList
+                    .map((Stationary item) => item.stationaryName)
+                    .toList(),
+                controller: statCtrl,
+                fillColor: Colors.transparent,
+                onChanged: (selected) {
+                  setState(() {
+                    selectedItem = stationaryList
+                        .firstWhere((item) => item.stationaryName == selected);
+                  });
+                },
+              ),
+            ),
                 const SizedBox(height: 20.0), // Adjust the space as needed
+
+
+
                 // Display the form directly on the screen
                 _buildForm(),
               ],
@@ -160,4 +195,31 @@ class _StationaryState extends State<Stationary>
       print("Classes listing issue!$e");
     }
   }
+
+
+  //A function to fetch all the stationary along with the quantity
+  Future<void> fetchStationary() async {
+    try {
+      final aPIListStationary = APIListStationary();
+      List<Stationary> allStationary = await aPIListStationary.getStationaryRecords();
+
+      setState(() {
+        // Update the global list with the received stationary requests
+        stationaryList = allStationary;
+      });
+
+      // Do something with each stationary request
+      for (Stationary stationary in stationaryList) {
+        print('Request ID: ${stationary.quantityAvailable}');
+        print('Request ID: ${stationary.stationaryName}');
+        // // Add more fields as needed
+        print('-------------------'); // Separator between records
+      }
+
+    } catch (e) {
+      print('Error fetching stationary: $e');
+      // Handle the error as needed
+    }
+  }
+
 }

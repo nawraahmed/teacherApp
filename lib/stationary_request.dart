@@ -1,3 +1,4 @@
+import 'Services/APICreateRequest.dart';
 import 'Services/APIListStationary.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'package:flutter/material.dart';
@@ -39,89 +40,90 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 80.0),
-          const BackButtonRow(title: 'Stationary'),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Current Class',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Styles.primaryGray,
-                      fontSize: 17.0,
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView
+        child: Column(
+          children: [
+            const SizedBox(height: 80.0),
+            const BackButtonRow(title: 'Stationary'),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Current Class',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Styles.primaryGray,
+                        fontSize: 17.0,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 5.0),
-                 Align(
-                  alignment: Alignment.topLeft,
-                  child: CustomDropdown(
-                    hintText: 'Select class',
-                    items: classesList
-                        .map((Class classItem) => classItem.className)
-                        .toList(),
-                    controller: classCtrl,
-                    fillColor: Colors.transparent,
-                    onChanged: (selectedItem) {
-                      setState(() {
-                        selectedClass = classesList.firstWhere(
-                                (classItem) => classItem.className == selectedItem);
-                      });
-                    },
-                  ),
-                ),
-                const SizedBox(height: 30.0), // Adjust the space as needed
+                  const SizedBox(height: 5.0),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomDropdown(
+                      hintText: 'Select class',
+                      items: classesList
+                          .map((Class classItem) => classItem.className)
+                          .toList(),
 
-
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Choose Stationary Item',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Styles.primaryGray,
-                      fontSize: 17.0,
+                      controller: classCtrl,
+                      fillColor: Colors.transparent,
+                      onChanged: (selectedItem) {
+                        setState(() {
+                          selectedClass = classesList.firstWhere(
+                                  (classItem) => classItem.className == selectedItem);
+                        });
+                      },
                     ),
                   ),
-                ),
-                const SizedBox(height: 5.0),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: CustomDropdown(
-                hintText: 'Select Item',
-                items: stationaryList
-                    .map((Stationary item) => item.stationaryName)
-                    .toList(),
-                controller: statCtrl,
-                fillColor: Colors.transparent,
-                onChanged: (selected) {
-                  setState(() {
-                    selectedItem = stationaryList
-                        .firstWhere((item) => item.stationaryName == selected);
-                  });
-                },
+                  const SizedBox(height: 30.0), // Adjust the space as needed
+
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Choose Stationary Item',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Styles.primaryGray,
+                        fontSize: 17.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomDropdown(
+                      hintText: 'Select Item',
+                      items: stationaryList
+                          .map((Stationary item) => item.stationaryName)
+                          .toList(),
+                      controller: statCtrl,
+                      fillColor: Colors.transparent,
+                      onChanged: (selected) {
+                        setState(() {
+                          selectedItem = stationaryList
+                              .firstWhere((item) => item.stationaryName == selected);
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20.0), // Adjust the space as needed
+
+                  // Display the form directly on the screen
+                  _buildForm(),
+                ],
               ),
             ),
-                const SizedBox(height: 20.0), // Adjust the space as needed
-
-
-
-                // Display the form directly on the screen
-                _buildForm(),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
+
 
 
 
@@ -131,6 +133,16 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
       key: _formKey,
       child: Column(
         children: [
+
+          TextFormField(
+            controller: notesController,
+            maxLines: 3,
+            decoration: const InputDecoration(
+              labelText: 'Notes',
+            ),
+          ),
+
+          const SizedBox(height: 16.0),
 
           // Requested Quantity Field
           TextFormField(
@@ -149,33 +161,31 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
             },
           ),
 
-          const SizedBox(height: 16.0),
 
-          // Notes Field
-          TextFormField(
-            controller: notesController,
-            maxLines: 3,
-            decoration: const InputDecoration(
-              labelText: 'Notes',
-            ),
-          ),
-
-          const SizedBox(height: 16.0),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState?.validate() ?? false) {
                 // Process the form data
                 print('Requested Quantity: ${quantityController.text}');
                 print('Notes: ${notesController.text}');
+
+                // Create an instance of APICreateRequest
+                final apiCreateRequest = APICreateRequest();
+
+                // Call the createNewStaReq function and pass the relevant data
+                apiCreateRequest.createNewStaReq('pending', int.parse(quantityController.text),
+                  2, selectedItem?.id ?? 0, notesController.text,);
               }
             },
-
             child: const Text('Submit'),
           ),
+
         ],
       ),
     );
   }
+
+
 
 
   //FUNCTIONS
@@ -212,7 +222,6 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
       for (Stationary stationary in stationaryList) {
         print('Request ID: ${stationary.quantityAvailable}');
         print('Request ID: ${stationary.stationaryName}');
-        // // Add more fields as needed
         print('-------------------'); // Separator between records
       }
 

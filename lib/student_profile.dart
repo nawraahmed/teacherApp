@@ -7,13 +7,13 @@ import 'package:toggle_switch/toggle_switch.dart';
 
 class StudentProfilePage extends StatefulWidget {
   final String studentName;
-  final int studentId;
+  final int? studentId;
   final String className;
 
   const StudentProfilePage({
     Key? key,
     required this.studentName,
-  required this.studentId,
+   this.studentId,
     required this.className,
   }) : super(key: key);
 
@@ -197,10 +197,10 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
 
 
 //FUNCTIONS
-  Future<void> fetchStudentInfo(int studentId) async {
+  Future<void> fetchStudentInfo(int? studentId) async {
     try {
       final APIStudentInfo studentInfo = APIStudentInfo();
-      Student student = await studentInfo.getStudentInfo(studentId);
+      Student student = await studentInfo.getStudentInfo(studentId!);
 
       setState(() {
         grade = student.grade;

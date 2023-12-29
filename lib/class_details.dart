@@ -180,7 +180,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: studentsList.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (BuildContext context, int? index) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
                     child: Container(
@@ -191,7 +191,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                       ),
                       child: ListTile(
                         title: Text(
-                          studentsList[index].studentName,
+                          studentsList[index!].studentName,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
                         trailing: const Icon(
@@ -204,8 +204,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                             context,
                             MaterialPageRoute(
                               builder: (context) => StudentProfilePage(
-                                studentName: studentsList[index].studentName,
-                                studentId: studentsList[index].id,
+                                studentName: studentsList[index!].studentName,
+                                studentId: studentsList[index!].id,
                                 className: widget.className,
                               ),
                             ),
@@ -326,17 +326,17 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                         title: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 5.0),
+                            const SizedBox(height: 5.0),
                             Text(
                               '${formatDate(requestsList[index].createdAt)}',
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
                             ),
-                            SizedBox(height: 5.0),
+                            const SizedBox(height: 5.0),
                             Text(
                               'Status: ${requestsList[index].statusName}',
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: statusColor),
                             ),
-                            SizedBox(height: 5.0),
+                            const SizedBox(height: 5.0),
                           ],
                         ),
                         trailing: const Icon(
@@ -358,6 +358,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                 },
               ),
             ),
+
+
 
 
           ],
@@ -415,6 +417,36 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
       ),
     );
   }
+
+
+
+
+  Widget buildEmptyScreen({required String imagePath, required String text}) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            imagePath,
+            height: 150.0,
+            width: 150.0,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(height: 20.0),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
 
 
 
@@ -541,3 +573,96 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
 }
+
+
+class StationaryTab extends StatelessWidget {
+  final List<StationaryRequest> requestsList;
+
+  const StationaryTab({
+    Key? key,
+    required this.requestsList,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Heading for past stationary requests records
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+          child: Text(
+            'Past Stationary Requests Records',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+        // List of past stationary requests records
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: requestsList.length,
+            itemBuilder: (BuildContext context, int index) {
+              Color statusColor = Colors.white; // Default color
+
+              if (requestsList[index].statusName == 'Approved') {
+                statusColor = Styles.primaryPink;
+              } else if (requestsList[index].statusName == 'Pending') {
+                statusColor = Colors.white;
+              }
+
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+                child: Container(
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    color: Styles.primaryNavy,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 5.0),
+                        Text(
+                          '${formatDate(requestsList[index].createdAt)}',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 5.0),
+                        Text(
+                          'Status: ${requestsList[index].statusName}',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: statusColor),
+                        ),
+                        const SizedBox(height: 5.0),
+                      ],
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      // Handle tap on a stationary request
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => StationaryRequestDetailsPage(stationaryRequest: requestsList[index]),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Function to format date
+  String formatDate(String dateTimeString) {
+    final DateTime dateTime = DateTime.parse(dateTimeString);
+    final formattedDate = DateFormat.yMMMMd().format(dateTime);
+    return formattedDate;
+  }
+}
+
+

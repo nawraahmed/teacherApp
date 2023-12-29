@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		p2hzJz82DryW2SSeozyoji5Ejdk=
+		uyOpZbW63QscbdYqS7afjGBqsgY=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		rfgCeFHW9TaoWRpleMHdOsCZrts=
+		09Eq3194uIfmZlUBLg4RRVh3LT0=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -126,7 +126,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		IoKCP71uKxdOCVCNKdeqYEUF52U=
+		NtwfgH0IAmhxaaVlDgvyNQkcgzs=
 		</data>
 		<key>flutter_assets/lib/Json_Files/attendance_endpoints.json</key>
 		<data>
@@ -160,6 +160,10 @@
 		<data>
 		c95aJ0if2UOsngff6njJHfrNQss=
 		</data>
+		<key>flutter_assets/lib/Json_Files/staionairy_endpoints.json</key>
+		<data>
+		p7A2wAQzg6XVn7mYpe5gps1H4PQ=
+		</data>
 		<key>flutter_assets/lib/Json_Files/student_info.json</key>
 		<data>
 		kke+vvaxDJUyawVLQb4+nx4yS5I=
@@ -191,14 +195,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			a3XQwkFKw3/E11aeZCKQlgCPJZHkchFcYDPwzGUjn5k=
+			58dYxMTeYqU3IQXjOnqjOQ5eTkM2oxZ5P9+eHdymq3w=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hCXiygj9mjm4vy1XK/RqRdFUGhsrnuE7F75Va03aypg=
+			ZBGJtRM41SUzXdYdqvO17uOWWurWnDH3vSY9ugCdMQI=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -387,7 +391,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y44jcna2ifCf9xLtX6DR4oC7T/LjcR+dps6GLgTXqCk=
+			eFoSn6eAYBzCbl9Yjbi8MBhUSn9dVtn2yv+poDsL0Js=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/attendance_endpoints.json</key>
@@ -444,6 +448,13 @@
 			<key>hash2</key>
 			<data>
 			AfPNwdNV9gLsn6mxFXL7UzfoC4koVodxr0iYmM+DtrA=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/Json_Files/staionairy_endpoints.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fc2AsQlcPKdzntZokZHrGwNUE+KoOYIWSXI4m/0MKYk=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/student_info.json</key>

@@ -1,13 +1,14 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:the_app/Services/APIFaceReco.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'Services/APIClassesLister.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'Services/APIStudentsLister.dart';
+import 'Services/APIStudentInfo.dart' as info;
+import 'Services/APIStudentsLister.dart' as lister;
 import 'main.dart';
 import 'package:image_picker/image_picker.dart';
+
 
 class AllAttendance extends StatefulWidget{
   const AllAttendance({Key? key}) : super(key: key);
@@ -21,12 +22,15 @@ class AllAttendance extends StatefulWidget{
 class _AllAttendanceState extends State<AllAttendance> with SingleTickerProviderStateMixin {
   List<Class> classesList = [Class(className: 'Select class', id: 1)]; // Initialize with a default value
   Class? selectedClass; // Selected class
-  List<String> hasConsentStudents = [];
-  List<String> noConsentStudents = [];
+  String? selectedState;
+  Map<String, String> hasConsentStudents = {};
+  Map<String, String> noConsentStudents = {};
   int? selectedIndex = 0; // Keep track of the selected index
 
   final classCtrl = TextEditingController();
-  List<Student> studentsList = [];
+  Map<String, TextEditingController> attendanceControllers = {};
+
+  List<lister.Student> studentsList = [];
   int? selectedIndexToggle=0;
 
   File _image = File(''); // Initialize _image with an empty File
@@ -49,11 +53,11 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
         title: const Text('Attendance'),
         automaticallyImplyLeading: false, // Remove the back button
       ),
-      body: Column(
-        children: [
+    body: SingleChildScrollView(
+    child: Column(
+    children: [
           // Add top edge spacing (unified in all screens)
           const SizedBox(height: 30.0),
-        //buildAutoAttendanceListItem('Nawraao'),
 
           // Wrap the heading and dropdown in the same column
           Padding(
@@ -92,7 +96,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
                           print('Selected Class Name: ${selectedClass!.className}');
 
                           //call the students lister API
-                          listStudents(1, 110);
+                          listStudents(1, selectedClass!.id);
                         }
                       });
                     },
@@ -105,14 +109,15 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
           ),
 
 
+
           //toggle button to switch between manual and automated attendance
           ToggleSwitch(
             minWidth: 170.0,
             cornerRadius: 20.0,
             activeBgColor: const [Styles.primaryNavy],
-            inactiveBgColor: Colors.grey,
+            inactiveBgColor: Colors.grey[300],
             activeFgColor: Colors.white,
-            inactiveFgColor: Colors.white,
+            inactiveFgColor: Styles.primaryNavy,
             initialLabelIndex: selectedIndexToggle,
             totalSwitches: 2,
             labels: const ['Auto Attendance', 'Manual Attendance'],
@@ -131,15 +136,30 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
           // Display the appropriate attendance widget based on the selected index
           Visibility(
             visible: selectedIndexToggle == 0,
-            child: buildAutoAttendanceWidget(hasConsentStudents),
+            child: buildAutoAttendanceWidget(
+              hasConsentStudents.keys.map((studentName) => lister.Student(
+                studentName: studentName,
+                personalPicture: hasConsentStudents[studentName]!,
+              )).toList(),
+            ),
+
           ),
           Visibility(
             visible: selectedIndexToggle == 1,
-            child: buildManualAttendanceWidget(noConsentStudents),
-          ),
+            child: buildManualAttendanceWidget(
+              noConsentStudents.keys.map((studentName) => lister.Student(
+                studentName: studentName,
+                personalPicture: noConsentStudents[studentName]!,
+              )).toList(),
+            ),
 
+          ),
+          // _image.path.isNotEmpty
+          //     ? Image.file(File(_image.path))
+          //     : Container(), // Show the image if it exists, otherwise an empty container
         ],
       ),
+    ),
     );
   }
 
@@ -155,7 +175,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 // ---------------- Automated Attendance Widget ----------------
-  Widget buildAutoAttendanceWidget(List<String> hasConsentStudents) {
+  Widget buildAutoAttendanceWidget(List<lister.Student> hasConsentStudents) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -166,8 +186,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
             child: ListView.builder(
               itemCount: hasConsentStudents.length,
               itemBuilder: (context, index) {
-                // return buildAutoAttendanceListItem(hasConsentStudents[index]);
-                return buildAutoAttendanceListItem('Nawraa');
+                return buildAutoAttendanceListItem(hasConsentStudents[index]);
+
               },
             ),
           ),
@@ -176,48 +196,94 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
     );
   }
 
-  Widget buildAutoAttendanceListItem(String studentName) {
+  Widget buildAutoAttendanceListItem(lister.Student student) {
+    String studentName = student.studentName;
+    String personalPic = student.personalPicture;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          // Circular image (you can replace the placeholder with an actual image)
+          // Circular image
           Container(
-            width: 40.0,
-            height: 40.0,
-            decoration: const BoxDecoration(
+            width: 45.0,
+            height: 45.0,
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/avatar.png'),
+                image: personalPic.isNotEmpty
+                    ? Image.network(
+                  personalPic,
+                  fit: BoxFit.cover, // Adjust the BoxFit as needed
+                ).image : const AssetImage('assets/avatar.png'), // Use the image path
               ),
             ),
           ),
           const SizedBox(width: 10.0),
           // Student name
-
           Text(
             studentName,
             style: const TextStyle(fontSize: 16.0),
           ),
-
-          // Spacer to add space between student name and dropdown button
+          // Spacer to add space between student name and buttons
           const Spacer(),
-
-
-
-          // Button to take a photo
+          // Buttons for taking photo and picking image
           ElevatedButton(
             onPressed: () {
               // Implement a function to handle taking a photo
               takePhoto();
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Styles.primaryNavy,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28.0),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            ),
             child: const Text('Take Photo'),
+          ),
+          const SizedBox(width: 10.0), // Add spacing between buttons
+          ElevatedButton(
+            onPressed: () {
+              // Call the pickImage function when the button is pressed
+              pickImage();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Styles.primaryNavy,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28.0),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            ),
+            child: const Text('Pick Image'),
           ),
         ],
       ),
     );
   }
+
+
+
+  Future<void> pickImage() async {
+    try {
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        if (pickedFile != null) {
+          _image = File(pickedFile.path);
+          print("You picked an image: $_image");
+        }
+      });
+
+      await apiFaceReco.compareImage(_image!);
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
+
+
+
 
 
 // Function to handle taking a photo
@@ -235,25 +301,17 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       });
 
       // After taking the photo, you can integrate AI model logic for verification
-
       if (_image != null) {
+        print("Shakla it worked");
+
         try {
-          ApiResponseforAi? result = await apiFaceReco.compareImage(_image!);
+          await apiFaceReco.compareImage(_image!);
 
-          if (result != null) {
-            // Handle the result, e.g., display the recognized image
-            // result is a Uint8List representing the image data
-            print("result is not null");
-            print(result);
-
-          } else {
-            // Handle other types of responses or errors
-            print("yup, that was null");
-          }
         } catch (e) {
           print('Error comparing image (from ui): $e');
         }
       }
+
 
     } catch (e) {
       print('Error taking photo: $e');
@@ -273,7 +331,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
   // ---------------- Manual Attendance Widget ----------------
-  Widget buildManualAttendanceWidget(List<String> noConsentStudents) {
+  Widget buildManualAttendanceWidget(List<lister.Student> noConsentStudents) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -295,7 +353,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 
-  Widget buildManualAttendanceListItem(String studentName) {
+  Widget buildManualAttendanceListItem(lister.Student student) {
+    String studentName = student.studentName;
+    String personalPic = student.personalPicture;
+
     // List of attendance states
     List<String> attendanceStates = ['Present', 'Late', 'Absent'];
 
@@ -303,7 +364,13 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
     String selectedAttendanceState = attendanceStates[0];
 
     // Controller for the CustomDropdown
-    final attendanceStateCtrl = TextEditingController();
+// Create a controller for each student
+    if (!attendanceControllers.containsKey(student.studentName)) {
+      attendanceControllers[student.studentName] = TextEditingController();
+    }
+
+    TextEditingController? attendanceController = attendanceControllers[student.studentName];
+
 
     return Column(
       children: [
@@ -312,14 +379,19 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
           child: Row(
             children: [
               // Circular image (you can replace the placeholder with an actual image)
+              // Circular image
               Container(
-                width: 40.0,
-                height: 40.0,
-                decoration: const BoxDecoration(
+                width: 45.0,
+                height: 45.0,
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/avatar.png'),
+                    image: personalPic.isNotEmpty
+                      ? Image.network(
+                      personalPic,
+                    fit: BoxFit.cover, // Adjust the BoxFit as needed
+                  ).image : const AssetImage('assets/avatar.png'), // Use the image path
                   ),
                 ),
               ),
@@ -337,24 +409,27 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
               SizedBox(
                 width: 140, // Adjust the width as needed
                 child: CustomDropdown(
-                  controller: attendanceStateCtrl, // Add the controller
-                  hintText: 'present',
-                  items: attendanceStates,
-                  fillColor: Colors.transparent,
+                  hintText: 'choose',
+                  items: attendanceStates
+                      .map((String state) => state.toString())
+                      .toList(),
 
-                  onChanged: (value) {
+                  controller: attendanceController!,
+                  fillColor: Colors.transparent,
+                  onChanged: (selectedItem) {
+
                     setState(() {
-                      selectedAttendanceState = value.toString();
+                      selectedAttendanceState = selectedItem.toString(); // Directly assign the selected item
 
                       // Access the selected class
                       if (selectedAttendanceState != null) {
-                        print('Selected attendance: ${selectedAttendanceState}');
+                        print('Selected attendance: $selectedAttendanceState');
 
                       }
-
                     });
                   },
                 ),
+
 
               ),
             ],
@@ -403,8 +478,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
   //function to fetch all students in a class from the API
   Future<void> listStudents(int preschoolId, int classId) async {
     try {
-      final APIStudentsLister studentsLister = APIStudentsLister();
-      final List<Student> students = await studentsLister.getStudentsList(preschoolId, classId);
+      final lister.APIStudentsLister studentsLister = lister.APIStudentsLister();
+      final List<lister.Student> students = await studentsLister.getStudentsList(preschoolId, classId);
 
       setState(() {
         // Update the global list with the received students
@@ -416,21 +491,29 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       noConsentStudents.clear();
 
       for (var studentItem in students) {
+        print("Student ID: ${studentItem.id}");
         print('Student Name: ${studentItem.studentName}, student say yes to AI: ${studentItem.hasConsent}');
+        print("Student personal PIC ${studentItem.personalPicture}");
+
+        final info.APIStudentInfo studentInfo = info.APIStudentInfo();
+        info.Student studentPicGetter = await studentInfo.getStudentInfo(studentItem.id!);
+
+
 
         // Classify based on hasConsent boolean
         if (studentItem.hasConsent == true) {
-          hasConsentStudents.add(studentItem.studentName);
+          hasConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
+          print(studentPicGetter.personalPicture);
         } else {
-          noConsentStudents.add(studentItem.studentName);
+          noConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
+          print(studentPicGetter.personalPicture);
         }
+
       }
 
       // Debugging print statements
       print('List of students with consent: $hasConsentStudents');
       print('List of students without consent: $noConsentStudents');
-
-
     } catch (e) {
       print("Students listing issue!");
     }

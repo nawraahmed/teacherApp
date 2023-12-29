@@ -3,42 +3,44 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class Student {
-  final int id;
-  final int preschoolId;
-  final int classId;
+  final int? id;
+  final int? preschoolId;
+  final int? classId;
   final String studentName;
-  final String grade;
-  final DateTime dob;
-  final int cpr;
-  final int contactNumber1;
-  final int contactNumber2;
-  final String guardianName;
-  final DateTime enrollmentDate;
-  final String medicalHistory;
-  final String gender;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final Preschool preschool;
-  final bool hasConsent;
+  final String? grade;
+  final DateTime? dob;
+  final int? cpr;
+  final int? contactNumber1;
+  final int? contactNumber2;
+  final String? guardianName;
+  final DateTime? enrollmentDate;
+  final String? medicalHistory;
+  final String? gender;
+  final String personalPicture;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final Preschool? preschool;
+  final bool? hasConsent;
 
   Student({
-    required this.id,
-    required this.preschoolId,
-    required this.classId,
+    this.id,
+    this.preschoolId,
+    this.classId,
     required this.studentName,
-    required this.grade,
-    required this.dob,
-    required this.cpr,
-    required this.contactNumber1,
-    required this.contactNumber2,
-    required this.guardianName,
-    required this.enrollmentDate,
-    required this.medicalHistory,
-    required this.gender,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.preschool,
-    required this.hasConsent
+    this.grade,
+    this.dob,
+    this.cpr,
+    this.contactNumber1,
+    this.contactNumber2,
+    this.guardianName,
+    this.enrollmentDate,
+    this.medicalHistory,
+    this.gender,
+    required this.personalPicture,
+    this.createdAt,
+    this.updatedAt,
+    this.preschool,
+    this.hasConsent
   });
 
   factory Student.fromJson(Map<String, dynamic> json) {
@@ -56,6 +58,7 @@ class Student {
       enrollmentDate: DateTime.parse(json['enrollment_date']),
       medicalHistory: json['medical_history'],
       gender: json['gender'],
+        personalPicture: json['personal_picture'] as String,
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
       preschool: Preschool.fromJson(json['Preschool']),

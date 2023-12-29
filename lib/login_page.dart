@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,13 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.fromLTRB(100, 15, 100, 5),
               child:ElevatedButton(
                   onPressed: () {
-                    authenticateUser();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyCustomTab(initialPage: SelectedPage.home),
-                      ),
-                    );
+                    authenticateUser(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Styles.primaryNavy,
@@ -189,23 +184,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-  Future<void> authenticateUser() async {
+  Future<void> authenticateUser(BuildContext context) async {
     try {
-      // Use the email and password from the text controllers
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _usernameController.text,
         password: _passwordController.text,
       );
 
       User? user = FirebaseAuth.instance.currentUser;
-      if(user != null){
-
-        try{
-          // Authentication successful, you can handle the result if needed
+      if (user != null) {
+        try {
           print('Authentication successful: ${credential.user?.email}');
           print('uid? ${user.uid}');
 
-          //store uid in flutter secure storage
           const secureStorage = FlutterSecureStorage();
           await secureStorage.write(key: 'uid', value: user.uid ?? '');
 
@@ -213,55 +204,97 @@ class _LoginScreenState extends State<LoginScreen> {
           Map<String, dynamic>? customClaims = userDTO.claims;
 
           final dbid = customClaims?['dbId'].toString();
-
-          // Print for debugging
           print("database user id is here: $dbid");
-
-          // Store the database user id in Flutter Secure Storage
           await secureStorage.write(key: 'dbId', value: dbid);
 
-          // Print the value immediately after storing
-          // final storedDbId = await secureStorage.read(key: 'dbId');
-          //
-          // print("Stored Staff ID: $storedDbId");
-
-
-
-          //print("Is this the token???? ${userDTO.token}");
-
-          //save user email and token in Flutter Secure Storage
           await secureStorage.write(key: 'user_email', value: credential.user?.email ?? '');
           await secureStorage.write(key: 'user_token', value: userDTO.token ?? '');
 
-
-
-          //if platform is == android, enable the setup for notifications using Notification class
-          if(Platform.isAndroid){
+          if (Platform.isAndroid) {
             await Notifications().initNotification(credential.user!.uid);
           }
 
-        }catch (e){
-          print("Error accessing custom claims: $e");
+          // Only navigate to the home page on successful authentication
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MyCustomTab(initialPage: SelectedPage.home),
+            ),
+          );
 
+        } catch (e) {
+          print("Error accessing custom claims: $e");
         }
       }
 
-
     } on FirebaseAuthException catch (e) {
       // Handle authentication errors
+
       if (e.code == 'user-not-found') {
+
         print('No user found for that email.');
 
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Authentication Failed'),
+              content: Text(e.message ?? 'No user found for that email'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+
       } else if (e.code == 'wrong-password') {
+
         print('Wrong password provided for that user.');
 
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Authentication Failed'),
+              content: Text(e.message ?? 'Incorrect password'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
 
       } else {
-        // Handle other exceptions if needed
-        print('Authentication failed: ${e.message}');
+        // Show a dialog for other authentication exceptions
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Authentication Failed'),
+              content: Text(e.message ?? 'An error occurred during authentication.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
     } catch (error) {
-      // Handle other errors
       print('Error during authentication: $error');
     }
   }

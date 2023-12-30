@@ -7,17 +7,18 @@ import 'package:http/http.dart' as http;
 class ApiFaceRecoResponse {
   String image;
   List<Result> results;
+  Uint8List? decodedImage; // Added property to hold the decoded image data
 
-  ApiFaceRecoResponse({required this.image, required this.results});
+  ApiFaceRecoResponse({required this.image, required this.results, this.decodedImage});
 
   factory ApiFaceRecoResponse.fromJson(Map<String, dynamic> json) {
     return ApiFaceRecoResponse(
       image: json['image'],
       results: List<Result>.from(json['results'].map((result) => Result.fromJson(result))),
+      decodedImage: base64.decode(json['image'].split(',').last), // Decode the image from base64
     );
   }
 }
-
 
 class Result {
   String name;
@@ -33,9 +34,6 @@ class Result {
   }
 }
 
-
-
-
 class APIFaceReco {
   late String baseUrl;
   late String endPoint;
@@ -47,7 +45,6 @@ class APIFaceReco {
     return jsonMap;
   }
 
-
   // Read the Base URL and the Endpoint from the JSON file
   Future<void> initializeBaseURL() async {
     final base = await readAPIInfoFromJSONFile();
@@ -58,7 +55,7 @@ class APIFaceReco {
   Future<ApiFaceRecoResponse?> compareImage(File file) async {
     await initializeBaseURL();
 
-    //parse the Uri
+    // parse the Uri
     var uri = Uri.parse('$baseUrl/detect_faces');
 
     try {
@@ -74,11 +71,8 @@ class APIFaceReco {
       // Send the request
       var response = await request.send();
 
-
-
       // Check the response status code
       if (response.statusCode == 200) {
-
         // Parse the response JSON using ApiFaceRecoResponse
         Map<String, dynamic> data = json.decode(await response.stream.bytesToString());
         ApiFaceRecoResponse apiResponse = ApiFaceRecoResponse.fromJson(data);
@@ -86,21 +80,16 @@ class APIFaceReco {
         print("3aaad ${apiResponse.results.first.name}");
 
         return apiResponse;
-
-
       } else {
         // Handle non-200 status codes
         print('Unexpected response: ${response.statusCode}');
         print('Response body: ${await response.stream.bytesToString()}');
         return null; // Adjust this based on your needs
       }
-
-
     } catch (error) {
       // Handle request errors
       print('Error comparing image (from API): $error');
       return null; // Adjust this based on your needs
     }
   }
-
 }

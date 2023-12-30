@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:the_app/student_profile.dart';
 import 'Services/APIAttendancCIDbased.dart' as AttendancCIDbased;
+import 'Services/APIAttendancCIDbased.dart';
 import 'Services/APIListRequests.dart';
 import 'Services/APIStudentsLister.dart' as StudentsLister;
 import 'StationaryRequestDetails.dart';
@@ -9,6 +10,7 @@ import 'Styling_Elements/BackButtonRow.dart';
 import 'attendance_details.dart';
 import 'main.dart';
 import 'package:intl/intl.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 
 
@@ -37,18 +39,48 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
   late Map<String, List<AttendancCIDbased.AttendanceRecord>> groupedRecords;
   late List<String> uniqueDates;
   List<StationaryRequest> requestsList = [];
+  final APIAttendanceCIDbased apiAttendance = APIAttendanceCIDbased();
+  late bool _isDataLoaded = false;
+  late List<AttendanceRecord> _allAttendanceRecords;
+  int studentsPresent=0;
+  int studentsAbsent=0;
+  int studentsLate=0;
+  int totalStudents=0;
 
   @override
   void initState() {
     super.initState();
     listStudents(1, widget.classId);
 
-    print("Your in class: ${widget.classId}");
+    //print("Your in class: ${widget.classId}");
 
-    fetchAttendanceRecords(110);
+    fetchAttendanceRecords(widget.classId);
     initializeGroupedRecords();
     fetchStationaryRequests();
+    _fetchAllAttendanceRecords();
 
+  }
+
+  Future<void> _fetchAllAttendanceRecords() async {
+    try {
+      List<AttendanceRecord> records = await getAttendanceRecords(widget.classId);
+
+      // Calculate the total number of students in the class
+      totalStudents = studentsList.length;
+
+      // Calculate the number of students present, absent, and marked late
+      studentsPresent = records.where((record) => record.attendanceStatus == 'Present').length;
+      studentsAbsent = records.where((record) => record.attendanceStatus == 'Absent').length;
+      studentsLate = records.where((record) => record.attendanceStatus == 'Late').length;
+
+      setState(() {
+        _allAttendanceRecords = records;
+        _isDataLoaded = true;
+      });
+    } catch (e) {
+      // Handle errors
+      print('Error fetching attendance records: $e');
+    }
   }
 
   @override
@@ -66,9 +98,76 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
           if (selectedTab == 'attendance') ...[
             // Content for attendance tab
 
-            // Heading for past attendance records
+            // Check if data is loaded before displaying UI
+              if (_isDataLoaded) ...[
+
+                // Attendance Summary Section
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Attendance Summary',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 15.0),
+                  SizedBox(
+                    height: 230.0, // Adjust the height as needed
+                    child: BarChart(
+                        BarChartData(
+                          barGroups: [
+                            BarChartGroupData(x: 0, barRods: [
+                              BarChartRodData(color: Styles.primaryBlue, toY: totalStudents.toDouble(), width: 30, borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),),
+                            ]),
+                            BarChartGroupData(x: 1, barRods: [
+                              BarChartRodData(color: Styles.primaryBlue, toY: studentsPresent.toDouble(), width: 30, borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),),
+                            ]),
+                            BarChartGroupData(x: 2, barRods: [
+                              BarChartRodData(color: Styles.primaryBlue, toY: studentsAbsent.toDouble(), width: 30, borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),),
+                            ]),
+                            BarChartGroupData(x: 3, barRods: [
+                              BarChartRodData(color: Styles.primaryBlue, toY: studentsLate.toDouble(), width: 30, borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),),
+                            ]),
+
+                          ],
+                          titlesData:  FlTitlesData(
+                            show: true,
+                            bottomTitles: AxisTitles(axisNameSize: 10,),
+                            rightTitles: AxisTitles(sideTitles: SideTitles(reservedSize: 44, showTitles: false,))
+                          ),
+                          gridData: FlGridData(
+                            show: true,
+                            checkToShowHorizontalLine: (value) => value % 10 == 0,
+                            getDrawingHorizontalLine: (value) =>
+                                FlLine(
+                                  color: Colors.grey.withOpacity(0.09),
+                                  strokeWidth: 1.2,
+                                ),
+                            drawVerticalLine: false,
+                          ),
+                        backgroundColor: Colors.transparent,
+
+                        ),
+                      swapAnimationDuration: Duration(milliseconds: 1000), // Optional
+                      swapAnimationCurve: Curves.linear,
+
+
+                      ),
+                  ),
+                    ],
+                  ),
+                ),
+
+
+
+                // Heading for past attendance records
             Padding(
-              padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+              padding: const EdgeInsets.fromLTRB(15.0, 35.0, 15.0, 0.0),
               child: Text(
                 'Past Attendance Records',
                 style: Theme.of(context).textTheme.titleMedium,
@@ -126,7 +225,10 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                 },
               ),
             ),
-
+              ] else ...[
+                // Display a loading indicator while waiting for data
+                const CircularProgressIndicator(),
+              ],
 
 
 
@@ -204,8 +306,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                             context,
                             MaterialPageRoute(
                               builder: (context) => StudentProfilePage(
-                                studentName: studentsList[index!].studentName,
-                                studentId: studentsList[index!].id,
+                                studentName: studentsList[index].studentName,
+                                studentId: studentsList[index].id,
                                 className: widget.className,
                               ),
                             ),
@@ -570,6 +672,26 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
     final formattedDate = DateFormat.yMMMMd().format(dateTime);
     return formattedDate;
   }
+
+  Future<List<AttendanceRecord>> getAttendanceRecords(int classId) async {
+    try {
+      // Call the API to get attendance records
+      final List<AttendanceRecord> allAttendanceRecords = await apiAttendance.getAttendanceRecords(classId);
+
+      // Filter records for the given classId
+      final List<AttendanceRecord> attendanceRecords = allAttendanceRecords
+          .where((record) => record.student.classId == classId)
+          .toList();
+
+      return attendanceRecords;
+    } catch (e) {
+      print('Error getting attendance records: $e');
+      // Handle the error as needed
+      return [];
+    }
+  }
+
+
 
 
 }

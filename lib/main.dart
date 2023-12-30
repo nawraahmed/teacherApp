@@ -171,7 +171,7 @@ class Styles{
   // }
 
 
-  static void showCustomDialog(BuildContext context, String type, String title, String text, IconData icon) {
+  static void showCustomDialog(BuildContext context, String type, String title, String text, IconData? icon) {
     Color titleColor;
     Color iconColor;
     String positiveButtonLabel;

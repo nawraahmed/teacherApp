@@ -100,14 +100,14 @@ class APIStudentInfo {
   Future<void> initializeBaseURL() async {
     final base = await readBASEFromJSONFile();
     baseUrl = base['base_url'] as String;
-    print("this is the classes base: $baseUrl");
+    //print("this is the classes base: $baseUrl");
   }
 
   Future<void> initializeEndpoint() async {
     final studentsEndpoint = await readAPIInfoFromJSONFile();
 
     endPoint = studentsEndpoint['endpoints']['student'] as String;
-    print("this is the EP: $endPoint");
+    //print("this is the EP: $endPoint");
   }
 
 
@@ -122,8 +122,8 @@ class APIStudentInfo {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      print("YES, we got 200");
-      print(response.body);
+      //print("YES, we got 200");
+      //print(response.body);
       return Student.fromJson(data);
     } else {
       throw Exception('Failed to load student info');

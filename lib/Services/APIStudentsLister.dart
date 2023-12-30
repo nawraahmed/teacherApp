@@ -145,7 +145,7 @@ class APIStudentsLister {
     final studentsEndpoint = await readAPIInfoFromJSONFile();
 
     endPoint = studentsEndpoint['endpoints']['students'] as String;
-    print("this is the EP: $endPoint");
+    //print("this is the EP: $endPoint");
   }
 
   Future<List<Student>> getStudentsList(int preschoolId, int classId) async {

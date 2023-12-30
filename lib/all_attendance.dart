@@ -2,12 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:the_app/Services/APIFaceReco.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'Services/APIAttendancCIDbased.dart';
 import 'Services/APIClassesLister.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
+import 'Services/APICreateAttendanceRecord.dart';
 import 'Services/APIStudentInfo.dart' as info;
 import 'Services/APIStudentsLister.dart' as lister;
 import 'main.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 
 class AllAttendance extends StatefulWidget{
@@ -25,6 +28,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
   String? selectedState;
   Map<String, String> hasConsentStudents = {};
   Map<String, String> noConsentStudents = {};
+  Map<String, String> hasConsentStudentIds = {};
+  Map<String, String> noConsentStudentIds = {};
+  bool reportGenerated = false;
+
   int? selectedIndex = 0; // Keep track of the selected index
 
   final classCtrl = TextEditingController();
@@ -37,11 +44,16 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
   final picker = ImagePicker();
   final APIFaceReco apiFaceReco = APIFaceReco();
 
+  Set<int> studentIdsSet = {};
+
+  final APIAttendanceCIDbased apiAttendance = APIAttendanceCIDbased();
+
 
   @override
   void initState() {
     super.initState();
     fetchClassesList(1);
+
 
   }
 
@@ -92,8 +104,9 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
                         // Access the selected class
                         if (selectedClass != null) {
+                          getAttendanceRecords(selectedClass!.id);
                           print('Selected Class ID: ${selectedClass!.id}');
-                          print('Selected Class Name: ${selectedClass!.className}');
+                          // print('Selected Class Name: ${selectedClass!.className}');
 
                           //call the students lister API
                           listStudents(1, selectedClass!.id);
@@ -101,14 +114,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
                       });
                     },
                   ),
-
-
                 ),
               ],
             ),
           ),
-
-
 
           //toggle button to switch between manual and automated attendance
           ToggleSwitch(
@@ -123,7 +132,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
             labels: const ['Auto Attendance', 'Manual Attendance'],
             radiusStyle: true,
             onToggle: (index) {
-              print('switched to: $index');
+              //print('switched to: $index');
               setState(() {
 
                 selectedIndexToggle=index;
@@ -144,20 +153,37 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
             ),
 
           ),
+
           Visibility(
             visible: selectedIndexToggle == 1,
             child: buildManualAttendanceWidget(
               noConsentStudents.keys.map((studentName) => lister.Student(
                 studentName: studentName,
                 personalPicture: noConsentStudents[studentName]!,
+                id: int.parse(noConsentStudentIds[studentName]!), // Convert to int
               )).toList(),
             ),
-
           ),
-          // _image.path.isNotEmpty
-          //     ? Image.file(File(_image.path))
-          //     : Container(), // Show the image if it exists, otherwise an empty container
-        ],
+
+
+      // Add the Generate Attendance Report button
+      Visibility(
+        visible: !reportGenerated, // Show the button if report is not generated
+        child: ElevatedButton(
+          onPressed: studentIdsSet.isEmpty ? generateAttendanceReport : null,
+          child: const Text('Generate Attendance Report'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: studentIdsSet.isEmpty ? Styles.primaryBlue : Colors.grey, // Adjust colors accordingly
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(28.0),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+          ),
+        ),
+      ),
+
+
+    ],
       ),
     ),
     );
@@ -171,9 +197,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 
+
+
+
   //WIDGETS
-
-
 // ---------------- Automated Attendance Widget ----------------
   Widget buildAutoAttendanceWidget(List<lister.Student> hasConsentStudents) {
     return Container(
@@ -216,7 +243,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
                     ? Image.network(
                   personalPic,
                   fit: BoxFit.cover, // Adjust the BoxFit as needed
-                ).image : const AssetImage('assets/avatar.png'), // Use the image path
+                ).image
+                    : const AssetImage('assets/avatar.png'), // Use the image path
               ),
             ),
           ),
@@ -229,34 +257,41 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
           // Spacer to add space between student name and buttons
           const Spacer(),
           // Buttons for taking photo and picking image
-          ElevatedButton(
-            onPressed: () {
-              // Implement a function to handle taking a photo
-              takePhoto();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Styles.primaryNavy,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28.0),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+          Visibility(
+            visible: !reportGenerated, // Show the buttons if report is not generated
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Implement a function to handle taking a photo
+                    takePhoto();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.primaryNavy,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(28.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  ),
+                  child: const Text('Take Photo'),
+                ),
+                const SizedBox(width: 10.0), // Add spacing between buttons
+                ElevatedButton(
+                  onPressed: () {
+                    // Call the pickImage function when the button is pressed
+                    pickImage();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.primaryNavy,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(28.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  ),
+                  child: const Text('Pick Image'),
+                ),
+              ],
             ),
-            child: const Text('Take Photo'),
-          ),
-          const SizedBox(width: 10.0), // Add spacing between buttons
-          ElevatedButton(
-            onPressed: () {
-              // Call the pickImage function when the button is pressed
-              pickImage();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Styles.primaryNavy,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28.0),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            ),
-            child: const Text('Pick Image'),
           ),
         ],
       ),
@@ -272,19 +307,53 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       setState(() {
         if (pickedFile != null) {
           _image = File(pickedFile.path);
-          print("You picked an image: $_image");
+          //print("You picked an image: $_image");
         }
       });
 
-      await apiFaceReco.compareImage(_image!);
+      final apiResponse = await apiFaceReco.compareImage(_image);
+
+      if (apiResponse != null) {
+        // Format the student name (remove underscore)
+        String formattedName = apiResponse.results.first.name.replaceAll(RegExp(r'[_0-9]'), ' ');
+
+        // Remove the student ID from studentIdsSet after taking attendance
+        int studentId = int.parse(apiResponse.results.first.studentId);
+        studentIdsSet.remove(studentId);
+        print("Removed an id $studentIdsSet");
+
+        // Display a dialog with the retrieved image and formatted student name
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Attendance Recorded!'),
+              content: Column(
+                children: [
+                  Image.memory(apiResponse.decodedImage!), // Display the decoded image
+                  SizedBox(height: 16),
+                  Text('Student Name:$formattedName'), // Display the formatted student name with ID
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        // Handle the case where the API response is null
+        print('API response is null');
+      }
     } catch (e) {
       print('Error picking image: $e');
     }
   }
-
-
-
-
 
 // Function to handle taking a photo
   Future<void> takePhoto() async {
@@ -296,17 +365,16 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       setState(() {
         if (pickedFile != null) {
           _image = File(pickedFile.path);
-          print("u did take an image: $_image");
+          //print("u did take an image: $_image");
         }
       });
 
       // After taking the photo, you can integrate AI model logic for verification
       if (_image != null) {
-        print("Shakla it worked");
+        //print("Shakla it worked");
 
         try {
-          await apiFaceReco.compareImage(_image!);
-
+          await apiFaceReco.compareImage(_image);
         } catch (e) {
           print('Error comparing image (from ui): $e');
         }
@@ -330,22 +398,76 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 
+
+
+
+
+
+
   // ---------------- Manual Attendance Widget ----------------
-  Widget buildManualAttendanceWidget(List<lister.Student> noConsentStudents) {
+  Widget buildManualAttendanceWidget(List<lister.Student> noConsentStudentsMW,) {
+    // Declare attendanceStates at the beginning of the method
+    List<String> attendanceStates = ['Present', 'Late', 'Absent'];
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+
           SizedBox(
-            height: 450.0, // Set a fixed height for the ListView.builder
+            height: 230.0,
             child: ListView.builder(
-              itemCount: noConsentStudents.length,
+              itemCount: noConsentStudentsMW.length,
               itemBuilder: (context, index) {
-                return buildManualAttendanceListItem(noConsentStudents[index]);
+                return buildManualAttendanceListItem(noConsentStudentsMW[index], attendanceStates);
               },
             ),
           ),
+
+          const Divider(
+            thickness: 0.2,
+            color: Colors.grey,
+          ),
+
+          // Add the Visibility widget for "Submit Manual Attendance" button
+          Visibility(
+            visible: !reportGenerated, // Show the button if report is not generated
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Create a list to store manual attendance information for all students
+                  List<Map<String, dynamic>> manualAttendanceList = [];
+
+                  // Iterate over each student and add their attendance information to the list
+                  noConsentStudentsMW.forEach((student) {
+                    String studentName = student.studentName;
+                    String selectedAttendanceState = attendanceControllers[studentName]?.text ?? attendanceStates[0];
+
+                    manualAttendanceList.add({
+                      'studentId': student.id,
+                      'studentName': studentName,
+                      'attendanceState': selectedAttendanceState,
+                    });
+                  });
+
+                  // Call the function to create attendance records for manual attendance
+                  createAttendanceRecords(manualAttendanceList);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Styles.primaryNavy,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(28.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                ),
+                child: const Text('Submit Manual Attendance'),
+              ),
+            ),
+          ),
+
+
         ],
       ),
     );
@@ -353,7 +475,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 
-  Widget buildManualAttendanceListItem(lister.Student student) {
+
+
+  Widget buildManualAttendanceListItem(lister.Student student, List<String> attendanceStates) {
+    int studentId = student.id ?? 0;
     String studentName = student.studentName;
     String personalPic = student.personalPicture;
 
@@ -363,8 +488,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
     // Variable to store the selected attendance state
     String selectedAttendanceState = attendanceStates[0];
 
-    // Controller for the CustomDropdown
-// Create a controller for each student
+
+    // Create a controller for each student
     if (!attendanceControllers.containsKey(student.studentName)) {
       attendanceControllers[student.studentName] = TextEditingController();
     }
@@ -439,7 +564,8 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
         const Divider(
           thickness: 0.2,
           color: Colors.grey,
-        ), // Divider after each student
+        ),
+
       ],
     );
   }
@@ -475,8 +601,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
 
 
+
   //function to fetch all students in a class from the API
   Future<void> listStudents(int preschoolId, int classId) async {
+
     try {
       final lister.APIStudentsLister studentsLister = lister.APIStudentsLister();
       final List<lister.Student> students = await studentsLister.getStudentsList(preschoolId, classId);
@@ -490,34 +618,158 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       hasConsentStudents.clear();
       noConsentStudents.clear();
 
-      for (var studentItem in students) {
-        print("Student ID: ${studentItem.id}");
-        print('Student Name: ${studentItem.studentName}, student say yes to AI: ${studentItem.hasConsent}');
-        print("Student personal PIC ${studentItem.personalPicture}");
 
+      for (var studentItem in students) {
+
+        //print("Student ID: ${studentItem.id}");
+        //print('Student Name: ${studentItem.studentName}, student say yes to AI: ${studentItem.hasConsent}');
+
+        //create a personalPicture getter client
         final info.APIStudentInfo studentInfo = info.APIStudentInfo();
         info.Student studentPicGetter = await studentInfo.getStudentInfo(studentItem.id!);
 
 
-
         // Classify based on hasConsent boolean
         if (studentItem.hasConsent == true) {
-          hasConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
-          print(studentPicGetter.personalPicture);
+          // Store information for students with consent
+          if (studentIdsSet.add(studentItem.id!)) {
+            hasConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
+            hasConsentStudentIds[studentItem.studentName] = studentItem.id.toString();
+          }
         } else {
-          noConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
-          print(studentPicGetter.personalPicture);
+          // Store information for students without consent
+          if (studentIdsSet.add(studentItem.id!)) {
+            noConsentStudents[studentItem.studentName] = studentPicGetter.personalPicture;
+            noConsentStudentIds[studentItem.studentName] = studentItem.id.toString();
+          }
         }
+
+        print("students ids: $studentIdsSet");
 
       }
 
       // Debugging print statements
-      print('List of students with consent: $hasConsentStudents');
-      print('List of students without consent: $noConsentStudents');
+      //print('List of students with consent: $hasConsentStudents');
+      //print('List of students without consent: $noConsentStudents');
+
     } catch (e) {
       print("Students listing issue!");
     }
   }
+
+
+
+
+  Future<void> createAttendanceRecords(List<Map<String, dynamic>> attendanceData) async {
+    try {
+      final APICreateAttendanceRecord createAttendanceRecord = APICreateAttendanceRecord();
+      await createAttendanceRecord.initializeBaseURL();
+      await createAttendanceRecord.initializeEndpoint();
+
+      for (var data in attendanceData) {
+        int studentId = data["studentId"];
+        String studentName = data['studentName'];
+        String attendanceState = data['attendanceState'];
+
+        try {
+          // Use the createAttendanceRecord function to create attendance records
+          await createAttendanceRecord.newAttendanceRecord(
+            studentId: studentId,
+            attendanceStatus: attendanceState,
+          );
+
+          // Remove the student ID from studentIdsSet after creating attendance record
+          studentIdsSet.remove(studentId);
+          print("Removed an id $studentIdsSet");
+
+          print('Attendance record created for Student ID $studentId');
+
+        } catch (e) {
+          print('Error creating attendance record for Student $studentName: $e');
+        }
+      }
+
+      // Optionally, you can show a success message or handle the completion
+      print('All attendance records created successfully!');
+
+      Styles.showCustomDialog(context, 'success', 'Attendance Recorded!', 'attendance recorded for all students', Icons.check);
+
+    } catch (e) {
+      print('Error initializing API for creating attendance records: $e');
+    }
+  }
+
+
+
+  Future<void> getAttendanceRecords(int classId) async {
+    try {
+      // Call the API to get attendance records
+      final List<AttendanceRecord> allAttendanceRecords = await apiAttendance.getAttendanceRecords(classId);
+
+      // Get the current date
+      final String currentDay = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+      // Filter records for the current day
+      final List<AttendanceRecord> attendanceRecords = allAttendanceRecords
+          .where((record) => record.date.startsWith(currentDay))
+          .toList();
+
+
+      // Print details for each attendance record
+      for (var record in attendanceRecords) {
+        print('Student ID: ${record.studentId}');
+        print('Date: ${record.date}');
+        print('-----');
+      }
+
+      // Handle the retrieved attendance records as needed
+      // print('Attendance Records for the current day: $allAttendanceRecords');
+      // print('Attendance Records for the current day: $attendanceRecords');
+      // You can update the state or perform other actions based on the retrieved data
+      // setState(() {
+      //   // Update the state with the retrieved attendance records
+      // });
+
+    } catch (e) {
+      print('Error getting attendance records: $e');
+      // Handle the error as needed
+    }
+  }
+
+
+  void generateAttendanceReport() {
+    // Replace this with your actual logic to generate the attendance report
+    print('Generating Attendance Report...');
+    // Add your logic here, such as generating a report file, sending data to the server, etc.
+    // Once the report is generated, you can show a success message or handle it accordingly.
+
+    setState(() {
+      reportGenerated = true;
+    });
+
+    if(reportGenerated){
+      Styles.showCustomDialog(context, 'success', 'Attendance Report Generated!', 'attendance recorded for all students', Icons.check);
+    }
+  }
+
+
+  Future<bool> checkAttendanceRecordForCurrentDay(int studentId) async {
+    try {
+      // Call the API to get attendance records for the current day
+      final List<AttendanceRecord> allAttendanceRecords = await apiAttendance.getAttendanceRecords(selectedClass!.id);
+
+      // Get the current date
+      final String currentDay = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+      // Check if the student has an attendance record for the current day
+      return allAttendanceRecords.any((record) => record.studentId == studentId && record.date.startsWith(currentDay));
+    } catch (e) {
+      print('Error checking attendance records: $e');
+      // Handle the error as needed
+      return false;
+    }
+  }
+
 
 
 

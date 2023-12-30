@@ -151,12 +151,15 @@ class APIAttendanceCIDbased {
     );
 
     if (response.statusCode == 200) {
+
+      print("Retreiveing attendance records...");
       final List<dynamic> data = jsonDecode(response.body);
 
       if (data.isNotEmpty) {
         // Convert each item in the list to an AttendanceRecord
         List<AttendanceRecord> attendanceRecords = data.map((record) => AttendanceRecord.fromJson(record)).toList();
         return attendanceRecords;
+
       } else {
         // Return an empty list if no records are found
         return [];

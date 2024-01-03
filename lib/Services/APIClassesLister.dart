@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class Class {
@@ -141,17 +142,38 @@ class ApiClassesLister {
 
     await initializeBaseURL();
     await initializeEndpoint();
-    final response = await http.get(Uri.parse('$baseUrl$endPoint/$preschoolId'));
+
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    print(userToken);
+
+    if (userToken != null) {
+
+
+    final response = await http.get(Uri.parse('$baseUrl$endPoint/$preschoolId'),
+      headers: {'Authorization': 'Bearer $userToken'},);
 
     if (response.statusCode == 200) {
       print("YES, we got 200");
       final List<dynamic> data = json.decode(response.body);
       return data.map((json) => Class.fromJson(json)).toList();
 
+
+
     } else {
       print(response.statusCode);
       throw Exception('Failed to load classes');
+
     }
+    }else{
+      print("there is no json token here!!, this is a guest");
+      throw Exception('Failed to load classes');
+
+    }
+
+
   }
 
 

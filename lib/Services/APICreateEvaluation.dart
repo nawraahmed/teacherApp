@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -163,6 +164,13 @@ class APICreateEvaluation {
     await initializeBaseURL();
     await initializeEndpoint();
 
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    if (userToken != null) {
+
+
     final url = '$baseUrl$endPoint';
 
     // Print parameter values before making the request
@@ -174,8 +182,10 @@ class APICreateEvaluation {
       final response = await http.post(
         Uri.parse(url),
         headers: {
-          'Content-Type': 'application/json', // Specify that you are sending JSON
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $userToken'
         },
+
         body: jsonEncode({
           'neatness': neatness,
           'attentiveness': attentiveness,
@@ -211,11 +221,19 @@ class APICreateEvaluation {
       final jsonResponse = json.decode(responseBody);
 
       return ApiCreateEvaluationResponse.fromJson(jsonResponse);
+
     } catch (e) {
       // Handle errors
       print('Error: $e');
       throw Exception('Failed to create evaluation');
     }
+
+  }else {
+  print("there is no json token here!!, this is a guest");
+  throw Exception('Failed to create evaluation');
+  }
+
+
   }
 
 

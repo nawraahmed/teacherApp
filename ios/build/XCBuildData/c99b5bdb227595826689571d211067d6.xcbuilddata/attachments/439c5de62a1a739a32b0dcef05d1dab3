@@ -1,0 +1,48 @@
+{
+  "" : {
+    "diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/url_launcher_ios-master.dia",
+    "emit-module-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/url_launcher_ios-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/url_launcher_ios-master-emit-module.dia",
+    "swift-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/url_launcher_ios-master.swiftdeps"
+  },
+  "/Users/nawraalhaji/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/Launcher.swift" : {
+    "const-values" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.swiftconstvalues",
+    "dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.d",
+    "diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.o",
+    "llvm-bc" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.bc",
+    "object" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.o",
+    "swift-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher.swiftdeps",
+    "swiftmodule" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Launcher~partial.swiftmodule"
+  },
+  "/Users/nawraalhaji/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/messages.g.swift" : {
+    "const-values" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.swiftconstvalues",
+    "dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.d",
+    "diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.o",
+    "llvm-bc" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.bc",
+    "object" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.o",
+    "swift-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g.swiftdeps",
+    "swiftmodule" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/messages.g~partial.swiftmodule"
+  },
+  "/Users/nawraalhaji/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/URLLauncherPlugin.swift" : {
+    "const-values" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.swiftconstvalues",
+    "dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.d",
+    "diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.o",
+    "llvm-bc" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.bc",
+    "object" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.o",
+    "swift-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin.swiftdeps",
+    "swiftmodule" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLauncherPlugin~partial.swiftmodule"
+  },
+  "/Users/nawraalhaji/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.1/ios/Classes/URLLaunchSession.swift" : {
+    "const-values" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.swiftconstvalues",
+    "dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.d",
+    "diagnostics" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.o",
+    "llvm-bc" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.bc",
+    "object" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.o",
+    "swift-dependencies" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession.swiftdeps",
+    "swiftmodule" : "/Users/nawraalhaji/StudioProjects/teacherApp/ios/build/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/URLLaunchSession~partial.swiftmodule"
+  }
+}

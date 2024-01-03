@@ -1,8 +1,9 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:the_app/Services/APISetTokenClient.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -26,10 +27,6 @@ class Notifications {
     final FCMToken = await _firebaseMessaging.getToken();
     final storage = FlutterSecureStorage();
     String? uid = await storage.read(key: 'uid');
-    print("FCMMM token: $FCMToken");
-    print("uid again from notification: $uid");
-
-
 
 
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);

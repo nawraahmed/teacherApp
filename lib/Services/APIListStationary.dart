@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -141,8 +142,19 @@ class APIListStationary {
     await initializeBaseURL();
     await initializeEndpoint();
 
-    final response = await http.get(
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+
+
+    if (userToken != null) {
+
+
+
+      final response = await http.get(
       Uri.parse('$baseUrl$endPoint'),
+        headers: {'Authorization': 'Bearer $userToken'},
     );
 
     if (response.statusCode == 200) {
@@ -161,6 +173,12 @@ class APIListStationary {
       print(response.statusCode);
       throw Exception('Failed to load stationary records');
     }
+
+    }else{
+      print("there is no json token here!!, this is a guest");
+      throw Exception('Failed to load stationary records');
+    }
+
   }
 
 

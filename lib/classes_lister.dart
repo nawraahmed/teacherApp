@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'Services/APIClassesLister.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'class_details.dart';
+import 'main.dart';
 
 class ClassLister extends StatefulWidget {
   const ClassLister({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
                   child: Container(
                     height: 80.0,
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(214, 214, 214, 1),
+                      color: Styles.primaryNavy,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Padding(
@@ -51,24 +52,27 @@ class _ClassListerState extends State<ClassLister> with SingleTickerProviderStat
                         children: [
                           Text(
                             'Class ${classesList[index].className}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 18.0,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Styles.primaryBlue),
                           ),
                           IconButton(
-                            icon: Image.asset('assets/enter_black.png'),
+                            icon: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Styles.primaryBlue,
+                            ),
                             onPressed: () {
                               // Handle button press
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ClassDetails(className: classesList[index].className, classId: classesList[index].id,),
+                                  builder: (context) => ClassDetails(
+                                    className: classesList[index].className,
+                                    classId: classesList[index].id,
+                                  ),
                                 ),
                               );
                             },
                           ),
+
                         ],
                       ),
                     ),

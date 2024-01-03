@@ -1,0 +1,140 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s16url_launcher_ios17URLLauncherPluginCfD",
+            "_$s16url_launcher_ios12LaunchResultOSHAAMc",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupC5setUp15binaryMessenger3apiySo013FlutterBinaryK0_p_AA0deF0_pSgtFZ",
+            "_$s16url_launcher_ios12LaunchResultON",
+            "_$s16url_launcher_ios15InAppLoadResultOMa",
+            "_$s16url_launcher_ios17URLLauncherPluginC0B0AcA8Launcher_p_tcfcfA_",
+            "_$s16url_launcher_ios17URLLauncherPluginCMn",
+            "_$s16url_launcher_ios15InAppLoadResultO8rawValueSivpMV",
+            "_$s16url_launcher_ios16URLLaunchSessionC20safariViewControllerSo08SFSafarigH0CvpMV",
+            "_$s16url_launcher_ios15InAppLoadResultOSYAAMc",
+            "_$s16url_launcher_ios17URLLauncherPluginCN",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvpWvd",
+            "_$s16url_launcher_ios16URLLaunchSessionC0A010completionAC10Foundation3URLV_ys6ResultOyAA09InAppLoadI0Os5Error_pGctcfC",
+            "_$s16url_launcher_ios17URLLauncherPluginC9launchUrl0A018universalLinksOnly10completionySS_Sbys6ResultOyAA06LaunchL0Os5Error_pGctF",
+            "_$s16url_launcher_ios12LaunchResultOMn",
+            "_$s16url_launcher_ios12LaunchResultOSQAAMc",
+            "_$s16url_launcher_ios17URLLauncherPluginC25closeSafariViewControlleryyF",
+            "_$sSo13UIApplicationC16url_launcher_ios8LauncherACWP",
+            "_url_launcher_iosVersionNumber",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvs",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvpfi",
+            "_$s16url_launcher_ios16URLLaunchSessionCMn",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCACycfCTq",
+            "_$s16url_launcher_ios17URLLauncherPluginCACycfC",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCMm",
+            "_$s16url_launcher_ios17URLLauncherPluginC14currentSession33_1E9177B4D0D2677B9D82C792ECADE955LLAA09URLLaunchG0CSgvpfi",
+            "_$s16url_launcher_ios17URLLauncherPluginC0B0AcA8Launcher_p_tcfCTq",
+            "_$s16url_launcher_ios16URLLaunchSessionC0A010completionAC10Foundation3URLV_ys6ResultOyAA09InAppLoadI0Os5Error_pGctcfCTq",
+            "_$s16url_launcher_ios15InAppLoadResultOSHAAMc",
+            "_$s16url_launcher_ios17URLLauncherPluginC0B0AcA8Launcher_p_tcfc",
+            "_$s16url_launcher_ios16URLLaunchSessionC20safariViewControllerSo08SFSafarigH0Cvg",
+            "_$s16url_launcher_ios16URLLaunchSessionC29safariViewControllerDidFinishyySo08SFSafarigH0CF",
+            "_$sSo16UIViewControllerC16url_launcher_iosE07topViewB0ABvg",
+            "_$s16url_launcher_ios12LaunchResultOSYAAMc",
+            "_$s16url_launcher_ios16URLLaunchSessionC5closeyyF",
+            "_$s16url_launcher_ios14UrlLauncherApiTL",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvg",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCMn",
+            "_$s16url_launcher_ios16URLLaunchSessionC20safariViewController_22didCompleteInitialLoadySo08SFSafarigH0C_SbtF",
+            "_$sSo13UIApplicationC16url_launcher_ios8LauncherACMc",
+            "_$s16url_launcher_ios17URLLauncherPluginCACycfc",
+            "_$s16url_launcher_ios12LaunchResultO8rawValueSivg",
+            "_$s16url_launcher_ios14UrlLauncherApiMp",
+            "_$s16url_launcher_ios15InAppLoadResultO8rawValueSivg",
+            "_$s16url_launcher_ios12LaunchResultOMa",
+            "_$s16url_launcher_ios16URLLaunchSessionC20safariViewControllerSo08SFSafarigH0CvpWvd",
+            "_$s16url_launcher_ios15InAppLoadResultO8rawValueACSgSi_tcfC",
+            "_$s16url_launcher_ios15InAppLoadResultOSQAAMc",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvM",
+            "_$s16url_launcher_ios17URLLauncherPluginCAA14UrlLauncherApiAAMc",
+            "_$s16url_launcher_ios16URLLaunchSessionCfD",
+            "_$s16url_launcher_ios16URLLaunchSessionC9didFinishyycSgvpMV",
+            "_$s16url_launcher_ios16URLLaunchSessionCN",
+            "_$s16url_launcher_ios17URLLauncherPluginC29openUrlInSafariViewController0A010completionySS_ys6ResultOyAA0h7AppLoadM0Os5Error_pGctF",
+            "_$s16url_launcher_ios16URLLaunchSessionCMa",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCACycfC",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCMa",
+            "_$s16url_launcher_ios17URLLauncherPluginC0B0AcA8Launcher_p_tcfC",
+            "_url_launcher_iosVersionString",
+            "_$s16url_launcher_ios16URLLaunchSessionC0A010completionAC10Foundation3URLV_ys6ResultOyAA09InAppLoadI0Os5Error_pGctcfc",
+            "_$s16url_launcher_ios16URLLaunchSessionCACycfC",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCfD",
+            "_$s16url_launcher_ios16URLLaunchSessionCACycfc",
+            "_$s16url_launcher_ios12LaunchResultO8rawValueSivpMV",
+            "_$s16url_launcher_ios17URLLauncherPluginCAA14UrlLauncherApiAAWP",
+            "_$s16url_launcher_ios17URLLauncherPluginC8register4withySo07FlutterE9Registrar_p_tFZ",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCACycfc",
+            "_$sSo16UIViewControllerC16url_launcher_iosE07topViewB0ABvpMV",
+            "_$s16url_launcher_ios8LauncherTL",
+            "_$s16url_launcher_ios17URLLauncherPluginCMa",
+            "_$s16url_launcher_ios8LauncherMp",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCN",
+            "_$s16url_launcher_ios19UrlLauncherApiSetupCfd",
+            "_$s16url_launcher_ios12LaunchResultO8rawValueACSgSi_tcfC",
+            "_$s16url_launcher_ios15InAppLoadResultON",
+            "_$s16url_launcher_ios15InAppLoadResultOMn",
+            "_$s16url_launcher_ios17URLLauncherPluginC12canLaunchUrl0A0AA0G6ResultOSS_tF"
+          ],
+          "objc_class": [
+            "_TtC16url_launcher_ios16URLLaunchSession",
+            "PodsDummy_url_launcher_ios",
+            "_TtC16url_launcher_ios17URLLauncherPlugin"
+          ]
+        }
+      },
+      {
+        "data": {
+          "global": [
+            "_Swift51Overrides",
+            "_Swift50Overrides"
+          ]
+        },
+        "targets": [
+          "x86_64-ios-simulator"
+        ],
+        "text": {
+          "global": [
+            "__ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E",
+            "__ZN5swift34swift50override_conformsToProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEPFPKNS_18TargetWitnessTableIS1_EES4_S8_E",
+            "__Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/url_launcher_ios.framework/url_launcher_ios"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "11",
+        "target": "x86_64-ios-simulator"
+      },
+      {
+        "min_deployment": "14",
+        "target": "arm64-ios-simulator"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

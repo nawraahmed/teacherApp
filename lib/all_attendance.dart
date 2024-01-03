@@ -168,7 +168,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
 
       // Add the Generate Attendance Report button
       Visibility(
-        visible: !reportGenerated, // Show the button if report is not generated
+        visible: selectedClass != null && !reportGenerated, // Show the button if report is not generated
         child: ElevatedButton(
           onPressed: studentIdsSet.isEmpty ? generateAttendanceReport : null,
           child: const Text('Generate Attendance Report'),
@@ -331,7 +331,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
               content: Column(
                 children: [
                   Image.memory(apiResponse.decodedImage!), // Display the decoded image
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text('Student Name:$formattedName'), // Display the formatted student name with ID
                 ],
               ),
@@ -340,7 +340,7 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
               ],
             );
@@ -653,9 +653,10 @@ class _AllAttendanceState extends State<AllAttendance> with SingleTickerProvider
       //print('List of students without consent: $noConsentStudents');
 
     } catch (e) {
-      print("Students listing issue!");
-    }
+  print("Error listing students: $e");
   }
+
+}
 
 
 

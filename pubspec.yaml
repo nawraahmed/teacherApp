@@ -53,6 +53,8 @@ dependencies:
   intl_translation: ^0.18.2
   intl_utils: ^2.8.5
   fl_chart: ^0.60.0
+  url_launcher: ^6.2.2
+  dio: ^5.4.0
 
 
 

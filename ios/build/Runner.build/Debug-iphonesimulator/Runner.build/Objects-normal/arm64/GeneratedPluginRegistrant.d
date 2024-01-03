@@ -128,4 +128,7 @@ dependencies: \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework/Headers/path_provider_foundation-Swift.h \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Modules/module.modulemap \
   /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Headers/shared_preferences_foundation-umbrella.h \
-  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Headers/shared_preferences_foundation-Swift.h
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework/Headers/shared_preferences_foundation-Swift.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/url_launcher_ios/url_launcher_ios.framework/Modules/module.modulemap \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/url_launcher_ios/url_launcher_ios.framework/Headers/url_launcher_ios-umbrella.h \
+  /Users/nawraalhaji/StudioProjects/teacherApp/build/ios/Debug-iphonesimulator/url_launcher_ios/url_launcher_ios.framework/Headers/url_launcher_ios-Swift.h

@@ -4,14 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:the_app/l10n/L10n.dart';
 import 'all_events.dart';
 import 'firebase_options.dart';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_app/walkthrough_page_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'all_attendance.dart';
 import 'attendance.dart';
 import 'events.dart';
@@ -200,6 +198,7 @@ class Styles{
     if (text == "Are you sure you want to delete this event?") {
       positiveButtonLabel = 'Yes';
       negativeButtonLabel = 'Cancel';
+
     } else {
       positiveButtonLabel = 'OK';
       negativeButtonLabel = ''; // No negative button for other messages
@@ -240,49 +239,45 @@ class Styles{
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        primary: negativeButtonLabel.isEmpty
-                            ? Colors.transparent // Make the button transparent if no negative button
-                            : titleColor,
-                      ),
-                      child: Text(
-                        negativeButtonLabel,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                        ),
-                      ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        primary: titleColor,
-                      ),
-                      child: Text(
-                        positiveButtonLabel,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                        ),
-                      ),
+                    primary: titleColor,
+                  ),
+                  child: Text(
+                    positiveButtonLabel,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
                     ),
-                  ],
+                  ),
                 ),
+                if (negativeButtonLabel.isNotEmpty) // Render only if negative button label is not empty
+                  const SizedBox(height: 16.0),
+                if (negativeButtonLabel.isNotEmpty) // Render only if negative button label is not empty
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      primary: Colors.transparent, // Make the button transparent
+                    ),
+                    child: Text(
+                      negativeButtonLabel,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -290,6 +285,7 @@ class Styles{
       },
     );
   }
+
 
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {

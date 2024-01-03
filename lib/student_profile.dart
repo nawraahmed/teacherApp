@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:the_app/Services/APIStudentInfo.dart';
+import 'package:the_app/Services/APIgetAllEvaluations.dart';
 import 'package:the_app/evaluation_screen.dart';
 import 'Styling_Elements/BackButtonRow.dart';
 import 'main.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:dio/dio.dart';
 
 class StudentProfilePage extends StatefulWidget {
   final String studentName;
   final int? studentId;
   final String className;
+
 
   const StudentProfilePage({
     Key? key,
@@ -25,6 +28,8 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
 
   int? selectedIndexToggle = 0;
   bool isLoading = true;
+  // Add a boolean variable to control the visibility of the button
+  bool showNewEvaluationButton = false;
 
   // Define fake data for testing
   List<String> oldEvaluations = [
@@ -64,6 +69,8 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
   void initState() {
     super.initState();
     fetchStudentInfo(widget.studentId);
+    fetchEvaluations(35);
+
   }
 
   @override
@@ -156,37 +163,49 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
             ),
             const SizedBox(height: 20.0),
 
-            // Toggle button to switch between old and new evaluations
-            ToggleSwitch(
-              minWidth: 170.0,
-              cornerRadius: 20.0,
-              activeBgColor: const [Styles.primaryNavy],
-              inactiveBgColor: Colors.grey,
-              activeFgColor: Colors.white,
-              inactiveFgColor: Colors.white,
-              initialLabelIndex: selectedIndexToggle,
-              totalSwitches: 2,
-              labels: const ['Old evaluations', ' New evaluations'],
-              radiusStyle: true,
-              onToggle: (index) {
-                print('switched to: $index');
-                setState(() {
-                  selectedIndexToggle = index;
-                });
-              },
-            ),
+            // Display the button only when the boolean variable is true
 
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 20.0),
 
-            // Display the appropriate widget based on the selected index
-            Visibility(
-              visible: selectedIndexToggle == 0,
-              child: buildOldEvaluationsWidget(context, oldEvaluations),
-            ),
-
-            Visibility(
-              visible: selectedIndexToggle == 1,
-              child: buildOldEvaluationsWidget(context, newEvaluations),
-            ),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Your logic for handling the button click goes here
+                    },
+                    child: Container(
+                      height: 45.0,
+                      width: 150,
+                      margin: const EdgeInsets.only(bottom: 66.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Styles.primaryNavy,
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'New Evaluation',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
 
           ],
@@ -222,13 +241,13 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
 
 
         // Add debugging print statements
-        print('Grade: $grade');
-        print('Contact Number 1: $contact_number1');
-        print('Contact Number 2: $contact_number2');
-        print('Guardian: $guardian');
-        print('Medical History: $medicalHistory');
-        print('Gender: $gender');
-        print('Personal Picture: $personalPicture');
+        // print('Grade: $grade');
+        // print('Contact Number 1: $contact_number1');
+        // print('Contact Number 2: $contact_number2');
+        // print('Guardian: $guardian');
+        // print('Medical History: $medicalHistory');
+        // print('Gender: $gender');
+        // print('Personal Picture: $personalPicture');
 
         isLoading = false; // Set loading to false when data is fetched
       });
@@ -242,6 +261,29 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
   }
 
 
+
+  Future<void> fetchEvaluations(int? studentId) async {
+    try {
+      final APIgetEvaluation evaluationGetter = APIgetEvaluation();
+      StudentEvaluation evaluation = await evaluationGetter.getEvaluation(studentId!);
+
+      setState(() {
+        // Process the evaluation data as before
+        print("Evaluation id: ${evaluation.arabicListeningSpeakingSkills}");
+        isLoading = false;
+
+      });
+
+    } catch (e) {
+      print("Evaluation info fetching issue: $e");
+    }
+  }
+
+
+
+
+
+
 //WIDGETS
   Widget buildLoadingIndicator() {
     return Center(
@@ -249,68 +291,6 @@ class _StudentProfilePageState extends State<StudentProfilePage> with SingleTick
     );
   }
 
-
-  Widget buildOldEvaluationsWidget(BuildContext context,
-      List<String> oldEvaluations) {
-    return Container(
-      height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.5,
-      child: ListView.separated(
-        itemCount: oldEvaluations.length,
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(oldEvaluations[index].toString(), style: Theme
-                .of(context)
-                .textTheme
-                .bodyMedium),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                  const EvaluationScreen(isEditable: true),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-
-
-  Widget buildNewEvaluationsWidget(BuildContext context,
-      List<String> newEvaluations) {
-    return Container(
-      height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.5,
-      child: ListView.separated(
-        itemCount: newEvaluations.length,
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(newEvaluations[index]),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                  const EvaluationScreen(isEditable: false),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
 
 // Rounded Rectangle Container Widget
   Widget buildRoundedContainer(List<String> titles, List<String> values, BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCreateRequestResponse {
@@ -17,28 +18,28 @@ class ApiCreateRequestResponse {
 }
 
 class StationaryRequest {
-  int id;
+  int? id;
   String statusName;
-  int preschoolId;
-  int classId;
-  int staffId;
-  int stationaryId;
-  int requestedQuantity;
-  String notes;
-  String createdAt;
-  String updatedAt;
+  int? preschoolId;
+  int? classId;
+  int? staffId;
+  int? stationaryId;
+  int? requestedQuantity;
+  String? notes;
+  String? createdAt;
+  String? updatedAt;
 
   StationaryRequest({
-    required this.id,
-    required this.statusName,
-    required this.preschoolId,
-    required this.classId,
-    required this.staffId,
-    required this.stationaryId,
-    required this.requestedQuantity,
-    required this.notes,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+     required this.statusName,
+     this.preschoolId,
+     this.classId,
+     this.staffId,
+     this.stationaryId,
+     this.requestedQuantity,
+     this.notes,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory StationaryRequest.fromJson(Map<String, dynamic> json) {
@@ -95,18 +96,29 @@ class APICreateRequest {
   }
 
 
-  Future<List<StationaryRequest>> createNewStaReq(
+
+  Future<StationaryRequest> createNewStaReq(
       String status_name,
       int requested_quantity,
       int staff_id,
       int stationary_id,
-      String notes
+      String notes,
+      int class_id
       ) async {
     await initializeBaseURL();
     await initializeEndpoint();
 
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    if (userToken != null) {
+
+
     // Create a Map with the required parameters
     Map<String, dynamic> requestBody = {
+      'preschool_id': 1,
+      'class_id': class_id,
       'status_name': status_name,
       'requested_quantity': requested_quantity,
       'staff_id': staff_id,
@@ -114,28 +126,34 @@ class APICreateRequest {
       'notes': notes,
     };
 
+    print(requestBody);
+
     final response = await http.post(
       Uri.parse('$baseUrl$endPoint'),
-      headers: {
-        'Content-Type': 'application/json', // Specify the content type as JSON
-      },
+      headers: {'Authorization': 'Bearer $userToken'},
       body: jsonEncode(requestBody), // Encode the parameters as JSON
     );
 
     if (response.statusCode == 200) {
       // Decode the response body
-      final List<dynamic> jsonResponse = jsonDecode(response.body);
+      final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
 
-      // Map the decoded JSON to a list of StationaryRequest objects
-      List<StationaryRequest> requests = jsonResponse
-          .map((json) => StationaryRequest.fromJson(json))
-          .toList();
+      // Convert the decoded JSON directly to a StationaryRequest object
+      final StationaryRequest request = StationaryRequest.fromJson(jsonResponse);
 
-      return requests;
+      print('JSON Response: $jsonResponse');
+
+
+      return request;
+
     } else {
       print(response.request);
       print(response.body);
       print(response.statusCode);
+      throw Exception('Failed to create a new requests record');
+    }
+    } else {
+      print("there is no json token here!!, this is a guest");
       throw Exception('Failed to create a new requests record');
     }
   }

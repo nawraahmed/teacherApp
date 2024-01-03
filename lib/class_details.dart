@@ -174,6 +174,7 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
               ),
             ),
 
+                // TODO: design changes for chart
             // List of past attendance records
             Expanded(
               child: ListView.builder(
@@ -296,10 +297,12 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
                           studentsList[index!].studentName,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
+
                         trailing: const Icon(
                           Icons.arrow_forward_ios_rounded,
                           color: Colors.white,
                         ),
+
                         onTap: () {
                           // Handle tap on a student
                           Navigator.push(
@@ -327,6 +330,8 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
 
 
           ] else if (selectedTab == 'events') ...[
+
+            // TODO: load filtered events here
             // Content for events tab
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -636,20 +641,17 @@ class _ClassDetailsState extends State<ClassDetails> with SingleTickerProviderSt
       List<StationaryRequest> allRequests = await apiListRequests.getRequestsRecords();
 
       // Filter requests based on the classId
-      List<StationaryRequest> filteredRequests = allRequests.where((request) => request.classId == 27).toList();
+      List<StationaryRequest> filteredRequests = allRequests.where((request) => request.classId == widget.classId).toList();
 
       setState(() {
         // Update the global list with the received stationary requests
         requestsList = filteredRequests;
       });
 
-      // Do something with each stationary request
+      //each stationary request
       for (StationaryRequest request in filteredRequests) {
         print('Request ID: ${request.id}');
         print('Status Name: ${request.createdAt}');
-        // print('Requested Quantity: ${request.requestedQuantity}');
-        // // Add more fields as needed
-        // print('-------------------'); // Separator between records
       }
 
     } catch (e) {

@@ -11,8 +11,10 @@ import '../main.dart';
 class NewEventDialog extends StatefulWidget {
   final DateTime selectedDate;
   final List<APIClassesLister.Class> classesList;
+  final Function onEventCreated;
 
-  NewEventDialog({required this.selectedDate, required this.classesList});
+  NewEventDialog({required this.selectedDate, required this.classesList, required this.onEventCreated});
+
 
   @override
   _NewEventDialogState createState() => _NewEventDialogState();
@@ -77,6 +79,10 @@ class _NewEventDialogState extends State<NewEventDialog> {
                           if (result != null) {
                             // Handle successful response
                             print("Event created successfully");
+                            widget.onEventCreated(); // Call the callback provided by the parent widget
+
+                            // Close the dialog
+                            Navigator.of(context).pop();
                           } else {
                             // Handle failure
                             print("Failed to create event");

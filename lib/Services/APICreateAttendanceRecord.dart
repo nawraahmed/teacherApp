@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -91,6 +92,13 @@ class APICreateAttendanceRecord {
     await initializeBaseURL();
     await initializeEndpoint();
 
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    if (userToken != null) {
+
+
     try {
       // Create the current date in the format 'yyyy-MM-ddTHH:mm:ss.SSSZ'
       String currentDate = DateTime.now().toUtc().toIso8601String();
@@ -106,7 +114,7 @@ class APICreateAttendanceRecord {
       final response = await http.post(
         Uri.parse('$baseUrl$endPoint'),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json', 'Authorization': 'Bearer $userToken',
         },
         body: jsonEncode(requestBody),
       );
@@ -130,5 +138,11 @@ class APICreateAttendanceRecord {
       print('Error creating attendance record: $error');
       throw Exception('Failed to create attendance record');
     }
+
+    } else {
+      print("there is no json token here!!, this is a guest");
+      throw Exception('Failed to create attendance record');
+    }
+
   }
 }

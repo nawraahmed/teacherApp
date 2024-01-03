@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class StationaryRequest {
@@ -97,7 +98,7 @@ class APIListRequests {
   Future<void> initializeBaseURL() async {
     final base = await readBASEFromJSONFile();
     baseUrl = base['base_url'] as String;
-    print("this is the requests base: $baseUrl");
+    //print("this is the requests base: $baseUrl");
   }
   // Reads teacher endpoint from JSON file
   Future<void> initializeEndpoint() async {
@@ -112,26 +113,38 @@ class APIListRequests {
     await initializeBaseURL();
     await initializeEndpoint();
 
-    final response = await http.get(
-      Uri.parse('$baseUrl$endPoint'),
-    );
 
-    if (response.statusCode == 200) {
-      // Decode the response body
-      final List<dynamic> jsonResponse = jsonDecode(response.body);
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
 
-      // Map the decoded JSON to a list of StationaryRequest objects
-      List<StationaryRequest> requests = jsonResponse
-          .map((json) => StationaryRequest.fromJson(json))
-          .toList();
+    if (userToken != null) {
+      final response = await http.get(
+        Uri.parse('$baseUrl$endPoint'),
+        headers: {'Authorization': 'Bearer $userToken'},
+      );
 
-      return requests;
-    } else {
-      print(response.request);
-      print(response.body);
-      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // Decode the response body
+        final List<dynamic> jsonResponse = jsonDecode(response.body);
+
+        // Map the decoded JSON to a list of StationaryRequest objects
+        List<StationaryRequest> requests = jsonResponse
+            .map((json) => StationaryRequest.fromJson(json))
+            .toList();
+
+        return requests;
+      } else {
+        print(response.request);
+        print(response.body);
+        print(response.statusCode);
+        throw Exception('Failed to load requests records');
+      }
+    }else{
+      print("there is no json token here!!, this is a guest");
       throw Exception('Failed to load requests records');
     }
+
   }
 
 

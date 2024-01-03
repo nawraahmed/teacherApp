@@ -111,7 +111,7 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
                       },
                     ),
                   ),
-                  const SizedBox(height: 20.0), // Adjust the space as needed
+                  const SizedBox(height: 10.0), // Adjust the space as needed
 
                   // Display the form directly on the screen
                   _buildForm(),
@@ -142,7 +142,7 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
             ),
           ),
 
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 18.0),
 
           // Requested Quantity Field
           TextFormField(
@@ -161,6 +161,7 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
             },
           ),
 
+          const SizedBox(height: 18.0),
 
           ElevatedButton(
             onPressed: () {
@@ -174,10 +175,18 @@ class _StationaryRequestFormState extends State<StationaryRequestForm>
 
                 // Call the createNewStaReq function and pass the relevant data
                 apiCreateRequest.createNewStaReq('pending', int.parse(quantityController.text),
-                  2, selectedItem?.id ?? 0, notesController.text,);
+                  2, selectedItem?.id ?? 0, notesController.text, selectedClass!.id);
               }
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Styles.primaryNavy,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28.0),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            ),
             child: const Text('Submit'),
+
           ),
 
         ],

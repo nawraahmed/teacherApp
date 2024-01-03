@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		uyOpZbW63QscbdYqS7afjGBqsgY=
+		HGuPlo6gcLc/w83B4mzh/dsxAsg=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		09Eq3194uIfmZlUBLg4RRVh3LT0=
+		ql4ZLg1nZFbnGFxMMkVdkIPYEIs=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		VRodqRwb4/XQKGilQd4qiW50wqE=
+		6Bb4C8L0j7/zMJYDQGBbmXDp60U=
 		</data>
 		<key>flutter_assets/assets/.DS_Store</key>
 		<data>
@@ -92,9 +92,25 @@
 		<data>
 		mdailcTr+cwzblZPo2Fc99QSOX8=
 		</data>
+		<key>flutter_assets/assets/mega.png</key>
+		<data>
+		wCnPzoywcsfbwEP3ysM15IUDyp8=
+		</data>
+		<key>flutter_assets/assets/notebook.png</key>
+		<data>
+		xS4tLg5nUB8C/HkplRIiAclfU2s=
+		</data>
+		<key>flutter_assets/assets/paint.png</key>
+		<data>
+		THRv+9A2PL4VXzL/FggbqDz/YA8=
+		</data>
 		<key>flutter_assets/assets/password.png</key>
 		<data>
 		4VsXlRTlSitSIvHWoQ1yMxmBwDQ=
+		</data>
+		<key>flutter_assets/assets/pro.JPG</key>
+		<data>
+		wu/AC9GxgLrT8WfYwCeQGQ7eHjs=
 		</data>
 		<key>flutter_assets/assets/settings.png</key>
 		<data>
@@ -126,7 +142,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		JvwrS3WHJV3Ofow67gtHCdga6JI=
+		/9D6GNj4jQ9qZ0Tx2/UAVgAr2Kg=
 		</data>
 		<key>flutter_assets/lib/Json_Files/attendance_endpoints.json</key>
 		<data>
@@ -195,14 +211,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			58dYxMTeYqU3IQXjOnqjOQ5eTkM2oxZ5P9+eHdymq3w=
+			RUAXYX7Apf37hBjCDMFzKrVHsBRHQ3Au9+jaZv5Rpm8=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZBGJtRM41SUzXdYdqvO17uOWWurWnDH3vSY9ugCdMQI=
+			MHV0AOFuX0in7eY4NMA3GdjW8cWV8jBkvliTLAVxiA0=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -216,7 +232,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ExbutreNmKs/bpeAe9ffbO+1WlpWpxltCjjgDuQr5dI=
+			sWPuKwUo2ruamrT5ufIbhvvhoRLPUn8792p+xwkc4YU=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/Home.png</key>
@@ -331,11 +347,39 @@
 			FCZ0A7OwGX+Wqyub+7wNumsLp12dQQXGMTu9vprREx8=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/mega.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aeGeROPgVjdUtaV9VotYHzbI/qjs/t0kj/5X7E3Sw+k=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/notebook.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4NeCOU1uxln4lHB6iSyetdtLshF2Q4MafZBqKEAWxMI=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/paint.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Sm8DVzWeCRL+FZKioidDDH++OnfRpnyEvrPxrMBIgM8=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/password.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			Zz0wC+T3rS2N+4yCsYrlJ0O/6llFMSuJki+bJr0cV18=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/pro.JPG</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			R3Dega7JDrMfiIcVxU7rk2DsgwVZkBw5oP5rf/O1i7Q=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/settings.png</key>
@@ -391,7 +435,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ah1XYXmEFdWsDb7/M/sJxDuPa/ovPnF9agiFr+4l4qM=
+			FcQG8j0OXf4Aw5CUtvOb/UB3wcbIrlLVEAm+b+YASD8=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/Json_Files/attendance_endpoints.json</key>

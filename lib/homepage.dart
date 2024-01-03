@@ -21,11 +21,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   late String name = '';
   late int preschoolId = 0;
   bool isLoading = true;
+  late String nameFromStorage = '';
 
 
   List<String> imagesPath= [
-    'assets/classes.png',
-    'assets/events_home.png',
+    'assets/notebook.png',
+    'assets/paint.png',
+    'assets/reports.png',
+  ];
+
+  List<String> otherImagesPath= [
+    'assets/mega.png',
+    'assets/tasks.png',
     'assets/events_home.png',
   ];
 
@@ -42,8 +49,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    List<String> headings = ['${AppLocalizations.of(context)!.classes}', '${AppLocalizations.of(context)!.events}', '${AppLocalizations.of(context)!.stationary}'];
-    List<String> otherHeadings = [ '${AppLocalizations.of(context)!.teachers}', '${AppLocalizations.of(context)!.reports}', 'Tasks'];
+    List<String> headings = ['${AppLocalizations.of(context)!.classes}', '${AppLocalizations.of(context)!.stationary}', '${AppLocalizations.of(context)!.reports}'];
+    List<String> otherHeadings = [ '${AppLocalizations.of(context)!.teachers}'];
     return Scaffold(
       body: Column(
         children: [
@@ -54,10 +61,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: Row(
               children: [
                 // Text on the left
-                 Text(
-                  '${AppLocalizations.of(context)!.helloTeacher} \n${name}',
-                   style: Theme.of(context).textTheme.titleMedium,
+                Text(
+                  '${AppLocalizations.of(context)!.helloTeacher} \n${nameFromStorage}',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
+
 
                 // Spacer to push the next widget to the right
                 const Spacer(),
@@ -77,7 +85,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage('assets/avatar.png'),
+                        image: AssetImage('assets/pro.JPG'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -87,7 +95,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ),
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
 
           // Heading for the collection view
            const Align(
@@ -125,17 +133,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         );
 
                       } else if (index == 1) {
-                        // Navigate to the events page
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ClassLister()),
-                        );
-                      }
-                      else if (index == 2) {
+
                         // Navigate to the Stationary page
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const StationaryRequestForm()),
+                        );
+                      }
+
+                      else if (index == 2) {
+                        // Navigate to the events page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ClassLister()),
                         );
                       }
                     },
@@ -144,7 +154,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       height: 200.0,
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Styles.primaryNavy,
+                        color: Styles.primaryBlue,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Column(
@@ -177,11 +187,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
 
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 70),
 
           // Heading for the collection view
            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
+              padding: const EdgeInsets.only(right: 290.0),
               child: Text(
                   '${AppLocalizations.of(context)!.forYou}',
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -208,14 +218,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       height: 200.0,
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Styles.primaryNavy,
+                        color: Styles.primaryBlue,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            imagesPath[index], // Select the corresponding image asset path
+                            otherImagesPath[index], // Select the corresponding image asset path
                             width: 80.0,
                             height: 80.0,
                             fit: BoxFit.cover,
@@ -243,6 +253,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
+
   //FUNCTIONS
   Future<void> fetchTeacherName() async {
     try {
@@ -258,22 +269,33 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         final intStaffId = int.tryParse(staffId);
 
         if (intStaffId != null) {
-          // pass the ID to the API to get the name
-          final APITeacherInfo teacherInfo = APITeacherInfo();
-          TeacherInfo teacher = await teacherInfo.getTeacherInfo(intStaffId);
+          // Retrieve the teacher's name from Flutter Secure Storage
+          final storedName = await secureStorage.read(key: 'teacherName');
 
-          //store teacher's name
-          setState(() {
-            name = teacher.name;
-            isLoading = false;
-          });
+          if (storedName != null) {
+            // If the name is already stored, use it
+            setState(() {
+              nameFromStorage = storedName;
+              isLoading = false;
+            });
+          } else {
+            // If the name is not stored, fetch it from the API
+            final APITeacherInfo teacherInfo = APITeacherInfo();
+            TeacherInfo teacher = await teacherInfo.getTeacherInfo(intStaffId);
 
-          //store the preschool id in flutter secure storage
-          preschoolId = teacher.preschoolId;
-          const secureStorage = FlutterSecureStorage();
+            // Store teacher's name in Flutter Secure Storage
+            await secureStorage.write(key: 'teacherName', value: teacher.name);
+
+            // Update the state with the fetched name
+            setState(() {
+              nameFromStorage = teacher.name;
+              isLoading = false;
+            });
+          }
+
+          // Store the preschool id in flutter secure storage
+          preschoolId = intStaffId;
           await secureStorage.write(key: 'preschoolId', value: preschoolId.toString());
-
-
         } else {
           print("Staff ID is not a valid integer.");
         }
@@ -284,6 +306,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       print("Teacher name fetching issue: $e");
     }
   }
+
 
 
 

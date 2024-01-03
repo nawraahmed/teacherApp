@@ -105,9 +105,7 @@ Widget build(BuildContext context) {
                   DateTime eventDate = DateTime.parse(event.eventDate);
                   if (isSameDay(eventDate, day)) {
                     // Customize marker based on event type
-                    defaultMarkers = event.publicEvent
-                        ? const BoxDecoration(color: Colors.red, shape: BoxShape.circle)
-                        : const BoxDecoration(color: Styles.primaryBlue,  shape: BoxShape.circle);
+                    defaultMarkers = const BoxDecoration(color: Styles.primaryBlue,  shape: BoxShape.circle);
 
                     dayMarkers.add(Container(
                       decoration: defaultMarkers,
@@ -123,7 +121,6 @@ Widget build(BuildContext context) {
             ),
           ),
           const SizedBox(height: 15.0),
-
           Align(
             alignment: Alignment.centerRight,
             child: Padding(
@@ -131,12 +128,47 @@ Widget build(BuildContext context) {
               child: GestureDetector(
                 onTap: () {
                   DateTime selectedDay = _selectedDay;
-                  newEventSheet(context, selectedDay, classesList);
+
+                  // Check if the selected date is in the past
+                  if (selectedDay.isBefore(today)) {
+                    // Show an error dialog
+                    Styles.showCustomDialog(
+                      context,
+                      'error',
+                      'Invalid Date',
+                      'Event date must be a future date',
+                      Icons.error_outline_rounded,
+                    );
+
+                  } else {
+
+                    // Check if there is already an event for the selected date
+                    bool hasOverlappingEvent = _events.any((event) {
+                      DateTime eventDate = DateTime.parse(event.eventDate);
+                      return isSameDay(eventDate, selectedDay);
+                    });
+
+                    if (hasOverlappingEvent) {
+                      // Show an error dialog for overlapping events
+                      Styles.showCustomDialog(
+                        context,
+                        'error',
+                        'Invalid Date',
+                        'Overlapping events is not allowed',
+                        Icons.error_outline_rounded,
+                      );
+                    } else {
+                      // Show the new event sheet
+                      newEventSheet(context, selectedDay, classesList);
+                    }
+
+                  }
+
                 },
                 child: Container(
                   height: 45.0,
                   width: 150,
-                  margin: const EdgeInsets.only(bottom: 16.0), // Add bottom margin here
+                  margin: const EdgeInsets.only(bottom: 66.0), // Add bottom margin here
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     color: Styles.primaryNavy,
@@ -165,6 +197,7 @@ Widget build(BuildContext context) {
               ),
             ),
           ),
+
         ],
     ),
     ),
@@ -172,6 +205,7 @@ Widget build(BuildContext context) {
 
           if (_showDetails)
             Positioned(
+
               bottom: 0,
               left: 0,
               right: 0,
@@ -226,10 +260,11 @@ Widget build(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return NewEventDialog(selectedDate: selectedDate, classesList: classesList);
+        return NewEventDialog(selectedDate: selectedDate, classesList: classesList, onEventCreated: refreshEvents);
       },
     );
   }
+
 
 
 
@@ -289,8 +324,14 @@ Future<void> fetchAllEvents(int preschoolId) async {
 
 
 
+  Future<void> refreshEvents() async {
+    await fetchAllEvents(1); // Assuming 1 is your preschoolId
+    setState(() {});
+  }
+
 
 }
+
 
 
 //CLASSES
@@ -327,6 +368,7 @@ class EventDecoration {
 }
 
 
+
 class EventDetailsWidget extends StatelessWidget {
   final List<APIListEvents.Event> events;
 
@@ -336,6 +378,7 @@ class EventDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         Text(
           'Event Details',
           style: Theme.of(context).textTheme.titleMedium,
@@ -363,6 +406,7 @@ class EventDetailsWidget extends StatelessWidget {
                   event.eventName,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Styles.primaryBlue),
                   ),
+
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -371,8 +415,17 @@ class EventDetailsWidget extends StatelessWidget {
                       event.notes,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
                       ),
+                      const SizedBox(height: 15.0),
+                      Text(
+                        event.publicEvent
+                            ? 'Public Event'
+                            : 'Private Event',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+                      ),
                     ],
                   ),
+
+
                 trailing: MoreActionsButton(
                   onEditPressed: () {
                   // Handle edit action
@@ -398,6 +451,7 @@ class EventDetailsWidget extends StatelessWidget {
       ],
     );
   }
+
 
 
 
@@ -465,9 +519,14 @@ class EventDetailsWidget extends StatelessWidget {
                           if (result != null) {
                             // Handle successful deletion
                             print("Event deleted successfully");
+
+
                           } else {
                             // Handle deletion failure
                             print("Failed to delete event");
+
+                            //show another prompt
+
                           }
                         }).catchError((error) {
                           // Handle error

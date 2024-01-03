@@ -1,6 +1,7 @@
 {
   "base_url": "http://localhost:3000/",
   "endpoints": {
-    "create_evaluation": "/StudentEvaluation"
+    "create_evaluation": "/StudentEvaluation",
+    "get_evaluation": "/StudentEvaluation/{student_id}"
   }
 }

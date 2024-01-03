@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ApiDeleteEvaluationResponse {
@@ -46,14 +47,22 @@ class APIDeleteEvaluation {
     print("this is the EP: $endPoint");
   }
 
+
   Future<ApiDeleteEvaluationResponse> deleteEvaluation(String evaluationId) async {
     await initializeBaseURL();
     await initializeEndpoint();
 
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    if (userToken != null) {
+
     final url = '$baseUrl${endPoint.replaceFirst('{evaluation_id}', evaluationId)}';
 
     try {
-      final response = await http.delete(Uri.parse(url));
+      final response = await http.delete(Uri.parse(url),
+        headers: {'Authorization': 'Bearer $userToken'},);
       final jsonResponse = json.decode(response.body);
 
       return ApiDeleteEvaluationResponse.fromJson(jsonResponse);
@@ -62,5 +71,11 @@ class APIDeleteEvaluation {
       print('Error: $e');
       throw Exception('Failed to delete evaluation');
     }
+
+    } else {
+      print("there is no json token here!!, this is a guest");
+      throw Exception('Failed to delete evaluation');
+    }
+
   }
 }

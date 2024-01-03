@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 //class for the response
@@ -45,17 +46,18 @@ class EventData {
 
   factory EventData.fromJson(Map<String, dynamic> json) {
     return EventData(
-      eventName: json['event_name'],
-      eventDate: json['event_date'],
-      notes: json['notes'],
-      notifyParents: json['notify_parents'],
-      notifyStaff: json['notify_staff'],
-      publicEvent: json['public_event'],
-      createdBy: json['created_by'],
-      preschoolId: json['preschool_id'],
-      classes: List<int>.from(json['classes']),
+      eventName: json['event_name'] ?? '',
+      eventDate: json['event_date'] ?? '',
+      notes: json['notes'] ?? '',
+      notifyParents: json['notify_parents'] ?? false,
+      notifyStaff: json['notify_staff'] ?? false,
+      publicEvent: json['public_event'] ?? false,
+      createdBy: json['created_by'] ?? 0,
+      preschoolId: json['preschool_id'] ?? 0,
+      classes: List<int>.from(json['classes'] ?? []),
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -130,32 +132,43 @@ class APICreateEvent {
     await initializeBaseURL();
     await initializeEndpoint();
 
-    // Build the request body
-    final Map<String, dynamic> requestBody = {
-      "event_name": eventName,
-      "event_date": eventDate,
-      "notes": notes,
-      "notify_parents": notifyParents,
-      "notify_staff": notifyStaff,
-      "public_event": publicEvent,
-      "created_by": createdBy,
-      "preschool_id": preschoolId,
-      "classes": classes,
-    };
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
 
-    // Create the request
-    final response = await http.post(
-      Uri.parse('$baseUrl$endPoint'),
-      body: jsonEncode(requestBody),
-      headers: {'Content-Type': 'application/json'},
-    );
+    if (userToken != null) {
+      // Build the request body
+      final Map<String, dynamic> requestBody = {
+        "event_name": eventName,
+        "event_date": eventDate,
+        "notes": notes,
+        "notify_parents": notifyParents,
+        "notify_staff": notifyStaff,
+        "public_event": publicEvent,
+        "created_by": createdBy,
+        "preschool_id": preschoolId,
+        "classes": classes,
+      };
 
-    if (response.statusCode == 200) {
-      print("YES, we got 200");
-      return ApiCreateEventResponse.fromJson(jsonDecode(response.body));
+
+      // Create the request
+      final response = await http.post(
+        Uri.parse('$baseUrl$endPoint'),
+        body: jsonEncode(requestBody),
+        headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $userToken'},
+      );
+
+      if (response.statusCode == 201) {
+        print("YES, we got 201, event created");
+        print(response.body);
+        return ApiCreateEventResponse.fromJson(jsonDecode(response.body));
+
+      } else {
+        print(response.statusCode);
+        throw Exception('Failed to Create New Event haha, try again later');
+      }
     } else {
-      print(response.statusCode);
-      throw Exception('Failed to Create New Event haha, try again later');
+      print("there is no json token here!!, this is a guest");
     }
   }
 

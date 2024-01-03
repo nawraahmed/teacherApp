@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:the_app/about_us.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'faq.dart';
 import 'login_page.dart';
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_app//Users/nawraalhaji/StudioProjects/teacherApp/.dart_tool/flutter_gen/gen_l10n/app_localization.dart';
-
+import 'dart:io';
 
 // The stateful widget for the home page
 class Settings extends StatefulWidget {
@@ -21,6 +21,14 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin {
   bool darkModeEnabled = false; // Initialize default dark mode state
   bool notificationsEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch user preferences on initialization
+    fetchUserPreferences();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +48,11 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
                 signOut();
               },
               style: ElevatedButton.styleFrom(
+                backgroundColor: Styles.primaryNavy,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(28.0),
                 ),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
               ),
               child: const Text('Logout'),
             ),
@@ -61,7 +71,8 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
                 darkModeEnabled = value;
               });
 
-              // logic to save dark mode preference
+              // Save dark mode preference
+              await saveUserPreference('darkMode', value.toString());
 
             },
             activeColor: CupertinoColors.systemGrey4,
@@ -73,52 +84,34 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
 
 
 
-          buildSettingItem('Notifications', Icons.notifications, CupertinoSwitch(
-            value: notificationsEnabled,
-            onChanged: (value) async {
-              // Update the notifications state
-              setState(() {
-                notificationsEnabled = value;
-              });
+          if (Platform.isAndroid) // Check if the platform is Android
+            buildSettingItem('Notifications', Icons.notifications, CupertinoSwitch(
+              value: notificationsEnabled,
+              onChanged: (value) async {
+                setState(() {
+                  notificationsEnabled = value;
+                });
 
-              // logic to save notifications mode preference
-
-            },
-            activeColor: CupertinoColors.systemGrey4,
-            thumbColor: darkModeEnabled
-                ? const Color.fromRGBO(0, 0, 0, 0.3)
-                : const Color.fromRGBO(75, 75, 75, 1),
-            trackColor: const Color.fromRGBO(255, 255, 255, 1),
-          )),
-
-
+                // Save notifications preference
+                await saveUserPreference('notifications', value.toString());
+              },
+              activeColor: CupertinoColors.systemGrey4,
+              thumbColor: darkModeEnabled
+                  ? const Color.fromRGBO(0, 0, 0, 0.3)
+                  : const Color.fromRGBO(75, 75, 75, 1),
+              trackColor: const Color.fromRGBO(255, 255, 255, 1),
+            )),
 
           buildSettingItem('FAQs', Icons.help),
           buildSettingItem('About Us', Icons.info),
           buildSettingItem('Report a Bug', Icons.bug_report),
-          buildSettingItem('Language', Icons.language),
-          Text(AppLocalizations.of(context)!.language,
-            style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Styles.primaryGray,
-            fontSize: 17.0,
-          ),
-          ),
-
-
-
-          Text(AppLocalizations.of(context)!.language,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Styles.primaryGray,
-              fontSize: 17.0,
-            ),
-          ),
 
         ],
       ),
     );
   }
+
+
 
 
 
@@ -152,7 +145,9 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
               context,
               MaterialPageRoute(builder: (context) => const AboutUs()), // Replace FAQsPage with the actual page
             );
-          }
+          } else if (settingName == 'Report a Bug') {
+            launchEmail();
+            }
 
         },
         trailing: trailingWidget ?? const SizedBox(), // Use trailingWidget if provided, otherwise use an empty SizedBox
@@ -160,6 +155,10 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
       ),
     );
   }
+
+
+
+
 
   //FUNCTIONS
   void signOut() async {
@@ -174,12 +173,12 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
       await secureStorage.write(key: 'user_email', value: '');
       await secureStorage.write(key: 'user_token', value: '');
 
+      // Clear preferences related to dark mode and notifications
+      await clearUserPreferences();
+
       //navigate to the login page
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>  LoginScreen(),
-        ),
+      Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) =>  LoginScreen(),),
       );
 
 
@@ -187,5 +186,62 @@ class _SettingsState extends State<Settings> with SingleTickerProviderStateMixin
       print('Error logging out: $e');
     }
   }
+
+  Future<void> saveUserPreference(String key, String value) async {
+    try {
+      const secureStorage = FlutterSecureStorage();
+      await secureStorage.write(key: key, value: value);
+    } catch (e) {
+      print('Error saving user preference: $e');
+    }
+  }
+
+  Future<void> fetchUserPreferences() async {
+    try {
+      const secureStorage = FlutterSecureStorage();
+
+      // Fetch dark mode preference
+      String? darkModeValue = await secureStorage.read(key: 'darkMode');
+      if (darkModeValue != null) {
+        setState(() {
+          darkModeEnabled = darkModeValue.toLowerCase() == 'true';
+        });
+      }
+
+      // Fetch notifications preference
+      String? notificationsValue = await secureStorage.read(key: 'notifications');
+      if (notificationsValue != null) {
+        setState(() {
+          notificationsEnabled = notificationsValue.toLowerCase() == 'true';
+        });
+      }
+    } catch (e) {
+      print('Error fetching user preferences: $e');
+    }
+  }
+
+  Future<void> clearUserPreferences() async {
+    try {
+      const secureStorage = FlutterSecureStorage();
+      await secureStorage.delete(key: 'darkMode');
+      await secureStorage.delete(key: 'notifications');
+    } catch (e) {
+      print('Error clearing user preferences: $e');
+    }
+  }
+
+  void launchEmail()  {
+    final mailToURi = Uri(
+      scheme: 'mailto',
+      path: 'alef.preschool@gmail.com',
+      queryParameters: {'subject': 'Bug Report'},
+    );
+
+   launchUrl(mailToURi);
+
+  }
+
+
+
 
 }

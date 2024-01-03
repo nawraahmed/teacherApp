@@ -19,6 +19,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 80.0),
           BackButtonRow(title: 'Attendance Details'),
+
       Padding(
         padding: const EdgeInsets.all(15.0),
         child: Text(
@@ -26,6 +27,8 @@ class AttendanceDetailsScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium, // Adjust the style as needed
         ),
       ),
+
+          // TODO: design changes
       Expanded(
         child: ListView.builder(
               itemCount: studentAttendanceList.length,
@@ -40,6 +43,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
               },
             ),
           ),
+
         ],
       ),
     );

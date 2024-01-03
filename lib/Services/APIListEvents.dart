@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class EventListResponse {
@@ -163,7 +164,6 @@ class APIListEvents {
 
 
 
-
   // Reads classes endpoint from JSON file
   Future<String> initializeEndpoint() async {
     final classesEndpoint = await readAPIInfoFromJSONFile();
@@ -180,10 +180,17 @@ class APIListEvents {
     await initializeBaseURL();
     await initializeEndpoint();
 
-    // Create the request
+    //read the token from flutter secure storage, and add it to the header
+    final storage = FlutterSecureStorage();
+    String? userToken = await storage.read(key: 'user_token');
+
+    if (userToken != null) {
+
+
+      // Create the request
     final response = await http.get(
       Uri.parse('$baseUrl$endPoint?preschool_id=$preschoolId'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $userToken'},
     );
 
     if (response.statusCode == 200) {
@@ -208,6 +215,10 @@ class APIListEvents {
     } else {
       print(response.statusCode);
       throw Exception('Failed to List this preschool events');
+    }
+
+    }else{
+      print("there is no json token here!!, this is a guest");
     }
   }
 
